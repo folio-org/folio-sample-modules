@@ -110,4 +110,5 @@ curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/proxy/modules/hello
 
 curl -w '\n' -X DELETE   -D -    http://localhost:9130/_/deployment/modules/localhost-9131
 ```
+Finally you can stop the Okapi, with a Ctrl-C in its terminal window.
 
