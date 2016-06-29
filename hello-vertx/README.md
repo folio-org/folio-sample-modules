@@ -101,3 +101,13 @@ curl -w '\n' -X POST -D -   \
     -d @enable.json \
     http://localhost:9130/hello
 ```
+
+## Cleaning up
+```
+curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/proxy/tenants/our/modules/hello
+
+curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/proxy/modules/hello
+
+curl -w '\n' -X DELETE   -D -    http://localhost:9130/_/deployment/modules/localhost-9131
+```
+
