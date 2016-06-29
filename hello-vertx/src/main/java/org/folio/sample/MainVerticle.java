@@ -17,7 +17,6 @@ package org.folio.sample;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
-import io.vertx.core.http.HttpMethod;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import io.vertx.ext.web.Router;
@@ -26,7 +25,9 @@ import java.io.IOException;
 import java.lang.management.ManagementFactory;
 
 /**
- *
+ * The main verticle.
+ * This is the HTTP server that accepts incoming requests and routes them
+ * to the relevant handlers.
  */
 public class MainVerticle extends AbstractVerticle {
 
@@ -34,30 +35,29 @@ public class MainVerticle extends AbstractVerticle {
 
   @Override
   public void start(Future<Void> fut) throws IOException {
-    Router router = Router.router(vertx);
 
     final int port = Integer.parseInt(System.getProperty("port", "8080"));
-    logger.info("Starting hello " + ManagementFactory.getRuntimeMXBean().getName() + " on port " + port);
+    logger.info("Starting hello " 
+            + ManagementFactory.getRuntimeMXBean().getName()
+            + " on port " + port);
 
     // Define the routes for HTTP requests. Both GET and POST go to the same
     // one here...
+    Router router = Router.router(vertx);
     router.get("/hello").handler(this::get_handle);
     router.post("/hello").handler(this::post_handle);
 
     // And start listening
     vertx.createHttpServer()
             .requestHandler(router::accept)
-            .listen(
-                    port,
-                    result -> {
-                      if (result.succeeded()) {
-                        fut.complete();
-                      } else {
-                        logger.error("sample failed: " + result.cause());
-                        fut.fail(result.cause());
-                      }
-                    }
-            );
+            .listen( port, result -> {
+                if (result.succeeded()) {
+                  fut.complete();
+                } else {
+                  logger.error("sample failed: " + result.cause());
+                  fut.fail(result.cause());
+                }
+              });
   }
 
   // Handler for the GET requests. 
@@ -73,7 +73,7 @@ public class MainVerticle extends AbstractVerticle {
 
   // Handler for the POST request
   // Replies with a Json structure that contains all posted data
-  //
+  // As long as the input data is valid Json, the output should be too.
   public void post_handle(RoutingContext ctx) {
     ctx.response().setStatusCode(200);
     String contentType = ctx.request().getHeader("Content-Type");

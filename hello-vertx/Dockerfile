@@ -1,14 +1,14 @@
 ###
 # vert.x docker example using a Java verticle packaged as a fatjar
 # To build:
-#  docker build -t indexdata/okapi-sample-module .
+#  docker build -t indexdata/folio-hello-module .
 # To run:
-#   docker run -t -i -p 8080:8080 indexdata/okapi-sample-module
+#   docker run -t -i -p 8080:8080 indexdata/folio-hello-module
 ###
 
 FROM java:8
 
-ENV VERTICLE_FILE okapi-sample-module-fat.jar
+ENV VERTICLE_FILE folio-hello-vertx-fat.jar
 
 # Set the location of the verticles
 ENV VERTICLE_HOME /usr/verticles
