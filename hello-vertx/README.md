@@ -46,7 +46,7 @@ Test that it runs with
 
 And check it in another window:
 ```
-   curl http://localhost/hello
+   curl http://localhost:8080/hello
 ```
 
 ## Installing the module
