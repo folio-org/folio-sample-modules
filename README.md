@@ -18,9 +18,11 @@ At the moment we support several types of modules:
   * Server side
   * UI modules
   * Virtual module, with only dependencies and other metadata
-<!--- TODO: We have not yet done anything about virtual modules, but I believe
-such ought to work already. Sooner or later we will need to pay more attention
-to those. The text is good enough as it stands --->
+
+<!--- TODO: We have not yet done anything about virtual modules,
+but I believe such ought to work already. Sooner or later
+we will need to pay more attention to those. The text is
+good enough as it stands -->
 
 We may end up adding more types later.
 
@@ -133,6 +135,7 @@ does, so its logs should be compatible.
 ##### Utilitiy libraries
 There are several useful classes in Okapi itself. We plan to extract them into
 a library jar, so they can be used in modules too.
+
 <!--- TODO - Nice idea, but are we going to do it? --->
 
 ## UI modules
