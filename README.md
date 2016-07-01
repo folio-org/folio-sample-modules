@@ -7,7 +7,7 @@ This project contains some examples of Folio modules (currently only one, but
 more will come later), and some general information about writing modules (in
 this README).
 
-<!-- TODO: Add a few words about what Folio is, for new readers. Keep it short! -->
+<!--- TODO: Add a few words about what Folio is, for new readers. Keep it short! --->
 
 ## What is a module
 
@@ -18,9 +18,9 @@ At the moment we support several types of modules:
   * Server side
   * UI modules
   * Virtual module, with only dependencies and other metadata
-<!-- TODO: We have not yet done anything about virtual modules, but I believe
+<!--- TODO: We have not yet done anything about virtual modules, but I believe
 such ought to work already. Sooner or later we will need to pay more attention
-to those. The text is good enough as it stands -->
+to those. The text is good enough as it stands --->
 
 We may end up adding more types later.
 
@@ -98,10 +98,10 @@ The deployment options are specified in the DeploymentDescriptor.
 Once deployed, Okapi's proxy part must be informed about the module, and then
 the module can be enabled for tenants to use.
 
-<!-- TODO
+<!--- TODO
 ### Logging, Health, and Metrics
 Write something about these
--->
+--->
 
 
 
@@ -114,12 +114,12 @@ with different tools.
 
 So far we have only written server side modules in Java, using vert.x.
 
-<!--
+<!---
 ##### Development tools
 
 TODO: write something about the necessary development tools, maven repos,
 etc.
--->
+--->
 
 ##### Sample module
 There is a very minimal "hello, world" module in the hello-vertx directory.
@@ -133,13 +133,13 @@ does, so its logs should be compatible.
 ##### Utilitiy libraries
 There are several useful classes in Okapi itself. We plan to extract them into
 a library jar, so they can be used in modules too.
-<!-- TODO - Nice idea, but are we going to do it? -->
+<!--- TODO - Nice idea, but are we going to do it? --->
 
 ## UI modules
 The UI modules are quite different from the server side modules. The system is
 still under development, so it may be too early to write much about it.
 
-<!-- TODO - Describe the way UI modules are written, and bundled -->
+<!--- TODO - Describe the way UI modules are written, and bundled --->
 
 ## Virtual modules
 Virtual modules are pure metadata, with no code to write. All you need to do is
@@ -150,5 +150,5 @@ less virtual modules.
 
 For more about Okapi, refer to its documentation and even the source code at
 https://github.com/sling-incubator/okapi
-<!-- TODO - Use the public address, when we have one -->
+<!--- TODO - Use the public address, when we have one --->
 
