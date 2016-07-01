@@ -65,7 +65,6 @@ public class MainVerticle extends AbstractVerticle {
   public void get_handle(RoutingContext ctx) {
     ctx.response().setStatusCode(200);
     ctx.response().putHeader("Content-Type", "text/plain");
-
     ctx.request().endHandler(x -> {
       ctx.response().end("Hello, world\n");
     });
