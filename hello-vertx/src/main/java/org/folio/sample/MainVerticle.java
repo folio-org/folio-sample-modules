@@ -52,6 +52,7 @@ public class MainVerticle extends AbstractVerticle {
             .requestHandler(router::accept)
             .listen( port, result -> {
                 if (result.succeeded()) {
+                  logger.debug("Succeeded in starting the listener");
                   fut.complete();
                 } else {
                   logger.error("sample failed: " + result.cause());
@@ -63,6 +64,7 @@ public class MainVerticle extends AbstractVerticle {
   // Handler for the GET requests. 
   // Just replies "Hello, World" in plain text
   public void get_handle(RoutingContext ctx) {
+    logger.debug("Handling a GET request");
     ctx.response().setStatusCode(200);
     ctx.response().putHeader("Content-Type", "text/plain");
     ctx.request().endHandler(x -> {
@@ -74,6 +76,7 @@ public class MainVerticle extends AbstractVerticle {
   // Replies with a Json structure that contains all posted data
   // As long as the input data is valid Json, the output should be too.
   public void post_handle(RoutingContext ctx) {
+    logger.debug("Handling a POST request");
     ctx.response().setStatusCode(200);
     String contentType = ctx.request().getHeader("Content-Type");
     if ( contentType != null )
@@ -81,11 +84,11 @@ public class MainVerticle extends AbstractVerticle {
 
     ctx.response().setChunked(true);
     ctx.response().write("{ \"greeting\": \"Hello, world\",\n \"data\" : ");
-    ctx.request().handler(x -> { // Pass the body into the response, as it comes along
+    ctx.request().handler(x -> { // Pass the request body into the response, as it comes along
       ctx.response().write(x);
     });
     ctx.request().endHandler(x -> { // At the end of the body, close the structure
-      ctx.response().end("\n}\n");
+      ctx.response().end("\n}\n"); // and end the response processing
     });
   }
 
