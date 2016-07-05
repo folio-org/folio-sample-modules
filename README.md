@@ -1,8 +1,5 @@
 # Folio-Sample-Modules
 
-(NOTE - Still working on this piece of document. - Heikki)
-
-
 This project contains some examples of Folio modules (currently only one, but
 more will come later), and some general information about writing modules (in
 this README).
@@ -155,3 +152,6 @@ For more about Okapi, refer to its documentation and even the source code at
 https://github.com/sling-incubator/okapi
 <!--- TODO - Use the public address, when we have one --->
 
+You should also read the README for the hello-vertx example, it covers some 
+useful ground.
+https://github.com/sling-incubator/folio-sample-modules/tree/master/hello-vertx
