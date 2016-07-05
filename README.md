@@ -44,7 +44,7 @@ The main parts of a ModuleDescriptor are
 permissions are needed to make such a request
 * uiModuleDescriptor - Placeholder for module-specific configuration for the UI
 modules
-
+* deploymentDescriptor - Tells how the module is to be deployed (started)
 
 #### Module tags
 We have not really started to use module tags in the system, but we are likely
@@ -85,9 +85,10 @@ developing modules it may be nice to run them as processes on a workstation.
 
 ### Deployment and discovery
 
-Okapi can deploy modules in two ways:
+Okapi can deploy modules in several ways:
   * Exec'ing a given program (and killing its PID when undeploying)
   * By use of command lines for starting and stopping a service
+  * Using Docker API calls
 Okapi knows what it has deployed on each node, and will route requests to
 one of those. It is also possible to tell Okapi's discovery about processes
 deployed directly, either on the cluster, or even externally.
