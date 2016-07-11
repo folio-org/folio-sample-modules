@@ -10,18 +10,21 @@ which accepts any Json structure, and returns another, more complex one.
 ## Files
 
 There are two source files:
+
  - MainLauncher.java: a bit of template code to launch vert.x
  - MainVerticle.java: the "main program", a HTTP server that serves
    our requests.
 
 There are Json structures, ready to POST to Okapi for setting up a demonstration
 of this module:
- - module.json: A module description for the module
- - deploy.json: A module deployment descriptor for running the module under Okapi
- - tenant.json: to create a tenant for whom we can enable the module
- - enable.json: A small structure to enable the module for our test tenant
+
+ - ModuleDescriptor.json: A module description for the module
+ - DeploymentDescriptor.json: A module deployment descriptor for running the module under Okapi
+ - TenantDescriptor.json: to create a tenant for whom we can enable the module
+ - TenantModuleDescriptor.json: A small structure to enable the module for our test tenant
 
 Other noteworthy files are:
+
  - Dockerfile: Docker setup
  - pom.xml: Maven config on how to build the project
  - log4j.properties: where you can control the logging
@@ -61,15 +64,15 @@ If you have no tenants defined, you need to add one
 ```
 curl -w '\n' -X POST -D - \
   -H "Content-type: application/json" \
-  -d @tenant.json  \
+  -d @TenantDescriptor.json  \
   http://localhost:9130/_/proxy/tenants
 ```
 
-Next we need to deploy the module. There is a deploymentDescriptor in `deploy.json`
+Next we need to deploy the module. There is a deployment descriptor in `DeploymentDescriptor.json`
 ```
 curl -w '\n' -X POST -D - \
   -H "Content-type: application/json" \
-  -d @deploy.json  \
+  -d @DeploymentDescriptor.json  \
   http://localhost:9130/_/deployment/modules
 
 ```
@@ -83,14 +86,14 @@ After that we need to declare the module to Okapi.
 ```
 curl -w '\n' -X POST -D -   \
    -H "Content-type: application/json"   \
-   -d @module.json \
+   -d @ModuleDescriptor.json \
    http://localhost:9130/_/proxy/modules
 ```
 Then we need to enable the module for our tenant
 ```
 curl -w '\n' -X POST -D -   \
     -H "Content-type: application/json"   \
-    -d @enable.json \
+    -d @TenantModuleDescriptor.json \
     http://localhost:9130/_/proxy/tenants/our/modules
 ```
 
@@ -105,7 +108,7 @@ Or you can post any valid Json, for example our enabling request
 curl -w '\n' -X POST -D -   \
     -H "Content-type: application/json"   \
     -H "X-Okapi-Tenant: our" \
-    -d @enable.json \
+    -d @TenantModuleDescriptor.json \
     http://localhost:9130/hello
 ```
 
