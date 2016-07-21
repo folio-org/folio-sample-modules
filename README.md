@@ -15,9 +15,9 @@ guidelines (interfaces and schemas) and conventions; so that Okapi
 
 At the moment we support several types of modules:
 
-  * Server side
-  * UI modules
-  * Virtual module, with only dependencies and other metadata
+  * Server-side modules
+  * User-interface modules
+  * Virtual modules, with only dependencies and other metadata
 
 <!--- TODO: We have not yet done anything about virtual modules,
 but I believe such ought to work already. Sooner or later
