@@ -62,7 +62,7 @@ public class MainVerticle extends AbstractVerticle {
   }
 
   // Handler for the GET requests.
-  // Just replies "Hello, World" in plain text
+  // Just replies "Hello, world" in plain text
   public void get_handle(RoutingContext ctx) {
     logger.debug("Handling a GET request");
     ctx.response().setStatusCode(200);
@@ -73,8 +73,8 @@ public class MainVerticle extends AbstractVerticle {
   }
 
   // Handler for the POST request
-  // Replies with a Json structure that contains all posted data
-  // As long as the input data is valid Json, the output should be too.
+  // Replies with a JSON structure that contains all posted data
+  // As long as the input data is valid JSON, the output should be too.
   public void post_handle(RoutingContext ctx) {
     logger.debug("Handling a POST request");
     ctx.response().setStatusCode(200);
