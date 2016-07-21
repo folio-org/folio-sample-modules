@@ -37,7 +37,7 @@ public class MainVerticle extends AbstractVerticle {
   public void start(Future<Void> fut) throws IOException {
 
     final int port = Integer.parseInt(System.getProperty("port", "8080"));
-    logger.info("Starting hello " 
+    logger.info("Starting hello "
             + ManagementFactory.getRuntimeMXBean().getName()
             + " on port " + port);
 
@@ -61,7 +61,7 @@ public class MainVerticle extends AbstractVerticle {
               });
   }
 
-  // Handler for the GET requests. 
+  // Handler for the GET requests.
   // Just replies "Hello, World" in plain text
   public void get_handle(RoutingContext ctx) {
     logger.debug("Handling a GET request");

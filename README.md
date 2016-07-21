@@ -1,7 +1,7 @@
 # Folio-Sample-Modules
 
-This project contains examples of Folio modules (currently a server-side 
-Vert.x-based module, but more, e.g. a UI/front-end module will come later), 
+This project contains examples of Folio modules (currently a server-side
+Vert.x-based module, but more, e.g. a UI/front-end module will come later),
 and some general information about writing, packaging and describing modules.
 
 <!--- TODO: Add a few words about what Folio is, for new readers. Keep it short! --->
@@ -9,8 +9,8 @@ and some general information about writing, packaging and describing modules.
 ## What is a module
 
 A module is a stand-alone unit of functionality that follows Folio's ecosystem
-guidelines (interfaces and schemas) and conventions; so that Okapi 
-(Folio's middleware/API gateway) can forward requests to it and Stripes 
+guidelines (interfaces and schemas) and conventions; so that Okapi
+(Folio's middleware/API gateway) can forward requests to it and Stripes
 (Folio's UI Toolkit) can produce a user interface for it.
 
 At the moment we support several types of modules:
@@ -63,8 +63,8 @@ We may later add tags for various other purposes.
 
 A routing entry tells Okapi which requests should be routed to the module (for
 example, a GET request to /hello), in what order various modules should be
-invoked for that path (so that we can invoke an authentication check before 
-the module itself, and a logging module after it), and what permission bits 
+invoked for that path (so that we can invoke an authentication check before
+the module itself, and a logging module after it), and what permission bits
 will be needed for making this request.
 
 
@@ -84,7 +84,7 @@ In order to avoid problems with system-level dependencies, we have adopted a
 policy of running modules in Docker containers. This way, each container can
 have all the stuff the module needs, nicely isolated from the node itself, and
 from other modules. But this is not a hard requirement, especially when
-developing modules it is possible to run them as standard processes on 
+developing modules it is possible to run them as standard processes on
 a workstation.
 
 
@@ -113,7 +113,7 @@ Write something about these
 
 ### Writing a module
 
-Folio is designed so that different modules can be written in different 
+Folio is designed so that different modules can be written in different
 languages with different tools.
 
 #### Java/Vert.x and Node.js
@@ -138,8 +138,8 @@ etc.
 
 There is a very minimal "hello, world" module in the hello-vertx directory.
 Written as an educational example, it may serve as a starting point for a
-server-side Folio module. 
-Its README has some information about its structure and how to run it in a 
+server-side Folio module.
+Its README has some information about its structure and how to run it in a
 Docker container.
 
 The sample module uses Apache Log4j for its logging, the same way as Okapi itself
@@ -148,8 +148,8 @@ does, so its logs should be compatible.
 ##### Utility libraries
 
 There are several useful classes and utilities for writing modules in Okapi
-and the core Domain Models project. 
-We plan to extract them into a shared library jar, so they can be 
+and the core Domain Models project.
+We plan to extract them into a shared library jar, so they can be
 used easily by external module authors.
 
 <!-- TODO: this is scheduled for July -->
@@ -165,7 +165,7 @@ still under development, and an example module and guide will follow soon.
 ## Virtual modules
 
 Virtual modules are pure metadata, with no code to write. All you need to do is
-to create a good ModuleDescriptor, e.g. one that lists dependencies of other, 
+to create a good ModuleDescriptor, e.g. one that lists dependencies of other,
 concrete modules.
 
 ## Further reading
@@ -174,6 +174,6 @@ For more about Okapi, refer to its documentation and even the source code at
 https://github.com/sling-incubator/okapi
 <!--- TODO - Use the public address, when we have one --->
 
-You should also consult the README for the hello-vertx example, it covers some 
+You should also consult the README for the hello-vertx example, it covers some
 useful ground.
 https://github.com/sling-incubator/folio-sample-modules/tree/master/hello-vertx
