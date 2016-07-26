@@ -127,14 +127,34 @@ scaffolding) but we hope to eventually gain a wide coverage among other
 tools and technologies (e.g. Python, Ruby, etc.). We are counting on an active
 engagement from the community to help out in this area.
 
-<!---
-##### Development tools
+#### Development environment
 
-TODO: write something about the necessary development tools, maven repos,
-etc.
---->
+These are some notes to assist developers to prepare for their local development.
 
-##### Sample module
+To build and run the local instance of Okapi, see the
+[Okapi Guide and Reference](https://github.com/sling-incubator/okapi/blob/master/doc/guide.md)
+and the
+[Contribution guidelines for Okapi](https://github.com/sling-incubator/okapi/blob/master/CONTRIBUTING.md).
+
+<!--- TODO - Use the public address, when we have one --->
+
+So that will require:
+ * Apache Maven 3.1.1 or later.
+ * Java 8 JDK
+
+As shown in the Okapi Guide and these samples, the command-line http client
+'curl' is used extensively for demonstration and development.
+
+As explained above, using Docker is not necessary, but certainly is useful,
+and these samples do use it. So take the plunge. Okapi cleans up its own
+deployments, but be sure to keep the docker space clean.
+
+Both Docker and Maven can utilise a local repository, to enable faster
+and more reliable turnaround.
+
+(See notes below for additional requirements for developing UI modules.)
+
+#### Sample module: hello-vertx
 
 There is a very minimal "hello, world" module in the hello-vertx directory.
 Written as an educational example, it may serve as a starting point for a
@@ -145,7 +165,7 @@ Docker container.
 The sample module uses Apache Log4j for its logging, the same way as Okapi itself
 does, so its logs should be compatible.
 
-##### Utility libraries
+#### Utility libraries
 
 There are several useful classes and utilities for writing modules in Okapi
 and the core Domain Models project.
@@ -164,7 +184,7 @@ still under development, and an example module and guide will follow soon.
 
 ## Virtual modules
 
-Virtual modules are pure metadata, with no code to write. All you need to do is
+Virtual modules are pure metadata, with no code to write. All that is needed is
 to create a good ModuleDescriptor, e.g. one that lists dependencies of other,
 concrete modules.
 
@@ -178,6 +198,6 @@ For more about Okapi, refer to its documentation and even the source code at
 https://github.com/sling-incubator/okapi
 <!--- TODO - Use the public address, when we have one --->
 
-You should also consult the README for the hello-vertx example, it covers some
+Also consult the README for the hello-vertx example, it covers some
 useful ground.
 https://github.com/sling-incubator/folio-sample-modules/tree/master/hello-vertx
