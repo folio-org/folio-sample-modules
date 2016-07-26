@@ -168,6 +168,10 @@ Virtual modules are pure metadata, with no code to write. All you need to do is
 to create a good ModuleDescriptor, e.g. one that lists dependencies of other,
 concrete modules.
 
+## License
+
+Licensed under the Apache License, Version 2.0 (see [LICENSE](LICENSE)).
+
 ## Further reading
 
 For more about Okapi, refer to its documentation and even the source code at
