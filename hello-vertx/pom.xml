@@ -23,6 +23,11 @@
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>com.indexdata.okapi</groupId>
+      <artifactId>okapi-common</artifactId>
+      <version>0.4-SNAPSHOT</version>
+    </dependency>
     <!-- logging see http://www.slf4j.org/legacy.html -->
     <!-- we use SLF4J for our logging interface -->
     <dependency>
@@ -98,7 +103,7 @@
                 <transformer
                   implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                   <manifestEntries>
-                    <Main-Class>org.folio.sample.MainLauncher</Main-Class>
+                    <Main-Class>okapi.common.MainLauncher</Main-Class>
                     <Main-Verticle>org.folio.sample.MainVerticle</Main-Verticle>
                   </manifestEntries>
                 </transformer>
