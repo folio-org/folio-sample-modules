@@ -23,11 +23,11 @@ import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
+import static okapi.common.HttpResponse.*;
 
 /**
- * The main verticle.
- * This is the HTTP server that accepts incoming requests and routes them
- * to the relevant handlers.
+ * The main verticle. This is the HTTP server that accepts incoming requests and
+ * routes them to the relevant handlers.
  */
 public class MainVerticle extends AbstractVerticle {
 
@@ -50,26 +50,22 @@ public class MainVerticle extends AbstractVerticle {
     // And start listening
     vertx.createHttpServer()
             .requestHandler(router::accept)
-            .listen( port, result -> {
-                if (result.succeeded()) {
-                  logger.debug("Succeeded in starting the listener");
-                  fut.complete();
-                } else {
-                  logger.error("sample failed: " + result.cause());
-                  fut.fail(result.cause());
-                }
-              });
+            .listen(port, result -> {
+              if (result.succeeded()) {
+                logger.debug("Succeeded in starting the listener");
+                fut.complete();
+              } else {
+                logger.error("sample failed: " + result.cause());
+                fut.fail(result.cause());
+              }
+            });
   }
 
   // Handler for the GET requests.
   // Just replies "Hello, world" in plain text
   public void get_handle(RoutingContext ctx) {
     logger.debug("Handling a GET request");
-    ctx.response().setStatusCode(200);
-    ctx.response().putHeader("Content-Type", "text/plain");
-    ctx.request().endHandler(x -> {
-      ctx.response().end("Hello, world\n");
-    });
+    responseText(ctx, 200).end("Hello, world\n");
   }
 
   // Handler for the POST request
@@ -77,19 +73,19 @@ public class MainVerticle extends AbstractVerticle {
   // As long as the input data is valid JSON, the output should be too.
   public void post_handle(RoutingContext ctx) {
     logger.debug("Handling a POST request");
-    ctx.response().setStatusCode(200);
     String contentType = ctx.request().getHeader("Content-Type");
-    if ( contentType != null )
-      ctx.response().putHeader("Content-Type", contentType);
-
-    ctx.response().setChunked(true);
-    ctx.response().write("{ \"greeting\": \"Hello, world\",\n \"data\" : ");
-    ctx.request().handler(x -> { // Pass the request body into the response, as it comes along
-      ctx.response().write(x);
-    });
-    ctx.request().endHandler(x -> { // At the end of the body, close the structure
-      ctx.response().end("\n}\n"); // and end the response processing
-    });
+    if (contentType != null && contentType.compareTo("application/json") != 0) {
+      responseError(ctx, 400, "Only accepts Content-Type application/json");
+    } else {
+      responseJson(ctx, 200);
+      ctx.response().setChunked(true);
+      ctx.response().write("{ \"greeting\": \"Hello, world\",\n \"data\" : ");
+      ctx.request().handler(x -> { // Pass the request body into the response, as it comes along
+        ctx.response().write(x);
+      });
+      ctx.request().endHandler(x -> { // At the end of the body, close the structure
+        ctx.response().end("\n}\n"); // and end the response processing
+      });
+    }
   }
-
 }
