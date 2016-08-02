@@ -117,4 +117,11 @@
     </plugins>
   </build>
 
+  <repositories>
+    <repository>
+      <id>id-maven-repo</id>
+      <name>Index Data Maven Repository</name>
+      <url>http://maven.indexdata.com/</url>
+    </repository>
+  </repositories>
 </project>
