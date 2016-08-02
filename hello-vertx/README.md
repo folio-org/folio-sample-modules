@@ -9,9 +9,8 @@ which accepts any JSON structure, and returns another, more complex one.
 
 ## Files
 
-There are two source files:
+There's only one source file:
 
- - MainLauncher.java: a bit of template code to launch Vert.x
  - MainVerticle.java: the "main program", an HTTP server that serves
    our requests.
 
