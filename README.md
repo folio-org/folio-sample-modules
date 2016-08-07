@@ -155,6 +155,9 @@ and more reliable turnaround.
 For development machines using "Docker Toolbox" (instead of native)
 see our [FAQ](FAQ.md#docker-toolbox-and-localhost) about "localhost" URLs.
 
+As explained in the Okapi Guide, it uses HTTP 1.1 with
+chunked encoding to make the connections to the modules.
+
 (See notes below for additional requirements for developing UI modules.)
 
 #### Sample module: hello-vertx
