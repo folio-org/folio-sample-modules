@@ -144,7 +144,7 @@ and the
 <!--- TODO - Use the public address, when we have one --->
 
 So that will require:
- * Apache Maven 3.1.1 or later.
+ * Apache Maven 3.3.1 or later.
  * Java 8 JDK
 
 As shown in the Okapi Guide and these samples, the command-line http client
