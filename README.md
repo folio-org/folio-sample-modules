@@ -6,8 +6,8 @@ and some general information about writing, packaging and describing modules.
 
 <!--- TODO: Add a few words about what Folio is, for new readers. Keep it short! --->
 
-For backround understanding, see the
-[Okapi Guide and Reference](https://github.com/sling-incubator/okapi/blob/master/doc/guide.md).
+For background understanding, see the
+[Okapi Guide and Reference](https://github.com/folio-org/okapi/blob/master/doc/guide.md).
 
 <!--- TODO - Use the public address, when we have one --->
 
@@ -137,9 +137,9 @@ engagement from the community to help out in this area.
 These are some notes to assist developers to prepare for their local development.
 
 To build and run the local instance of Okapi, see the
-[Okapi Guide and Reference](https://github.com/sling-incubator/okapi/blob/master/doc/guide.md)
+[Okapi Guide and Reference](https://github.com/folio-org/okapi/blob/master/doc/guide.md)
 and the
-[Contribution guidelines for Okapi](https://github.com/sling-incubator/okapi/blob/master/CONTRIBUTING.md).
+[Contribution guidelines for Okapi](https://github.com/folio-org/okapi/blob/master/CONTRIBUTING.md).
 
 <!--- TODO - Use the public address, when we have one --->
 
@@ -206,9 +206,9 @@ Licensed under the Apache License, Version 2.0 (see [LICENSE](LICENSE)).
 ## Further reading
 
 For more about Okapi, refer to its documentation and even the source code at
-https://github.com/sling-incubator/okapi
+https://github.com/folio-org/okapi
 <!--- TODO - Use the public address, when we have one --->
 
 Also consult the README for the hello-vertx example, it covers some
 useful ground.
-https://github.com/sling-incubator/folio-sample-modules/tree/master/hello-vertx
+https://github.com/folio-org/folio-sample-modules/tree/master/hello-vertx
