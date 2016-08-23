@@ -24,7 +24,7 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.indexdata.okapi</groupId>
+      <groupId>org.folio.okapi</groupId>
       <artifactId>okapi-common</artifactId>
       <version>0.4-SNAPSHOT</version>
     </dependency>
@@ -103,7 +103,7 @@
                 <transformer
                   implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                   <manifestEntries>
-                    <Main-Class>okapi.common.MainLauncher</Main-Class>
+                    <Main-Class>org.folio.okapi.common.MainLauncher</Main-Class>
                     <Main-Verticle>org.folio.sample.MainVerticle</Main-Verticle>
                   </manifestEntries>
                 </transformer>

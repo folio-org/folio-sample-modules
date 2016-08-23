@@ -23,7 +23,7 @@ import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
-import static okapi.common.HttpResponse.*;
+import static org.folio.okapi.common.HttpResponse.*;
 
 /**
  * The main verticle. This is the HTTP server that accepts incoming requests and
