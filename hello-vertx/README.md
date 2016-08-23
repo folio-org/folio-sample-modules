@@ -9,7 +9,7 @@ which accepts any JSON structure, and returns another, more complex one.
 
 ## Files
 
-There's only one source file:
+There is only one source file:
 
  - MainVerticle.java: the "main program", an HTTP server that serves
    our requests.
@@ -84,7 +84,11 @@ curl -w '\n' -X POST -D - \
   http://localhost:9130/_/deployment/modules
 ```
 
-Now the module should be running, probably on port 9131. You can check it with:
+Now the module should be running on the next available port.
+That will be 9131 if using the simple instructions above (or 9133 if using
+okapi/doc/okapi-examples.sh to set up initial tenants and modules).
+
+Check the running module:
 
 ```
 curl -w '\n' -D - http://localhost:9131/hello
