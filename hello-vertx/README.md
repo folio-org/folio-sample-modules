@@ -86,7 +86,8 @@ curl -w '\n' -X POST -D - \
 
 Now the module should be running on the next available port.
 That will be 9131 if using the simple instructions above (or 9133 if using
-okapi/doc/okapi-examples.sh to set up initial tenants and modules).
+okapi/doc/okapi-examples.sh to establish an initial set of test tenants and
+test modules).
 
 Check the running module:
 
