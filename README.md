@@ -9,8 +9,6 @@ and some general information about writing, packaging and describing modules.
 For background understanding, see the
 [Okapi Guide and Reference](https://github.com/folio-org/okapi/blob/master/doc/guide.md).
 
-<!--- TODO - Use the public address, when we have one --->
-
 ## What is a module
 
 A module is a stand-alone unit of functionality that follows Folio's ecosystem
