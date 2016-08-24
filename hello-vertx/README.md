@@ -104,19 +104,19 @@ curl -w '\n' -X POST -D -   \
    http://localhost:9130/_/proxy/modules
 ```
 
-Then we need to enable the module for our tenant:
+Then we need to enable the module for our test tenant:
 
 ```
 curl -w '\n' -X POST -D -   \
     -H "Content-type: application/json"   \
     -d @TenantModuleDescriptor.json \
-    http://localhost:9130/_/proxy/tenants/our/modules
+    http://localhost:9130/_/proxy/tenants/testlib/modules
 ```
 
 ## Using the module
 
 ```
-curl -w '\n' -H "X-Okapi-Tenant: our" http://localhost:9130/hello
+curl -w '\n' -H "X-Okapi-Tenant: testlib" http://localhost:9130/hello
 ```
 
 Or you can post any valid JSON, for example our enabling request:
@@ -124,7 +124,7 @@ Or you can post any valid JSON, for example our enabling request:
 ```
 curl -w '\n' -X POST -D -   \
     -H "Content-type: application/json"   \
-    -H "X-Okapi-Tenant: our" \
+    -H "X-Okapi-Tenant: testlib" \
     -d @TenantModuleDescriptor.json \
     http://localhost:9130/hello
 ```
@@ -132,7 +132,7 @@ curl -w '\n' -X POST -D -   \
 ## Cleaning up
 
 ```
-curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/proxy/tenants/our/modules/hello
+curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/proxy/tenants/testlib/modules/hello
 
 curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/proxy/modules/hello
 

@@ -1,5 +1,5 @@
 {
-  "id" : "our",
-  "name" : "our library",
-  "description" : "Our Own Library"
+  "id" : "testlib",
+  "name" : "Test Library",
+  "description" : "Our Own Test Library"
 }
