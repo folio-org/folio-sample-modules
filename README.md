@@ -141,8 +141,6 @@ To build and run the local instance of Okapi, see the
 and the
 [Contribution guidelines for Okapi](https://github.com/folio-org/okapi/blob/master/CONTRIBUTING.md).
 
-<!--- TODO - Use the public address, when we have one --->
-
 So that will require:
  * Apache Maven 3.3.1 or later.
  * Java 8 JDK
@@ -207,7 +205,6 @@ Licensed under the Apache License, Version 2.0 (see [LICENSE](LICENSE)).
 
 For more about Okapi, refer to its documentation and even the source code at
 https://github.com/folio-org/okapi
-<!--- TODO - Use the public address, when we have one --->
 
 Also consult the README for the hello-vertx example, it covers some
 useful ground.

@@ -16,5 +16,3 @@ will deploy two modules (on port 9131 and 9132). Now deploy the "hello-vertx"
 module - this one is via docker. The okapi log will show it being deployed
 on port 9133 and hang. Now add a rule for port 9133, and the log will show
 Okapi continue to complete the deployment.
-
-<!-- TODO: Investigate setting "host" when starting Okapi. -->
