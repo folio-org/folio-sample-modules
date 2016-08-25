@@ -238,7 +238,7 @@ router in the MainVerticle.java.
   * You probably should move the actual processing methods away from the
 MainVerticle, into a class of its own, and make the vertx routes point to it.
 Most likely you will create other classes to support your operations. 
-
+  * Rewrite most of the README to reflect _your_ module
 
 ## UI modules
 
