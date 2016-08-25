@@ -1,0 +1,15 @@
+[
+  {
+    "path":"patrons/add",
+    "component":"PatronAdd"
+  },
+  {
+    "path":"patrons/edit/:patronid",
+    "component":"PatronEdit"
+  },
+  {
+    "path":"patrons/list",
+    "component":"PatronList"
+  }
+]
+
