@@ -188,23 +188,28 @@ We take the hello-vertx module as a starting point, and produce a new module
 that we call vertx-module. These examples are written for Linux, but something
 similar ought to work on any other platform. 
 
-Firt, make sure you have all the development tools you need. Check out Okapi
+First, make sure you have all the development tools you need. Check out Okapi
 itself, and these folio-sample-modules. We assume all your projects live under 
 a projects directory, here denoted by .../proj. For convenience we keep the 
 root directory in an environment variable $ROOTDIR. 
+
 ```
   cd .../proj
   export ROOTDIR=`pwd`
   git clone git@github.com:folio-org/okapi.git
 ```
-Next build Okapi itself
+
+Next build Okapi itself:
+
 ```
   cd $ROOTDIR/okapi
   mvn install
 ```
+
 Check that you see the `BUILD SUCCESS` line near the end of the output. Next
 check out the folio-sample-modules to get the hello-vertx module we want to
-start from, and make a new copy of it
+start from, and make a new copy of it:
+
 ```
   cd $ROOTDIR
   git clone git@github.com:folio-org/folio-sample-modules
@@ -213,7 +218,7 @@ start from, and make a new copy of it
 
 Open the project in your favourite IDE, in this example NetBeans. Use its
 rename function to rename the display name and ArtifactId to "mymodule".
-You shold probably rename the source package to something else like
+You should probably rename the source package to something else like
 "org.foo.mymopdule", unless you are starting up a new folio sample module.
 
 Now you can compile the module in your IDE or with `mvn install`. Again,
@@ -238,7 +243,7 @@ router in the MainVerticle.java.
   * You probably should move the actual processing methods away from the
 MainVerticle, into a class of its own, and make the vertx routes point to it.
 Most likely you will create other classes to support your operations. 
-  * Rewrite most of the README to reflect _your_ module
+  * Rewrite most of the README to reflect _your_ module.
 
 ## UI modules
 
