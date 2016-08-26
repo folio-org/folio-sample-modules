@@ -7,7 +7,7 @@ import {reduxForm} from 'redux-form';
 // Uses redux-form (and older version) but that's expected to change.
 //
 // Not a 'connected' component, thus no manifest; this components gets
-// all it needs from 'connected' parent components. 
+// all it needs from 'connected' parent components.
 class PatronForm extends Component {
 
   static propTypes = {
@@ -26,9 +26,9 @@ class PatronForm extends Component {
     const {
       fields: {_id,patron_name,patron_code,
               contact_info,total_fines_paid,total_loans,status,patron_barcode,total_fines,patron_local_id},
-      handleSubmit, 
-      cancelForm, 
-      resetForm, 
+      handleSubmit,
+      cancelForm,
+      resetForm,
       submitting,
       action
     } = this.props;
@@ -392,7 +392,7 @@ class PatronForm extends Component {
           <ButtonGroup>
             <Button bsStyle='primary' disabled={submitting} onClick={handleSubmit}>{action ? action.submitLabel : 'Save'}</Button>
             <Button disabled={submitting} onClick={resetForm}>Reset</Button>
-            <Button disabled={submitting} onClick={cancelForm}>Cancel</Button>  
+            <Button disabled={submitting} onClick={cancelForm}>Cancel</Button>
           </ButtonGroup>
         </Form>
         <br/>
@@ -409,21 +409,21 @@ export default reduxForm(
              'patron_code.value', 'patron_code.description',
              'contact_info.patron_address_local.line1',
                'contact_info.patron_address_local.line2',
-               'contact_info.patron_address_local.city', 
+               'contact_info.patron_address_local.city',
                'contact_info.patron_address_local.state_province',
                'contact_info.patron_address_local.postal_code',
                'contact_info.patron_address_local.address_note',
                'contact_info.patron_address_local.start_date',
-             'contact_info.patron_address_home.line1', 
+             'contact_info.patron_address_home.line1',
                'contact_info.patron_address_home.line2',
-               'contact_info.patron_address_home.city', 
+               'contact_info.patron_address_home.city',
                'contact_info.patron_address_home.state_province',
                'contact_info.patron_address_home.postal_code',
                'contact_info.patron_address_home.address_note',
                'contact_info.patron_address_home.start_date',
              'contact_info.patron_address_work.line1',
                'contact_info.patron_address_work.line2',
-               'contact_info.patron_address_work.city', 
+               'contact_info.patron_address_work.city',
                'contact_info.patron_address_wokr.state_province',
                'contact_info.patron_address_work.postal_code',
                'contact_info.patron_address_work.address_note',

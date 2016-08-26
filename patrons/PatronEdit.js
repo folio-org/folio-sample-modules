@@ -27,12 +27,12 @@ class PatronEdit extends Component {
     this.context.router.push('/patrons/list');
   }
 
-  render() { 
+  render() {
       let patronid = this.props.params.patronid;
       let patrons = this.props.data['apis/patrons']
       let patron = patrons.find((patron) =>  { return patron._id === patronid });
 
-      return <PatronForm onSubmit={this.updatePatron.bind(this)} 
+      return <PatronForm onSubmit={this.updatePatron.bind(this)}
         cancelForm={this.cancel.bind(this)}
         action={PatronForm.actionTypes['update']}
         initialValues={patron} />

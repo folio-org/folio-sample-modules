@@ -186,12 +186,12 @@ used easily by external module authors.
 Assume that you want to write your own module. Here is one way to get started.
 We take the hello-vertx module as a starting point, and produce a new module
 that we call vertx-module. These examples are written for Linux, but something
-similar ought to work on any other platform. 
+similar ought to work on any other platform.
 
 First, make sure you have all the development tools you need. Check out Okapi
-itself, and these folio-sample-modules. We assume all your projects live under 
-a projects directory, here denoted by .../proj. For convenience we keep the 
-root directory in an environment variable $ROOTDIR. 
+itself, and these folio-sample-modules. We assume all your projects live under
+a projects directory, here denoted by .../proj. For convenience we keep the
+root directory in an environment variable $ROOTDIR.
 
 ```
   cd .../proj
@@ -242,7 +242,7 @@ Some useful hints:
 router in the MainVerticle.java.
   * You probably should move the actual processing methods away from the
 MainVerticle, into a class of its own, and make the vertx routes point to it.
-Most likely you will create other classes to support your operations. 
+Most likely you will create other classes to support your operations.
   * Rewrite most of the README to reflect _your_ module.
 
 ## UI modules
