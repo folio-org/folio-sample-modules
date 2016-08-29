@@ -57,7 +57,13 @@ And check it in another window:
    curl http://localhost:8080/hello
 ```
 
+Now stop that test run.
+
 ## Installing the module
+
+We are essentially following the
+[Deploying Modules](https://github.com/folio-org/okapi/blob/master/doc/guide.md#deploying-modules)
+section of the Okapi Guide and Reference, which describes the process in detail.
 
 First of all you need a running Okapi instance:
 
@@ -75,19 +81,26 @@ curl -w '\n' -X POST -D - \
   http://localhost:9130/_/proxy/tenants
 ```
 
-Next we need to deploy the module. There is a deployment descriptor in `DeploymentDescriptor.json`
+Then tell Okapi about our module:
 
 ```
 curl -w '\n' -X POST -D - \
-  -H "Content-type: application/json" \
-  -d @DeploymentDescriptor.json  \
-  http://localhost:9130/_/deployment/modules
+    -H "Content-type: application/json" \
+    -d @ModuleDescriptor.json \
+    http://localhost:9130/_/proxy/modules
 ```
 
-Now the module should be running on the next available port.
-That will be 9131 if using the simple instructions above (or 9133 if using
-okapi/doc/okapi-examples.sh to establish an initial set of test tenants and
-test modules).
+Then deploy it via Okapi discovery:
+
+```
+curl -w '\n' -D - -s \
+  -X POST \
+  -H "Content-type: application/json" \
+  -d @DeploymentDescriptor.json  \
+  http://localhost:9130/_/discovery/modules
+```
+
+The module should now be running on the next available port, e.g. 9131.
 
 Check the running module:
 
@@ -95,14 +108,7 @@ Check the running module:
 curl -w '\n' -D - http://localhost:9131/hello
 ```
 
-After that we need to declare the module to Okapi:
-
-```
-curl -w '\n' -X POST -D -   \
-   -H "Content-type: application/json"   \
-   -d @ModuleDescriptor.json \
-   http://localhost:9130/_/proxy/modules
-```
+and see the container with ```docker ps```
 
 Then we need to enable the module for our test tenant:
 
@@ -129,15 +135,23 @@ curl -w '\n' -X POST -D -   \
     http://localhost:9130/hello
 ```
 
+## Restrict access
+
+Follow the
+[test-auth-module](https://github.com/folio-org/okapi/blob/master/doc/guide.md#the-auth-module)
+section of the Okapi Guide and Reference.
+
 ## Cleaning up
 
 ```
 curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/proxy/tenants/testlib/modules/hello
 
-curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/proxy/modules/hello
+curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/discovery/modules/hello/localhost-9131
 
-curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/deployment/modules/localhost-9131
+curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/proxy/modules/hello
 ```
+
+and Okapi would have also removed the Docker container for that module.
 
 Finally you can stop the Okapi, with a Ctrl-C in its terminal window.
 

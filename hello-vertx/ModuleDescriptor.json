@@ -12,5 +12,9 @@
     "type" : "request-response",
     "permissionsRequired" : [ ],
     "permissionsDesired" : [ ]
-  } ]
+  } ],
+  "launchDescriptor" : {
+    "cmdlineStart" : "docker run -d --cidfile=/tmp/docker.%p.cid -p %p:8080 indexdata/folio-hello-module",
+    "cmdlineStop": "docker stop `cat /tmp/docker.%p.cid` && docker rm `cat /tmp/docker.%p.cid` && rm -f /tmp/docker.%p.cid"
+  }
 }
