@@ -172,14 +172,18 @@ Docker container.
 The sample module uses Apache Log4j for its logging, the same way as Okapi itself
 does, so its logs should be compatible.
 
+#### Sample module: simple-vertx
+
+This is a slightly more complex example, again based on Java and vert.x. It has
+a little bit more structure, and it uses the hello-vertx module to demonstrate
+how to make calls to other modules.
+
+
 #### Utility libraries
 
 There are several useful classes and utilities for writing modules in Okapi
-and the core Domain Models project.
-We plan to extract them into a shared library jar, so they can be
-used easily by external module authors.
-
-<!-- TODO: this is scheduled for July -->
+and the core Domain Models project. We have started to extract some of them
+into a separate module, okapi-common, for easier reuse.
 
 #### Starting your own module
 
@@ -213,7 +217,7 @@ start from, and make a new copy of it
 
 Open the project in your favourite IDE, in this example NetBeans. Use its
 rename function to rename the display name and ArtifactId to "mymodule".
-You shold probably rename the source package to something else like
+You should probably rename the source package to something else like
 "org.foo.mymopdule", unless you are starting up a new folio sample module.
 
 Now you can compile the module in your IDE or with `mvn install`. Again,

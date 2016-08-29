@@ -75,6 +75,16 @@ curl -w '\n' -X POST -D - \
   http://localhost:9130/_/proxy/tenants
 ```
 
+We need to declare the module to Okapi:
+
+```
+curl -w '\n' -X POST -D -   \
+   -H "Content-type: application/json"   \
+   -d @ModuleDescriptor.json \
+   http://localhost:9130/_/proxy/modules
+```
+
+
 Next we need to deploy the module. There is a deployment descriptor in `DeploymentDescriptor.json`
 
 ```
@@ -95,14 +105,6 @@ Check the running module:
 curl -w '\n' -D - http://localhost:9131/hello
 ```
 
-After that we need to declare the module to Okapi:
-
-```
-curl -w '\n' -X POST -D -   \
-   -H "Content-type: application/json"   \
-   -d @ModuleDescriptor.json \
-   http://localhost:9130/_/proxy/modules
-```
 
 Then we need to enable the module for our test tenant:
 
