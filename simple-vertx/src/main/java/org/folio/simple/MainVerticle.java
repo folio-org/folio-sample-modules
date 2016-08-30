@@ -36,7 +36,7 @@ public class MainVerticle extends AbstractVerticle {
 
   private final Logger logger = LoggerFactory.getLogger("folio-simple");
   private final SimpleWebService simple = new SimpleWebService();
-  
+
   @Override
   public void start(Future<Void> fut) throws IOException {
 
