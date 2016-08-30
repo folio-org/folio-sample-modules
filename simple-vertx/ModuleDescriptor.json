@@ -1,0 +1,24 @@
+{
+  "id" : "simple",
+  "name" : "Simple Sample Module",
+  "provides" : [ {
+    "id" : "simple",
+    "version" : "1.1.1"
+  } ],
+  "requires" : [ {
+    "id" : "hello",
+    "version" : "1.1.1"
+  } ],
+  "routingEntries" : [ {
+    "methods" : [ "GET", "POST" ],
+    "path" : "/simple",
+    "level" : "30",
+    "type" : "request-response",
+    "permissionsRequired" : [ ],
+    "permissionsDesired" : [ ]
+  } ],
+  "launchDescriptor" : {
+    "cmdlineStart" : "docker run --cidfile=/tmp/docker.%p.cid -p %p:8080 indexdata/folio-simple-module",
+    "cmdlineStop": "docker stop `cat /tmp/docker.%p.cid` && docker rm `cat /tmp/docker.%p.cid` && rm -f /tmp/docker.%p.cid"
+  }
+}
