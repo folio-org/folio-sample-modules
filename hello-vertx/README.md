@@ -66,7 +66,7 @@ First of all you need a running Okapi instance:
    java -jar okapi-core/target/okapi-core-fat.jar dev
 ```
 
-If you have no tenants defined, then you need to add one:
+Since we just started Okapi, we have no tenants defined. So let's make one:
 
 ```
 curl -w '\n' -X POST -D - \
@@ -84,14 +84,31 @@ curl -w '\n' -X POST -D -   \
    http://localhost:9130/_/proxy/modules
 ```
 
+The ModuleDescriptor tells Okapi what the module is called, what services it
+provides, and how to deploy it. Note that the command line to start a docker
+is
+```
+docker run --cidfile=/tmp/docker.%p.cid -p %p:8080 indexdata/folio-hello-module
+```
+Some small details to note about that:
+  * Unlike in real production, we do not have a `-d` there. That would detach
+STDOUT and STDERR, and we would not see its log.
+  * The module listens on its default port 8080, and the Docker command line
+maps that to what ever port Okapi assigns to the module.
+  * We keep the docker id in a file in /tmp, so we know which docker to kill
+when that time comes. The file name includes the port number, as that must be
+unique within one node.
 
-Next we need to deploy the module. There is a deployment descriptor in `DeploymentDescriptor.json`
+
+
+Next we need to deploy the module. There is a deployment descriptor in
+`DeploymentDescriptor.json`. It tells Okapi to start the module on 'localhost'.
 
 ```
 curl -w '\n' -X POST -D - \
   -H "Content-type: application/json" \
   -d @DeploymentDescriptor.json  \
-  http://localhost:9130/_/deployment/modules
+  http://localhost:9130/_/discovery/modules
 ```
 
 Now the module should be running on the next available port.
@@ -143,9 +160,13 @@ curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/deployment/modules/local
 
 Finally you can stop the Okapi, with a Ctrl-C in its terminal window.
 
+## Scripting it
+There is a little shell script to go through the setting up, as above. It is
+called 'runhello.sh".
 
 ## What next
 
 As such this module is pretty useless. You can use it to understand what a Folio
 module is, and as an example, or even as a starting point, for creating your own
-modules.
+modules. You may want to look at the slightly more complex module called
+`simple-vertx`, and maybe reread the Okapi Guide. 

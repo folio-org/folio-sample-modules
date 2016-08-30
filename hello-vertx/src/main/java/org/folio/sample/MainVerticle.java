@@ -52,10 +52,10 @@ public class MainVerticle extends AbstractVerticle {
             .requestHandler(router::accept)
             .listen(port, result -> {
               if (result.succeeded()) {
-                logger.debug("Succeeded in starting the listener");
+                logger.debug("Hello: Succeeded in starting the listener");
                 fut.complete();
               } else {
-                logger.error("sample failed: " + result.cause());
+                logger.error("Hello failed to start the listener: " + result.cause());
                 fut.fail(result.cause());
               }
             });
@@ -64,7 +64,7 @@ public class MainVerticle extends AbstractVerticle {
   // Handler for the GET requests.
   // Just replies "Hello, world" in plain text
   public void get_handle(RoutingContext ctx) {
-    logger.debug("Handling a GET request");
+    logger.debug("Hello: handling a GET request");
     responseText(ctx, 200).end("Hello, world\n");
   }
 
@@ -72,7 +72,7 @@ public class MainVerticle extends AbstractVerticle {
   // Replies with a JSON structure that contains all posted data
   // As long as the input data is valid JSON, the output should be too.
   public void post_handle(RoutingContext ctx) {
-    logger.debug("Handling a POST request");
+    logger.debug("Hello: handling a POST request");
     String contentType = ctx.request().getHeader("Content-Type");
     if (contentType != null && contentType.compareTo("application/json") != 0) {
       responseError(ctx, 400, "Only accepts Content-Type application/json");
