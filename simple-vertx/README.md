@@ -14,6 +14,9 @@ The key differences include:
 message to it
 * The POST handler is operating on the whole body of the message, unlike the
 hello module, which pipes its request into its response asynchronously.
+* The code is split in two classes: MainVerticle.java and SimpleWebService.java
+* We need to set up the URL to make calls back to Okapi, from within a Docker
+container.
 
 
 ## Files
