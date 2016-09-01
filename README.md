@@ -31,7 +31,6 @@ For background understanding, see the
         * [Starting your own module](#starting-your-own-module)
 * [UI modules](#ui-modules)
 * [Virtual modules](#virtual-modules)
-* [License](#license)
 * [Further reading](#further-reading)
 
 ## What is a module
@@ -287,10 +286,6 @@ still under development, and an example module and guide will follow soon.
 Virtual modules are pure metadata, with no code to write. All that is needed is
 to create a good ModuleDescriptor, e.g. one that lists dependencies of other,
 concrete modules.
-
-## License
-
-Licensed under the Apache License, Version 2.0 (see [LICENSE](LICENSE)).
 
 ## Further reading
 
