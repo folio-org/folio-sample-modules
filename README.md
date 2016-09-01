@@ -1,5 +1,12 @@
 # Folio-Sample-Modules
 
+Copyright (C) 2016 The Open Library Foundation
+
+This software is distributed under the terms of the Apache License,
+Version 2.0. See the file "[LICENSE](LICENSE)" for more information.
+
+# Introduction
+
 This project contains examples of Folio modules (currently a server-side
 Vert.x-based module, but more, e.g. a UI/front-end module will come later),
 and some general information about writing, packaging and describing modules.
