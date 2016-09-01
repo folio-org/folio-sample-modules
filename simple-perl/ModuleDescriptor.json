@@ -1,0 +1,20 @@
+{
+  "id" : "simpleperl",
+  "name" : "SimplePerlModule",
+  "provides" : [ {
+    "id" : "simple",
+    "version" : "1.1.1"
+    },{
+   "id" : "hello",
+   "version" : "1.1.1"
+   } ],
+  "routingEntries" : [ {
+    "methods" : [ "GET", "POST" ],
+    "path" : "/hello",
+    "level" : "30",
+    "type" : "request-response"
+    } ],
+  "launchDescriptor" : {
+    "exec" : "perl ../folio-sample-modules/simple-perl/simple.pl %p"
+  }
+}
