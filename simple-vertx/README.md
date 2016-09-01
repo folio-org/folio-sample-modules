@@ -10,8 +10,8 @@ idea to work through the `hello` example before studying this one.
 
 The key differences include:
 * It makes a call to the 'hello' module, instead of producing a constant response.
-* In the POST handler, it parses the Json it gets from hello, and adds its own
-message to it
+* In the POST handler, it parses the JSON it gets from hello, and adds its own
+message to it.
 * The POST handler is operating on the whole body of the message, unlike the
 hello module, which pipes its request into its response asynchronously.
 * The code is split in two classes: MainVerticle.java and SimpleWebService.java
@@ -31,7 +31,7 @@ There are JSON structures, ready to POST to Okapi for setting up a demonstration
 of this module:
 
  - ModuleDescriptor.json: A module description for the module.
- - DeploymentDescriptor: to tell where to deploy the module (localhost, in this case)
+ - DeploymentDescriptor: to tell where to deploy the module (localhost, in this case).
  - TenantModuleDescriptor.json: A small structure to enable the module for our test tenant.
 
 Other noteworthy files are:
@@ -57,9 +57,7 @@ Build the docker container with:
    docker build -t indexdata/folio-simple-module .
 ```
 
-
 ## Installing the module
-
 
 First of all you need a running Okapi instance, probably in a separate terminal
 window. There is one catch, Okapi needs to tell the modules how to contact it
@@ -78,7 +76,6 @@ the docker container. Instead we need to use the correct machine name.
 You also need to define a tenant, and have the hello module running. If you do
 not want to follow the instructions in its README, the easiest way is to use
 the `runhello.sh` script that comes with the hello module.
-
 
 ```
     cd .../folio-sample-modules/hello-vertx

@@ -178,7 +178,7 @@ Finally you can stop the Okapi, with a Ctrl-C in its terminal window.
 
 ## Scripting it
 There is a little shell script to go through the setting up, as above. It is
-called 'runhello.sh".
+called 'runhello.sh'.
 
 ## What next
 
