@@ -16,6 +16,16 @@ and some general information about writing, packaging and describing modules.
 For background understanding, see the
 [Okapi Guide and Reference](https://github.com/folio-org/okapi/blob/master/doc/guide.md).
 
+* [What is a module](#what-is-a-module)
+    * [Module descriptor](#module-descriptor)
+* [Server-side modules](#server-side-modules)
+    * [Deployment and discovery](#deployment-and-discovery)
+    * [Writing a module](#writing-a-module)
+* [UI modules](#ui-modules)
+* [Virtual modules](#virtual-modules)
+* [License](#license)
+* [Further reading](#further-reading)
+
 ## What is a module
 
 A module is a stand-alone unit of functionality that follows Folio's ecosystem
