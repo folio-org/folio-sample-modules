@@ -282,3 +282,17 @@ https://github.com/folio-org/okapi
 Also consult the README for the hello-vertx example, it covers some
 useful ground.
 https://github.com/folio-org/folio-sample-modules/tree/master/hello-vertx
+
+Aside from the sample modules in this repository, work is proceeding
+on several other modules, which may also be instructive to
+browse. They include:
+
+* [mod-circulation](https://github.com/folio-org/mod-circulation)
+* [mod-acquisitions](https://github.com/folio-org/mod-acquisitions)
+* [mod-acquisitions-postgres](https://github.com/folio-org/mod-acquisitions-postgres)
+* [mod-configuration](https://github.com/folio-org/mod-configuration)
+* [mod-auth](https://github.com/folio-org/mod-auth)
+* [mod-metadata](https://github.com/folio-org/mod-metadata)
+
+Consult the individual repositories' documentation for the status of
+the code in these modules.
