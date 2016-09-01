@@ -127,6 +127,6 @@ Finally you can stop the Okapi, with a Ctrl-C in its terminal window.
 
 ## What next
 
-As such this module is pretty useless. You can use it to understand what a Folio
+As such this module is pretty useless. You can use it to understand what a FOLIO
 module is, and as an example, or even as a starting point, for creating your own
 modules.

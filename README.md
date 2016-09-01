@@ -7,11 +7,11 @@ Version 2.0. See the file "[LICENSE](LICENSE)" for more information.
 
 # Introduction
 
-This project contains examples of Folio modules (currently a server-side
+This project contains examples of FOLIO modules (currently a server-side
 Vert.x-based module, but more, e.g. a UI/front-end module will come later),
 and some general information about writing, packaging and describing modules.
 
-<!--- TODO: Add a few words about what Folio is, for new readers. Keep it short! --->
+<!--- TODO: Add a few words about what FOLIO is, for new readers. Keep it short! --->
 
 For background understanding, see the
 [Okapi Guide and Reference](https://github.com/folio-org/okapi/blob/master/doc/guide.md).
@@ -35,10 +35,10 @@ For background understanding, see the
 
 ## What is a module
 
-A module is a stand-alone unit of functionality that follows Folio's ecosystem
+A module is a stand-alone unit of functionality that follows FOLIO's ecosystem
 guidelines (interfaces and schemas) and conventions; so that Okapi
-(Folio's middleware/API gateway) can forward requests to it and Stripes
-(Folio's UI Toolkit) can produce a user interface for it.
+(FOLIO's middleware/API gateway) can forward requests to it and Stripes
+(FOLIO's UI Toolkit) can produce a user interface for it.
 
 At the moment we support several types of modules:
 
@@ -51,7 +51,7 @@ but I believe such ought to work already. Sooner or later
 we will need to pay more attention to those. The text is
 good enough as it stands -->
 
-Folio is an open-ended system and we may end up adding more module types later.
+FOLIO is an open-ended system and we may end up adding more module types later.
 
 
 ### Module descriptor
@@ -140,14 +140,14 @@ Write something about these
 
 ### Writing a module
 
-Folio is designed so that different modules can be written in different
+FOLIO is designed so that different modules can be written in different
 languages with different tools.
 
 #### Java/Vert.x and Node.js
 
 So far we have only written server-side modules in Java, using Vert.x and
 Node.js. Because we use them internally, those two technologies will have
-a prominent place in the Folio ecosystem and, initially, it may be easiest
+a prominent place in the FOLIO ecosystem and, initially, it may be easiest
 to get started using them. We provide libraries and utilities that
 help with development (especially with writing standard boiler-plate code and
 scaffolding) but we hope to eventually gain a wide coverage among other
@@ -189,7 +189,7 @@ chunked encoding to make the connections to the modules.
 
 There is a very minimal "hello, world" module in the hello-vertx directory.
 Written as an educational example, it may serve as a starting point for a
-server-side Folio module.
+server-side FOLIO module.
 Its README has some information about its structure and how to run it in a
 Docker container.
 
@@ -247,7 +247,7 @@ start from, and make a new copy of it:
 Open the project in your favourite IDE, in this example NetBeans. Use its
 rename function to rename the display name and ArtifactId to "mymodule".
 You should probably rename the source package to something else like
-"org.foo.mymopdule", unless you are starting up a new folio sample module.
+"org.foo.mymopdule", unless you are starting up a new FOLIO sample module.
 
 Now you can compile the module in your IDE or with `mvn install`. Again,
 check for the "BUILD SUCCESS" message.
