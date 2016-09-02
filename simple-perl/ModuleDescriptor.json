@@ -13,8 +13,5 @@
     "path" : "/hello",
     "level" : "30",
     "type" : "request-response"
-    } ],
-  "launchDescriptor" : {
-    "exec" : "perl ../folio-sample-modules/simple-perl/simple.pl %p"
-  }
+    } ]
 }

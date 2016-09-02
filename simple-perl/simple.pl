@@ -1,32 +1,39 @@
 #!/usr/bin/perl
-{
-package MyWebServer;
 
-use HTTP::Server::Simple::CGI;  # On Debian, apt-get install libhttp-server-simple-perl
-use base qw(HTTP::Server::Simple::CGI);
+use strict;
+use base qw(Net::Server::HTTP); # On Debian, apt-get install libnet-server-perl
 use JSON;
 use Data::Dumper;
+use CGI;
 
 my $json_content_type = "application/json";
 my $plaintext_content_type = "text/plain";
 
-sub print_banner {
-  print STDERR "Welcome to the Perl Okapi module\n";
-}
+# Start the server in the foreground on given port (default to 8080)
+# (Okapi's exec will have forked a new process for us, and will kill it)
+my $port = $ARGV[0] || "8080";
+die "Need one argument, a port number (not '$port') " 
+  unless ( $port !~ /d+/ ) ;
+print STDERR "Okapi Perl module listening on port $port\n";
+main->run(
+  port  => $port,
+  ipv   => 'IPv4',
+);
 
-sub handle_request {
+# This gets called for each request
+sub process_http_request {
   my $self = shift;
-  my $cgi  = shift;
+  #my $cgi  = shift;
+  my $cgi = CGI->new;
 
   my $path = $cgi->path_info();
-  my $handler = $dispatch{$path};
 
   if (!$path) {
-    err($cgi,404,"Not found (no path given)");
+    err($cgi,"404 NOTFOUND","Not found (no path given)");
     return;
   }
   if ( $path eq "/hello" && $cgi->request_method() eq "GET" ) {
-      hello_get_handler($cgi);
+      response($cgi, "200 OK", $plaintext_content_type, "Hello, world\n");
       return;
     } 
   if ( $path eq "/hello" && $cgi->request_method() eq "POST" ) {
@@ -34,8 +41,21 @@ sub handle_request {
       return;
     } 
   # Fall through with other than GET or POST
-  err($cgi,404,"Not found");
+  err($cgi,"404 NOTFOUND","Not found");
   return;
+}
+
+# Produce a HTTP response
+sub response {
+  my $cgi  = shift;
+  my $code = shift;
+  my $contenttype = shift;
+  my $result = shift;
+  print "HTTP/1.0 $code\r\n";
+  print $cgi->header(
+    -type => $json_content_type,
+  );
+  print $result;
 }
 
 sub err {
@@ -43,53 +63,60 @@ sub err {
   my $code = shift;
   my $msg = shift;
   print STDERR "Returning error $code: $msg\n";
-  print "HTTP/1.0 $code ERROR\r\n";
+  print "HTTP/1.0 $code\r\n";
   print $cgi->header(
     -type => $plaintext_content_type
   );
   print $msg;
 }
 
-sub hello_get_handler {
+
+
+# Helper to get the POSTed data
+# Either from $cgi, or read from STDIN, if chunked
+sub postdata {
   my $cgi  = shift;
-  print STDERR "Get handler\n";
-  print "HTTP/1.0 200 OK\r\n";
-  print $cgi->header(-type => $plaintext_content_type);
-  print "Hello, world\n";
+  if ( $ENV{"HTTP_TRANSFER_ENCODING"} ne "chunked" ) {
+    return $cgi->param("POSTDATA");
+  }
+  my $buf = "";
+  while(1) {
+    my $len = <STDIN>;
+    chomp($len);
+    $len =~ s/[^0-9]//g;
+    if (! $len ) {
+      return $buf;
+    }
+    my $declen=hex($len);
+    my $chunk;
+    my $nbytes = read( STDIN, $chunk, $declen);
+    if ( $nbytes != $declen ){
+      print STDERR "Oops, got $nbytes bytes instead of $declen\n";
+      return $buf;
+    }
+    $buf .= $chunk;
+  }
 }
 
+
+# Handle a POST request to /hello
+# 
 sub hello_post_handler {
   my $cgi  = shift;
-  print STDERR $cgi->request_method() . " for " . $cgi->path_info() . "\n";
-  print STDERR $cgi->content_type() . ":" .$cgi->param("POSTDATA"). "\n";
   my $typ = $cgi->content_type();
   if ($typ ne $json_content_type) {
     err($cgi,400,"Invalid content type '$typ'. Needs to be '$json_content_type'");
     return;
   }
-  my $reqdata = $cgi->param("POSTDATA");
+  my $reqdata = postdata($cgi);
   if ( !$reqdata ) {
     err($cgi,400,"Received No content");
   }
   my $json = decode_json($reqdata);
-  print STDERR Dumper($json);
   $json->{ 'greeting' } = "Hello, world";
-  print STDERR Dumper($json);
-  print "HTTP/1.0 200 OK\r\n";
-  print $cgi->header(-type => $json_content_type);
-  print encode_json($json);  
+  response($cgi,"200 OK", $json_content_type, encode_json($json) );
 }
 
 
 
-# Run the server in the foreground on 8080
-# (Okapi's exec will have forked a new process for us, and will kill it)
-my $port = $ARGV[0];
-die "Need one argument, a port number (not '$port') " 
-  unless ( $port !~ /d+/ ) ;
-print STDERR "Okapi Perl module listening on port $port\n";
-my $server = MyWebServer->new($port);
-$server->port($port);
-$server->protocol("HTTP/1.1");
-$server->run();
-}
+
