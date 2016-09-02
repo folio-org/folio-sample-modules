@@ -48,7 +48,7 @@ echo
 echo "Deploying it on localhost"
 curl -w '\n' -X POST -D - \
   -H "Content-type: application/json" \
-  -d @DeploymentDescriptor.json  \
+  -d @DeploymentDescriptor2.json  \
   http://localhost:9130/_/discovery/modules || exit 1
 echo OK
 sleep $SLEEP

@@ -1,24 +1,28 @@
 ###
-# vert.x docker example using a Java verticle packaged as a fatjar
+# Perl-based Okapi module docker
 # To build:
-#  docker build -t indexdata/folio-simple-module .
+#  docker build -t indexdata/folio-simple-perl-module .
 # To run:
-#   docker run -t -i -p 8080:8080 indexdata/folio-simple-module
+#   docker run -t -i -p 8080:8080 indexdata/folio-simple-perl-module
 ###
 
-FROM java:8
 
-ENV VERTICLE_FILE folio-simple-vertx-fat.jar
+#FROM perl:5.20
+FROM debian:8
 
-# Set the location of the verticles
-ENV VERTICLE_HOME /usr/verticles
+ENV PERL_FILE simple.pl
+
+RUN apt-get update && apt-get -y install libnet-server-perl libjson-perl libcgi-pm-perl libmodule-build-perl
+
+# Set the location of the script
+ENV PERL_HOME /usr/okapi
 
 EXPOSE 8080
 
 # Copy your fat jar to the container
-COPY target/$VERTICLE_FILE $VERTICLE_HOME/
+COPY ./$PERL_FILE $PERL_HOME/
 
-# Launch the verticle
-WORKDIR $VERTICLE_HOME
+# Launch the module
+WORKDIR $PERL_HOME
 ENTRYPOINT ["sh", "-c"]
-CMD ["java -jar $VERTICLE_FILE"]
+CMD ["perl $PERL_FILE"]
