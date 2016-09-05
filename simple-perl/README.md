@@ -1,17 +1,15 @@
-# Simple-vertx
+# Simple-perl
 
 A fairly small module written in Perl, just to show that modules can be
 written in other languages.
 
-This module is very similar to the `hello-vertx` module, is supports GET and
+This module is very similar to the `hello-vertx` module, it supports GET and
 POST requests to `/hello`. 
-
 
 ## Files
 
-There is one source file: simple.pl. 
+There is one source file: simple.pl
 
- 
 There are JSON structures, ready to POST to Okapi for setting up a demonstration
 of this module:
 
@@ -23,8 +21,7 @@ of this module:
 Other useful files include:
  - README.md: This file, explaining what is where and how to use the module.
  - example.sh: A script that sets things up in Okapi and invokes the module.
- - Dockerfile: for packing the module in a docker.
-
+ - Dockerfile: For packing the module in a docker.
 
 ## Setting things up
 
@@ -65,6 +62,7 @@ curl -w '\n' -X POST -D -   \
 ```
 
 We also need to enable the module for our tenant:
+
 ```
 curl -w '\n' -X POST -D -   \
   -H "Content-type: application/json"   \
@@ -72,24 +70,29 @@ curl -w '\n' -X POST -D -   \
   http://localhost:9130/_/proxy/tenants/testlib/modules || exit 1
 ```
 
-
 ## Running the module separately
+
 To begin with, it is probably easier to run the module in its own terminal 
 window, where you can see what it outputs to STDERR. 
+
 ```
 ./simple.pl
 ```
+
 It produces some output about the type of the server, what port it listens on
 (it defaults to 8080), and which user and group it is running under.
 
-Now you can verify that it is running. In yet another console window try
+Now you can verify that it is running. In yet another console window try:
+
 ```
 curl -D - -w '\n' http://localhost:8080/hello
 ```
+
 And you should see the traditional greeting.
 
-You can also try to POST some Json data to it. Being too lazy to create a new
+You can also try to POST some JSON data to it. Being too lazy to create a new
 structure, we just reuse the TenantDescriptor.
+
 ```
 curl -D - -w '\n' \
   -X POST -d@TenantDescriptor.json   \
@@ -98,7 +101,7 @@ curl -D - -w '\n' \
    http://localhost:8080/hello
 ```
 
-You should see that out comes a different Json structure that incudes a field
+You should see that out comes a different JSON structure that incudes a field
 called "greeting".
 
 ## Telling Okapi to use the module
@@ -135,8 +138,6 @@ curl -w '\n' -X POST -D -   \
 If you want to play with the module, you can edit the script, kill the module
 with a Ctrl-C, and restart it, and issue the same requests to Okapi. 
 
-
-
 ## Running the module inside Okapi
 
 If you just need to use the module, for example when working on another one, 
@@ -155,12 +156,13 @@ curl -w '\n' -X POST -D - \
   -d @DeploymentDescriptor2.json  \
   http://localhost:9130/_/discovery/modules || exit 1
 ```
+
 Okapi starts the module, and assigns it a port to listen on. Typically this
 would be 9131. You can check it running on that port, or just use it through 
 Okapi as before.
 
-
 ## Running in a docker
+
 For production, it is preferable to run modules inside Docker containers.
 There is a `Dockerfile` ready to go, all you need to do is to build the
 Docker image:
@@ -171,17 +173,18 @@ docker build -t indexdata/folio-simple-perl-module .
 
 To use the image, DeploymentDescriptor3.json is all set up with the right
 command lines. Just POST that to /_/discovery, like before.
+
 ```
 curl -w '\n' -X POST -D - \
   -H "Content-type: application/json" \
   -d @DeploymentDescriptor3.json  \
   http://localhost:9130/_/discovery/modules || exit 1
 ```
-Now you should be able to use the module as before.
 
+Now you should be able to use the module as before.
 
 ## What next
 
-As such this module is pretty useless. You can use it to understand what a Folio
+As such this module is pretty useless. You can use it to understand what a FOLIO
 module is, and as an example, or even as a starting point, for creating your own
 modules.
