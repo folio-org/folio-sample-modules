@@ -14,8 +14,9 @@ There are JSON structures, ready to POST to Okapi for setting up a demonstration
 of this module:
 
  - ModuleDescriptor.json: A module description for the module.
- - DeploymentDescriptor1: to tell Okapi that the server is already running at a URL
- - DeploymentDescriptor2: to tell Okapi to deploy the module directly
+ - DeploymentDescriptor-url.json: to tell Okapi that the server is already running at a URL
+ - DeploymentDescriptor-exec.json: to tell Okapi to deploy the module directly
+ - DeploymentDescriptor-docker.json: to tell Okapi to deploy the module as a Docker container
  - TenantModuleDescriptor.json: A small structure to enable the module for our test tenant.
 
 Other useful files include:
@@ -34,6 +35,10 @@ On a Debian based system they all can be installed with
 ```
 sudo apt-get install libnet-server-perl libjson-perl libcgi-pm-perl libmodule-build-perl
 ```
+<!-- TODO - How to install the perl modules on other platforms, like Windows -->
+Because Okapi prefers to use chinked encoding, the `HTTP::Server::Simple::CGI`
+module is not suitable for building modules.
+
 
 
 ## Setting things up
@@ -121,13 +126,13 @@ called "greeting".
 
 Now we need to tell Okapi that we have the module running on port 8080. This is
 done by posting a DeploymentDescriptor to /_/discovery/modules. The file
-DeploymentDescriptor1.json contains one that does actually not deploy anything,
+DeploymentDescriptor-url.json contains one that does actually not deploy anything,
 but tells Okapi that we have one already deployed. Post it to Okapi:
 
 ```
 curl -w '\n' -X POST -D - \
   -H "Content-type: application/json" \
-  -d @DeploymentDescriptor1.json  \
+  -d @DeploymentDescriptor-url.json  \
   http://localhost:9130/_/discovery/modules || exit 1
 ```
 
@@ -155,7 +160,7 @@ with a Ctrl-C, and restart it, and issue the same requests to Okapi.
 
 If you just need to use the module, for example when working on another one,
 it will be easier if you let Okapi start it up for you.  We can do this by
-using the provided DeploymentDescriptor2.json, which has a launchDescriptor
+using the provided DeploymentDescriptor-exec.json, which has a launchDescriptor
 included that tells how to start the file.
 
 There is one catch. Okapi needs to know the path to the script, and that needs
@@ -166,7 +171,7 @@ Otherwise you will need to edit the path to the script.
 ```
 curl -w '\n' -X POST -D - \
   -H "Content-type: application/json" \
-  -d @DeploymentDescriptor2.json  \
+  -d @DeploymentDescriptor-exec.json  \
   http://localhost:9130/_/discovery/modules || exit 1
 ```
 
@@ -184,13 +189,13 @@ Docker image:
 docker build -t indexdata/folio-simple-perl-module .
 ```
 
-To use the image, DeploymentDescriptor3.json is all set up with the right
+To use the image, DeploymentDescriptor-docker.json is all set up with the right
 command lines. Just POST that to /_/discovery, like before.
 
 ```
 curl -w '\n' -X POST -D - \
   -H "Content-type: application/json" \
-  -d @DeploymentDescriptor3.json  \
+  -d @DeploymentDescriptor-docker.json  \
   http://localhost:9130/_/discovery/modules || exit 1
 ```
 

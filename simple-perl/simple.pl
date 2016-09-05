@@ -5,6 +5,7 @@ use base qw(Net::Server::HTTP); # On Debian, apt-get install libnet-server-perl
 use JSON;
 use Data::Dumper;
 use CGI;
+use LWP::UserAgent;  # libwww-perl
 
 my $json_content_type = "application/json";
 my $plaintext_content_type = "text/plain";
@@ -27,17 +28,23 @@ sub process_http_request {
   my $cgi = CGI->new;
 
   my $path = $cgi->path_info();
-
+  my $meth = $cgi->request_method();
+  print STDERR "simple.pl received a $meth request for $path\n";
+  
   if (!$path) {
     err($cgi,"404 NOTFOUND","Not found (no path given)");
     return;
   }
-  if ( $path eq "/hello" && $cgi->request_method() eq "GET" ) {
+  if ( $path eq "/hello" && $meth eq "GET" ) {
       response($cgi, "200 OK", $plaintext_content_type, "Hello, world\n");
       return;
     }
-  if ( $path eq "/hello" && $cgi->request_method() eq "POST" ) {
+  if ( $path eq "/hello" && $meth eq "POST" ) {
       hello_post_handler($cgi);
+      return;
+    }
+  if ( $path eq "/simple" && $meth eq "GET" ) {
+      simple_get_handler($cgi);
       return;
     }
   # Fall through with other than GET or POST
@@ -100,7 +107,7 @@ sub postdata {
 
 
 # Handle a POST request to /hello
-#
+# Return the same Json but with a greeting added to it
 sub hello_post_handler {
   my $cgi  = shift;
   my $typ = $cgi->content_type();
@@ -117,6 +124,30 @@ sub hello_post_handler {
   response($cgi,"200 OK", $json_content_type, encode_json($json) );
 }
 
+# A more complex get handler.
+# Makes a reques to hello, properly through Okapi.
+sub simple_get_handler {
+  my $cgi  = shift;
+  my $okapiurl = $ENV{"HTTP_X_OKAPI_URL"};
+  print STDERR "simple: okapi is at $okapiurl\n";
+  my $ua = new LWP::UserAgent;
+  my $url = "$okapiurl/hello";
+  my $req = new HTTP::Request GET => $url;
 
+  # Copy all X-Okapi- headers over to the request
+  for my $k ( keys(%ENV) ) {
+    if ( $k =~ /^HTTP_(X_OKAPI_.*$)/i ) {
+      my $hdr = $1;
+      $hdr =~ s/_/-/g; 
+      print STDERR "Got Found a header $hdr : " . $ENV{$k} . "\n";
+      $req->header($hdr => $ENV{$k});
+    }
+  }
+  my $resp = $ua->request($req);
+  my $content = $resp->decoded_content();
+  chomp($content);
+  my $reply = "Simple here. Hello module said '$content'.\n";
+  response($cgi, "200 OK", $plaintext_content_type, $reply);  
+}
 
 

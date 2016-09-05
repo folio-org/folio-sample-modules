@@ -13,5 +13,10 @@
     "path" : "/hello",
     "level" : "30",
     "type" : "request-response"
+    },{
+    "methods" : [ "GET", "POST" ],
+    "path" : "/simple",
+    "level" : "30",
+    "type" : "request-response"
     } ]
 }

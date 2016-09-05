@@ -10,11 +10,11 @@
 
 OKAPI=${1:-"http://localhost:9130"}   # The usual place it runs on a single-machine setup
 SLEEP=${2:-"0.2"} # Time to sleep between requests
-
+DEPLOY=${3:-"DeploymentDescriptor-exec.json"} # Whihc Deployment to use
 
 #echo
 #echo "Dockerixing it"
-#docker build -t indexdata/folio-simple-module . || exit 1
+#docker build -t indexdata/folio-simple-perl-module .
 #echo OK
 
 
@@ -48,7 +48,7 @@ echo
 echo "Deploying it on localhost"
 curl -w '\n' -X POST -D - \
   -H "Content-type: application/json" \
-  -d @DeploymentDescriptor2.json  \
+  -d @$DEPLOY  \
   http://localhost:9130/_/discovery/modules || exit 1
 echo OK
 sleep $SLEEP
