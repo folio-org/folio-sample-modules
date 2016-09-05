@@ -47,6 +47,10 @@ sub process_http_request {
       simple_get_handler($cgi);
       return;
     }
+  if ( $path eq "/simple" && $meth eq "POST" ) {
+      simple_post_handler($cgi);
+      return;
+    }
   # Fall through with other than GET or POST
   err($cgi,"404 NOTFOUND","Not found");
   return;
@@ -124,15 +128,20 @@ sub hello_post_handler {
   response($cgi,"200 OK", $json_content_type, encode_json($json) );
 }
 
-# A more complex get handler.
-# Makes a reques to hello, properly through Okapi.
-sub simple_get_handler {
-  my $cgi  = shift;
+
+# A helper to make a HTTP request
+# Takes the base URL from the incoming X-Okapi-Url header
+# Appends the path
+# Copies all X-Okapi- headers into the request
+sub httprequest {
+  my $cgi = shift;
+  my $method = shift;
+  my $path = shift;
+  my $content = shift;
   my $okapiurl = $ENV{"HTTP_X_OKAPI_URL"};
   print STDERR "simple: okapi is at $okapiurl\n";
-  my $ua = new LWP::UserAgent;
   my $url = "$okapiurl/hello";
-  my $req = new HTTP::Request GET => $url;
+  my $req = new HTTP::Request $method=> $url;
 
   # Copy all X-Okapi- headers over to the request
   for my $k ( keys(%ENV) ) {
@@ -143,6 +152,19 @@ sub simple_get_handler {
       $req->header($hdr => $ENV{$k});
     }
   }
+  if ($content) {
+    $req->content($content);
+    $req->content_type($json_content_type);
+  }
+  return $req;
+}
+
+# A more complex get handler.
+# Makes a reques to hello, properly through Okapi.
+sub simple_get_handler {
+  my $cgi  = shift;
+  my $req = httprequest($cgi,"GET", "/hello");
+  my $ua = new LWP::UserAgent;
   my $resp = $ua->request($req);
   my $content = $resp->decoded_content();
   chomp($content);
@@ -150,4 +172,24 @@ sub simple_get_handler {
   response($cgi, "200 OK", $plaintext_content_type, $reply);  
 }
 
-
+sub simple_post_handler {
+  my $cgi  = shift;
+  my $typ = $cgi->content_type();
+  if ($typ ne $json_content_type) {
+    err($cgi,400,"Invalid content type '$typ'. Needs to be '$json_content_type'");
+    return;
+  }
+  my $reqdata = postdata($cgi);
+  if ( !$reqdata ) {
+    err($cgi,400,"Received No content");
+  }
+  my $req = httprequest($cgi,"POST", "/hello",$reqdata);
+  my $ua = new LWP::UserAgent;
+  my $resp = $ua->request($req);
+  my $content = $resp->decoded_content();
+  chomp($content);
+  my $reply = "Simple here. Hello module said '$content'.\n";
+  my $json = decode_json($content);
+  $json->{ 'simplemessage' } = "Simple module did call the hello module";
+  response($cgi,"200 OK", $json_content_type, encode_json($json) );
+}
