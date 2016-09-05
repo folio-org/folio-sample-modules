@@ -1,4 +1,14 @@
 #!/usr/bin/perl
+#
+# A simple Okapi module.
+# Serves GET and POST requests to /hello and to /simple
+# The /hello requests are minimal examples of receiving a request and responging
+# The /simple requests are a little bit more complex, they show how a further
+# request can be made to Okapi - in this case to the /hello, but it could be
+# anywhere.
+#
+# The module does not do any fancy logging, but outputs some comments on STDERR
+
 
 use strict;
 use base qw(Net::Server::HTTP); # On Debian, apt-get install libnet-server-perl
@@ -56,7 +66,71 @@ sub process_http_request {
   return;
 }
 
-# Produce a HTTP response
+############
+# Handlers #
+############
+
+# Handle a POST request to /hello
+# Return the same Json but with a greeting added to it
+sub hello_post_handler {
+  my $cgi  = shift;
+  my $typ = $cgi->content_type();
+  if ($typ ne $json_content_type) {
+    err($cgi,400,"Invalid content type '$typ'. Needs to be '$json_content_type'");
+    return;
+  }
+  my $reqdata = postdata($cgi);
+  if ( !$reqdata ) {
+    err($cgi,400,"Received No content");
+  }
+  my $json = decode_json($reqdata);
+  $json->{ 'greeting' } = "Hello, world";
+  response($cgi,"200 OK", $json_content_type, encode_json($json) );
+}
+
+# A more complex get handler.
+# Makes a reques to hello, properly through Okapi.
+sub simple_get_handler {
+  my $cgi  = shift;
+  my $req = httprequest($cgi,"GET", "/hello");
+  my $ua = new LWP::UserAgent;
+  my $resp = $ua->request($req);
+  my $content = $resp->decoded_content();
+  chomp($content);
+  my $reply = "Simple here. Hello module said '$content'.\n";
+  response($cgi, "200 OK", $plaintext_content_type, $reply);
+}
+
+# A more complex POST handler. Gets its input data and posts that to /hello
+# Builds a nice response out of what /hello says.
+sub simple_post_handler {
+  my $cgi  = shift;
+  my $typ = $cgi->content_type();
+  if ($typ ne $json_content_type) {
+    err($cgi,400,"Invalid content type '$typ'. Needs to be '$json_content_type'");
+    return;
+  }
+  my $reqdata = postdata($cgi);
+  if ( !$reqdata ) {
+    err($cgi,400,"Received No content");
+  }
+  my $req = httprequest($cgi,"POST", "/hello",$reqdata);
+  my $ua = new LWP::UserAgent;
+  my $resp = $ua->request($req);
+  my $content = $resp->decoded_content();
+  chomp($content);
+  my $reply = "Simple here. Hello module said '$content'.\n";
+  my $json = decode_json($content);
+  $json->{ 'simplemessage' } = "Simple module did call the hello module";
+  response($cgi,"200 OK", $json_content_type, encode_json($json) );
+}
+
+
+###########
+# Helpers #
+###########
+
+# Helper to produce a HTTP response
 sub response {
   my $cgi  = shift;
   my $code = shift;
@@ -69,6 +143,7 @@ sub response {
   print $result;
 }
 
+# Helper to produce an error response
 sub err {
   my $cgi  = shift;
   my $code = shift;
@@ -80,7 +155,6 @@ sub err {
   );
   print $msg;
 }
-
 
 
 # Helper to get the POSTed data
@@ -109,24 +183,6 @@ sub postdata {
   }
 }
 
-
-# Handle a POST request to /hello
-# Return the same Json but with a greeting added to it
-sub hello_post_handler {
-  my $cgi  = shift;
-  my $typ = $cgi->content_type();
-  if ($typ ne $json_content_type) {
-    err($cgi,400,"Invalid content type '$typ'. Needs to be '$json_content_type'");
-    return;
-  }
-  my $reqdata = postdata($cgi);
-  if ( !$reqdata ) {
-    err($cgi,400,"Received No content");
-  }
-  my $json = decode_json($reqdata);
-  $json->{ 'greeting' } = "Hello, world";
-  response($cgi,"200 OK", $json_content_type, encode_json($json) );
-}
 
 
 # A helper to make a HTTP request
@@ -159,37 +215,3 @@ sub httprequest {
   return $req;
 }
 
-# A more complex get handler.
-# Makes a reques to hello, properly through Okapi.
-sub simple_get_handler {
-  my $cgi  = shift;
-  my $req = httprequest($cgi,"GET", "/hello");
-  my $ua = new LWP::UserAgent;
-  my $resp = $ua->request($req);
-  my $content = $resp->decoded_content();
-  chomp($content);
-  my $reply = "Simple here. Hello module said '$content'.\n";
-  response($cgi, "200 OK", $plaintext_content_type, $reply);  
-}
-
-sub simple_post_handler {
-  my $cgi  = shift;
-  my $typ = $cgi->content_type();
-  if ($typ ne $json_content_type) {
-    err($cgi,400,"Invalid content type '$typ'. Needs to be '$json_content_type'");
-    return;
-  }
-  my $reqdata = postdata($cgi);
-  if ( !$reqdata ) {
-    err($cgi,400,"Received No content");
-  }
-  my $req = httprequest($cgi,"POST", "/hello",$reqdata);
-  my $ua = new LWP::UserAgent;
-  my $resp = $ua->request($req);
-  my $content = $resp->decoded_content();
-  chomp($content);
-  my $reply = "Simple here. Hello module said '$content'.\n";
-  my $json = decode_json($content);
-  $json->{ 'simplemessage' } = "Simple module did call the hello module";
-  response($cgi,"200 OK", $json_content_type, encode_json($json) );
-}

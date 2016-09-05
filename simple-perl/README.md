@@ -3,8 +3,16 @@
 A fairly small module written in Perl, just to show that modules can be
 written in other languages.
 
-This module is very similar to the `hello-vertx` module, it supports GET and
+This module is very similar to the `simple-vertx` module, it supports GET and
 POST requests to `/hello`.
+
+This module support the same GET and POST requests to `/hello`, as the
+`hello-vertx` module. It also supports the same GET and POST requests to
+`/simple` as the `simple-vertx` module. These requests make a call to `/hello`
+to demonstrate how such calls can be made in Perl. Of course those calls could
+go to any other module, but we use the same module here to keep things simple.
+
+
 
 ## Files
 
@@ -24,21 +32,41 @@ Other useful files include:
  - example.sh: A script that sets things up in Okapi and invokes the module.
  - Dockerfile: For packing the module in a docker.
 
+## Overview
+
+The module is a HTTP server, based on Net::Server::HTTP running in a preforked
+configuration, as is its default. It serves GET and POST requests to `/hello`
+and `/simple`. The get requests return plain text messages, and the POST
+requests expect and return Json structures.
+
+There are a few details worth noticing:
+
+* Okapi uses chunked transfer encoding, so the module has to be able to read
+chunks of input data. There is a helper function for that.
+* The requests come in to `process_http_request()` It responds directly to
+a GET request to `/hello` and dispatches the rest to individual handlers.
+* There are some helpers to produce HTTP responses, to read the POSTed data,
+and to create HTTP requests.
+* The actual handler functions are pretty short.
+
+
 ## Dependencies
+
 The module uses some Perl libraries:
   * Net::Server::HTTP
-  * JSON;
-  * Data::Dumper;
-  * CGI;
+  * JSON
+  * Data::Dumper
+  * CGI
+  * LWP::UserAgent
 
 On a Debian based system they all can be installed with
 ```
-sudo apt-get install libnet-server-perl libjson-perl libcgi-pm-perl libmodule-build-perl
+sudo apt-get install libnet-server-perl libjson-perl \
+    libcgi-pm-perl libmodule-build-perl libwww-perl
 ```
 <!-- TODO - How to install the perl modules on other platforms, like Windows -->
-Because Okapi prefers to use chinked encoding, the `HTTP::Server::Simple::CGI`
+Because Okapi prefers to use chunked encoding, the `HTTP::Server::Simple::CGI`
 module is not suitable for building modules.
-
 
 
 ## Setting things up
