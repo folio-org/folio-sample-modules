@@ -12,7 +12,7 @@ my $plaintext_content_type = "text/plain";
 # Start the server in the foreground on given port (default to 8080)
 # (Okapi's exec will have forked a new process for us, and will kill it)
 my $port = $ARGV[0] || "8080";
-die "Need one argument, a port number (not '$port') " 
+die "Need one argument, a port number (not '$port') "
   unless ( $port !~ /d+/ ) ;
 print STDERR "Okapi Perl module listening on port $port\n";
 main->run(
@@ -35,11 +35,11 @@ sub process_http_request {
   if ( $path eq "/hello" && $cgi->request_method() eq "GET" ) {
       response($cgi, "200 OK", $plaintext_content_type, "Hello, world\n");
       return;
-    } 
+    }
   if ( $path eq "/hello" && $cgi->request_method() eq "POST" ) {
       hello_post_handler($cgi);
       return;
-    } 
+    }
   # Fall through with other than GET or POST
   err($cgi,"404 NOTFOUND","Not found");
   return;
@@ -100,7 +100,7 @@ sub postdata {
 
 
 # Handle a POST request to /hello
-# 
+#
 sub hello_post_handler {
   my $cgi  = shift;
   my $typ = $cgi->content_type();

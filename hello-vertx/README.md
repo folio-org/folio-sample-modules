@@ -185,4 +185,4 @@ called 'runhello.sh'.
 As such this module is pretty useless. You can use it to understand what a FOLIO
 module is, and as an example, or even as a starting point, for creating your own
 modules. You may want to look at the slightly more complex module called
-`simple-vertx`, and maybe reread the Okapi Guide. 
+`simple-vertx`, and maybe reread the Okapi Guide.
