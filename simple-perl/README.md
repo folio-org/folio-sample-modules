@@ -23,6 +23,19 @@ Other useful files include:
  - example.sh: A script that sets things up in Okapi and invokes the module.
  - Dockerfile: For packing the module in a docker.
 
+## Dependencies
+The module uses some Perl libraries:
+  * Net::Server::HTTP
+  * JSON;
+  * Data::Dumper;
+  * CGI;
+
+On a Debian based system they all can be installed with
+```
+sudo apt-get install libnet-server-perl libjson-perl libcgi-pm-perl libmodule-build-perl
+```
+
+
 ## Setting things up
 
 First of all you need a running Okapi instance, probably in a separate terminal
