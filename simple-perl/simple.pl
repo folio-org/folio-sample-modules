@@ -40,7 +40,7 @@ sub process_http_request {
   my $path = $cgi->path_info();
   my $meth = $cgi->request_method();
   print STDERR "simple.pl received a $meth request for $path\n";
-  
+
   if (!$path) {
     err($cgi,"404 NOTFOUND","Not found (no path given)");
     return;
@@ -203,7 +203,7 @@ sub httprequest {
   for my $k ( keys(%ENV) ) {
     if ( $k =~ /^HTTP_(X_OKAPI_.*$)/i ) {
       my $hdr = $1;
-      $hdr =~ s/_/-/g; 
+      $hdr =~ s/_/-/g;
       print STDERR "Got Found a header $hdr : " . $ENV{$k} . "\n";
       $req->header($hdr => $ENV{$k});
     }
