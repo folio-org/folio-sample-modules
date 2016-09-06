@@ -277,7 +277,7 @@ Most likely you will create other classes to support your operations.
   * Rewrite most of the README to reflect _your_ module.
 
 ### Running your module
-There are three different ways to run your module. They differ in the way how
+There are three different ways to run your module. They differ in the way that
 the module is started up, everything else is the same. In all cases you need
 to declare the module to Okapi and enable it for your test tenant, who has to
 exist. The methods differ in the LaunchDescriptor you give to Okapi. This can
@@ -311,7 +311,7 @@ exec line, and Okapi will find the module all right.
 
 #### Run in a Docker
 In a cloud based production environment, we recommend running all modules
-in their own Docker containers. That way, there is not need to be precise with
+in their own Docker containers. That way, there is no need to be precise with
 the paths. You can distribute modules as Docker images, maybe using a public
 (or your own private) Docker repository. The drawback is that you need to
 create the Docker image. See the hello-vertx module for a simple example of

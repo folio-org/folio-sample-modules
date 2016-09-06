@@ -37,7 +37,7 @@ Other useful files include:
 The module is a HTTP server, based on Net::Server::HTTP running in a preforked
 configuration, as is its default. It serves GET and POST requests to `/hello`
 and `/simple`. The get requests return plain text messages, and the POST
-requests expect and return Json structures.
+requests expect and return JSON structures.
 
 There are a few details worth noticing:
 
