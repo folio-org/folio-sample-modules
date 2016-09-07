@@ -21,7 +21,7 @@ public class SimpleWebService {
   public void get_handle(RoutingContext ctx) {
     logger.debug("Simple: Handling a GET request. About to call the hello module");
     OkapiClient ok = new OkapiClient(ctx);
-    logger.debug("Contacting Okapi via " );
+    logger.debug("Contacting Okapi via " + ok.getOkapiUrl() );
     ok.get("/hello", res-> {
       if ( res.succeeded()) {
         String message = "Hello module says: '" + res.result() + "'";
