@@ -64,7 +64,7 @@ sleep $SLEEP
 
 echo "Checking that it works"
 curl -w '\n' -D - -H "X-Okapi-Tenant: testlib" \
-  http://localhost:9130/hello|| exit 1
+  http://localhost:9130/hello || exit 1
 echo OK
 sleep $SLEEP
 

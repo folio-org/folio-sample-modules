@@ -13,7 +13,7 @@ mvn install || exit 1
 echo OK
 
 echo
-echo "Dockerixing it"
+echo "Dockerizing it"
 docker build -t indexdata/folio-simple-module . || exit 1
 echo OK
 
