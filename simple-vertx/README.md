@@ -61,9 +61,10 @@ Build the docker container with:
 
 First of all you need a running Okapi instance, probably in a separate terminal
 window. There is one catch, Okapi needs to tell the modules how to contact it
-back. Since the module run in a docker container, it can not refer to Okapi
+back. Since the module runs in a docker container, it can not refer to Okapi
 by its default address at `localhost` as that would refer to the thing inside
 the docker container. Instead we need to use the correct machine name.
+
 ```
    cd .../okapi
    export HOST=`hostname`

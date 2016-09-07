@@ -206,7 +206,7 @@ how to make calls to other modules.
 This is another very simple module, written in Perl, just to show that everything
 does not have to be Java.
 <!-- TODO - At some point we need to have a more complex example in Perl, with
-permissions, logging, instrumentation, and all possible bells ans whistles -->
+permissions, logging, instrumentation, and all possible bells and whistles -->
 
 #### Utility libraries
 
@@ -278,44 +278,44 @@ MainVerticle, into a class of its own, and make the vertx routes point to it.
 Most likely you will create other classes to support your operations.
   * Rewrite most of the README to reflect _your_ module.
 
-### Running your module 
-There are three different ways to run your module. They differ in the way how
-the module is started up, everything else is the same. In all cases you need 
+### Running your module
+There are three different ways to run your module. They differ in the way that
+the module is started up, everything else is the same. In all cases you need
 to declare the module to Okapi and enable it for your test tenant, who has to
 exist. The methods differ in the LaunchDescriptor you give to Okapi. This can
-be done in two ways, either inside the ModuleDescriptor, as we did in the 
+be done in two ways, either inside the ModuleDescriptor, as we did in the
 hello-vertx module, or in the DeploymentDescriptor, as we did in simple-perl
 module. Where ever the LaunchDescriptor comes from, it needs to specify how
 the module gets started.
 
 #### Run it yourself
-You are responsible for starting and stopping the module, possibly from your 
+You are responsible for starting and stopping the module, possibly from your
 IDE or a separate console window. You can choose the port yourself, usually
 8080 is a good default. You should not provide a LaunchDescriptor at all, since
-Okapi is not launching the service for you. Instead you need to provide the 
+Okapi is not launching the service for you. Instead you need to provide the
 URL where your module can be reached, often something like http://localhost:8080
 
 This is a good way while you are working with your module. You set Okapi up once
-and leave it running. You can start and stop your module as many times as you 
+and leave it running. You can start and stop your module as many times as you
 like, and see all its debug output.
 
 #### Let Okapi start the module
-If you put a LaunchDescriptor in your ModuleDescriptor, Okapi will start the 
-module for you, every time you request it to be deployed. This way, you can 
+If you put a LaunchDescriptor in your ModuleDescriptor, Okapi will start the
+module for you, every time you request it to be deployed. This way, you can
 write a small curl script to get everything up and running. If you do this
 kind of thing in production environment, you probably have the modules running
 at some fixed location, and can put an absolute path in the LaunchDescriptor.
 But while developing, it is nicer to be flexible, and use relative paths, so
 everything can be run under your home directory. That is no problem, if Okapi
 and your module are running under the same project directory. Then you can
-specify something like "../folio-sample-modules/simple-perl/simple.pl" as the 
+specify something like "../folio-sample-modules/simple-perl/simple.pl" as the
 exec line, and Okapi will find the module all right.
 
 #### Run in a Docker
 In a cloud based production environment, we recommend running all modules
-in their own Docker containers. That way, there is not need to be precise with
+in their own Docker containers. That way, there is no need to be precise with
 the paths. You can distribute modules as Docker images, maybe using a public
-(or your own private) Docker repository. The drawback is that you need to 
+(or your own private) Docker repository. The drawback is that you need to
 create the Docker image. See the hello-vertx module for a simple example of
 how this works.
 

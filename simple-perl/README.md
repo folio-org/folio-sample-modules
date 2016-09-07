@@ -22,11 +22,11 @@ There are JSON structures, ready to POST to Okapi for setting up a demonstration
 of this module:
 
  - ModuleDescriptor.json: A module description for the module.
- - TenantDescriptor.json: A tenant to test with
+ - TenantDescriptor.json: A tenant to test with.
  - TenantModuleDescriptor.json: A small structure to enable the module for our test tenant.
- - DeploymentDescriptor-url.json: to tell Okapi that the server is already running at a URL
- - DeploymentDescriptor-exec.json: to tell Okapi to deploy the module directly
- - DeploymentDescriptor-docker.json: to tell Okapi to deploy the module as a Docker container
+ - DeploymentDescriptor-url.json: To tell Okapi that the server is already running at a URL.
+ - DeploymentDescriptor-exec.json: To tell Okapi to deploy the module directly.
+ - DeploymentDescriptor-docker.json: To tell Okapi to deploy the module as a Docker container.
  
 Other useful files include:
  - README.md: This file, explaining what is where and how to use the module.
@@ -38,7 +38,7 @@ Other useful files include:
 The module is a HTTP server, based on Net::Server::HTTP running in a preforked
 configuration, as is its default. It serves GET and POST requests to `/hello`
 and `/simple`. The get requests return plain text messages, and the POST
-requests expect and return Json structures.
+requests expect and return JSON structures.
 
 There are a few details worth noticing:
 
@@ -60,7 +60,7 @@ The module uses some Perl libraries:
   * CGI
   * LWP::UserAgent
 
-On a Debian based system they all can be installed with
+On a Debian based system they all can be installed with:
 ```
 sudo apt-get install libnet-server-perl libjson-perl \
     libcgi-pm-perl libmodule-build-perl libwww-perl

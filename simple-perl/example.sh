@@ -10,10 +10,10 @@
 
 OKAPI=${1:-"http://localhost:9130"}   # The usual place it runs on a single-machine setup
 SLEEP=${2:-"0.2"} # Time to sleep between requests
-DEPLOY=${3:-"DeploymentDescriptor-exec.json"} # Whihc Deployment to use
+DEPLOY=${3:-"DeploymentDescriptor-exec.json"} # Which Deployment to use
 
 #echo
-#echo "Dockerixing it"
+#echo "Dockerizing it"
 #docker build -t indexdata/folio-simple-perl-module .
 #echo OK
 
@@ -64,7 +64,7 @@ sleep $SLEEP
 
 echo "Checking that it works"
 curl -w '\n' -D - -H "X-Okapi-Tenant: testlib" \
-  http://localhost:9130/hello|| exit 1
+  http://localhost:9130/hello || exit 1
 echo OK
 sleep $SLEEP
 

@@ -2,7 +2,7 @@
 #
 # A simple Okapi module.
 # Serves GET and POST requests to /hello and to /simple
-# The /hello requests are minimal examples of receiving a request and responging
+# The /hello requests are minimal examples of receiving a request and responding
 # The /simple requests are a little bit more complex, they show how a further
 # request can be made to Okapi - in this case to the /hello, but it could be
 # anywhere.
@@ -40,7 +40,7 @@ sub process_http_request {
   my $path = $cgi->path_info();
   my $meth = $cgi->request_method();
   print STDERR "simple.pl received a $meth request for $path\n";
-  
+
   if (!$path) {
     err($cgi,"404 NOTFOUND","Not found (no path given)");
     return;
@@ -71,7 +71,7 @@ sub process_http_request {
 ############
 
 # Handle a POST request to /hello
-# Return the same Json but with a greeting added to it
+# Return the same JSON but with a greeting added to it
 sub hello_post_handler {
   my $cgi  = shift;
   my $typ = $cgi->content_type();
@@ -89,7 +89,7 @@ sub hello_post_handler {
 }
 
 # A more complex get handler.
-# Makes a reques to hello, properly through Okapi.
+# Makes a request to hello, properly through Okapi.
 sub simple_get_handler {
   my $cgi  = shift;
   my $req = httprequest($cgi,"GET", "/hello");
@@ -101,7 +101,7 @@ sub simple_get_handler {
   response($cgi, "200 OK", $plaintext_content_type, $reply);
 }
 
-# A more complex POST handler. Gets its input data and posts that to /hello
+# A more complex POST handler. Gets its input data, and posts that to /hello
 # Builds a nice response out of what /hello says.
 sub simple_post_handler {
   my $cgi  = shift;
@@ -203,7 +203,7 @@ sub httprequest {
   for my $k ( keys(%ENV) ) {
     if ( $k =~ /^HTTP_(X_OKAPI_.*$)/i ) {
       my $hdr = $1;
-      $hdr =~ s/_/-/g; 
+      $hdr =~ s/_/-/g;
       print STDERR "Got Found a header $hdr : " . $ENV{$k} . "\n";
       $req->header($hdr => $ENV{$k});
     }
