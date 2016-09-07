@@ -64,7 +64,7 @@ sleep $SLEEP
 
 echo "Checking that it works"
 curl -w '\n' -D - -H "X-Okapi-Tenant: testlib" \
-  http://localhost:9130/hello?p=x || exit 1
+  http://localhost:9130/hello|| exit 1
 echo OK
 sleep $SLEEP
 
@@ -74,9 +74,14 @@ curl -w '\n' -X POST -D - \
    -H "Content-type: application/json"  \
    -H "X-Okapi-Tenant: testlib" \
    -d @TenantModuleDescriptor.json  \
-   http://localhost:9130/hello?p=y || exit 1
+   http://localhost:9130/hello || exit 1
 echo OK
 
+echo "Making a request to /simple, which will call /hello"
+curl -w '\n' -D - -H "X-Okapi-Tenant: testlib" \
+  http://localhost:9130/simple || exit 1
+echo OK
+sleep $SLEEP
 
 
 

@@ -12,7 +12,7 @@ FROM debian:8
 
 ENV PERL_FILE simple.pl
 
-RUN apt-get update && apt-get -y install libnet-server-perl libjson-perl libcgi-pm-perl libmodule-build-perl
+RUN apt-get update && apt-get -y install libnet-server-perl libjson-perl libcgi-pm-perl libmodule-build-perl libwww-perl
 
 # Set the location of the script
 ENV PERL_HOME /usr/okapi

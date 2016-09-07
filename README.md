@@ -205,6 +205,8 @@ how to make calls to other modules.
 #### Sample module: simple-perl
 This is another very simple module, written in Perl, just to show that everything
 does not have to be Java.
+<!-- TODO - At some point we need to have a more complex example in Perl, with
+permissions, logging, instrumentation, and all possible bells ans whistles -->
 
 #### Utility libraries
 
