@@ -91,7 +91,7 @@ we POST a ModuleDescription, we deploy the module, and enable it for our tenant.
 All this is encapsulated in the `runsimple.sh` script.
 
 ```
-    cd .../folio-sample-modules/hello-vertx
+    cd .../folio-sample-modules/simple-vertx
     mvn install
     ./runsimple.sh
 ```
