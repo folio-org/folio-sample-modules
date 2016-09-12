@@ -1,10 +1,10 @@
 # Frequently asked questions
 
-## Docker Toolbox and localhost
+## Docker Toolbox and localhost ports
 
 For development machines using "Docker Toolbox" (instead of native)
-there are some operational tweaks required. Okapi utilises "localhost" URLs.
-So some ports need to be forwarded from VirtualBox (the VM provided with
+there are some operational tweaks required.
+Some ports need to be forwarded from VirtualBox (the VM provided with
 Docker Toolbox).
 Either use the command line
 ([port forwarding](https://github.com/boot2docker/boot2docker/blob/master/doc/WORKAROUNDS.md#port-forwarding))
