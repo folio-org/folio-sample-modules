@@ -6,10 +6,10 @@ For development machines using "Docker Toolbox" (instead of native)
 there are some operational tweaks required.
 Some ports need to be forwarded from VirtualBox (the VM provided with
 Docker Toolbox).
-Either use the command line
-([port forwarding](https://github.com/boot2docker/boot2docker/blob/master/doc/WORKAROUNDS.md#port-forwarding))
-or use the VirtualBox Manager GUI (see some [tips](http://stackoverflow.com/a/36458215)
-in response to a good explanation).
+Either use the VirtualBox Manager GUI (see some [tips](http://stackoverflow.com/a/36458215)
+in response to a good explanation)
+or use something like this
+[script](http://code.haleby.se/2016/04/08/docker-machine-port-forwarding/).
 Add a permanent rule for port 8080. However some ports need to be configured
 while live. Start okapi as normal, and run its 'doc/okapi-examples.sh' which
 will deploy two modules (on port 9131 and 9132). Now deploy the "hello-vertx"
