@@ -185,6 +185,61 @@ chunked encoding to make the connections to the modules.
 
 (See notes below for additional requirements for developing UI modules.)
 
+#### Setting things up
+There is a little bit that needs to be set up, depending on what kind of
+system you are working on.
+
+* Docker daemon: It may be necessary to tell the Docker daemon to listen on
+a HTTP port, and not just a local socket, since the vertx HTTP client we use
+for talking to Docker can not talk to local sockets.
+* We need to specify how the modules may talk back to Okapi. Especially if they
+run in Docker containers, as we do in most examples, some tricks may be needed,
+since the default address `http://localhost:9130/` does not work from inside a
+Docker container.
+
+##### Debian Jessie
+
+Docker daemon:
+  * Edit the file
+`/etc/systemd/system/multi-user.target.wants/docker.service`
+  * Locate the line that says
+`#ExecStart=/usr/bin/docker -d -H fd:// $DOCKER_OPTS`
+  * Edit it to say `ExecStart=/usr/bin/dockerd -H tcp://127.0.0.1:4243 -H fd://`
+  * `sudo systemctl daemon-reload`
+  * `sudo /etc/init.d/docker restart`
+
+One good way to start Okapi is with
+```
+   cd .../okapi
+   export OKAPIHOST=`hostname`
+   java  \
+      -Dokapiurl="http://$OKAPIHOST:9130" \
+      -Dloglevel=DEBUG \
+      -jar okapi-core/target/okapi-core-fat.jar dev
+```
+
+<!-- TODO: Check what works on a Mac, and document here
+##### Mac
+TODO: What about the Docker daemon on a Mac?
+
+There is a known problem with Docker on Mac, the docker images can not talk to
+the host machine. One possible solution is to define a new IP for the loopback
+interface, for example 10.99.88.77 (How to do that on a Mac). There can also be
+issues with the firewall...
+```
+   cd .../okapi
+   export OKAPIHOST="10.99.88.77"
+   java  \
+      -Dokapiurl="http://$OKAPIHOST:9130" \
+      -Dloglevel=DEBUG \
+      -jar okapi-core/target/okapi-core-fat.jar dev
+```
+
+-->
+
+<!-- TODO - What is needed on other Linuxes, Mac, Windows, others -->
+
+
 #### Sample module: hello-vertx
 
 There is a very minimal "hello, world" module in the hello-vertx directory.
