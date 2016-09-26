@@ -215,7 +215,7 @@ There is a `Dockerfile` ready to go, all you need to do is to build the
 Docker image:
 
 ```
-docker build -t indexdata/folio-simple-perl-module .
+docker build -t folio-simple-perl-module .
 ```
 
 To use the image, DeploymentDescriptor-docker.json is all set up with the right

@@ -14,7 +14,7 @@ DEPLOY=${3:-"DeploymentDescriptor-exec.json"} # Which Deployment to use
 
 #echo
 #echo "Dockerizing it"
-#docker build -t indexdata/folio-simple-perl-module .
+#docker build -t folio-simple-perl-module .
 #echo OK
 
 

@@ -18,6 +18,6 @@
     "permissionsDesired" : [ ]
   } ],
   "launchDescriptor" : {
-    "dockerImage" : "indexdata/folio-simple-module"
+    "dockerImage" : "folio-simple-module"
   }
 }

@@ -1,9 +1,9 @@
 ###
 # vert.x docker example using a Java verticle packaged as a fatjar
 # To build:
-#  docker build -t indexdata/folio-simple-module .
+#  docker build -t folio-simple-module .
 # To run:
-#   docker run -t -i -p 8080:8080 indexdata/folio-simple-module
+#   docker run -t -i -p 8080:8080 folio-simple-module
 ###
 
 FROM java:8

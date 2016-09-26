@@ -215,7 +215,7 @@ Docker daemon:
 `#ExecStart=/usr/bin/docker -d -H fd:// $DOCKER_OPTS`
   * Edit it to say `ExecStart=/usr/bin/dockerd -H tcp://127.0.0.1:4243 -H fd://`
   * `sudo systemctl daemon-reload`
-  * `sudo /etc/init.d/docker restart`
+  * `sudo service docker restart`
 
 Debian is a bit behind with the latest versions of Docker. You may want to follow
 the instruction at https://docs.docker.com/engine/installation/linux/debian/ to

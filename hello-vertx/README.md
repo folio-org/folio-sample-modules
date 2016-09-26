@@ -42,13 +42,13 @@ See that it says "BUILD SUCCESS" near the end.
 Build the docker container with:
 
 ```
-   docker build -t indexdata/folio-hello-module .
+   docker build -t folio-hello-module .
 ```
 
 Test that it runs with:
 
 ```
-   docker run -t -i -p 8080:8080 indexdata/folio-hello-module
+   docker run -t -i -p 8080:8080 folio-hello-module
 ```
 
 And check it in another window:
@@ -94,7 +94,7 @@ The ModuleDescriptor tells Okapi what the module is called, what services it
 provides, and how to deploy it. Note that the command line to start a docker
 is
 ```
-docker run --cidfile=/tmp/docker.%p.cid -p %p:8080 indexdata/folio-hello-module
+docker run --cidfile=/tmp/docker.%p.cid -p %p:8080 folio-hello-module
 ```
 Some small details to note about that:
   * Unlike in real production, we do not have a `-d` there. That would detach

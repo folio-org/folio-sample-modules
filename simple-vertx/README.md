@@ -54,7 +54,7 @@ See that it says "BUILD SUCCESS" near the end.
 Build the docker container with:
 
 ```
-   docker build -t indexdata/folio-simple-module .
+   docker build -t folio-simple-module .
 ```
 
 ## Installing the module

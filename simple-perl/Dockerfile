@@ -1,9 +1,9 @@
 ###
 # Perl-based Okapi module docker
 # To build:
-#  docker build -t indexdata/folio-simple-perl-module .
+#  docker build -t folio-simple-perl-module .
 # To run:
-#   docker run -t -i -p 8080:8080 indexdata/folio-simple-perl-module
+#   docker run -t -i -p 8080:8080 folio-simple-perl-module
 ###
 
 
