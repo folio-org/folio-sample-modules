@@ -14,6 +14,6 @@
     "permissionsDesired" : [ ]
   } ],
   "launchDescriptor" : {
-    "dockerImage" : "indexdata/folio-hello-module"
+    "dockerImage" : "folio-hello-module"
   }
 }

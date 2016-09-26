@@ -13,7 +13,7 @@ echo OK
 
 echo
 echo "Dockerizing it"
-docker build -t indexdata/folio-hello-module . || exit 1
+docker build -t folio-hello-module . || exit 1
 echo OK
 
 

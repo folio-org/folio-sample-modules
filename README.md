@@ -189,13 +189,22 @@ chunked encoding to make the connections to the modules.
 There is a little bit that needs to be set up, depending on what kind of
 system you are working on.
 
-* Docker daemon: It may be necessary to tell the Docker daemon to listen on
+It may be necessary to tell the Docker daemon to listen on
 a HTTP port, and not just a local socket, since the vertx HTTP client we use
 for talking to Docker can not talk to local sockets.
-* We need to specify how the modules may talk back to Okapi. Especially if they
+
+We need to specify how the modules may talk back to Okapi. Especially if they
 run in Docker containers, as we do in most examples, some tricks may be needed,
 since the default address `http://localhost:9130/` does not work from inside a
 Docker container.
+
+Speaking of docker, the example scripts create new docker images freely. At
+some point you need to clean them up. A quick command to do that (at least on
+Linux) is `docker images -q |xargs docker rmi`. This tries to remove all docker
+images, but fails on some of the more important ones (since we did not specify
+`-f` for the `docker rmi` command). Docker may need to do some extra work next
+time you build images, but not too much.
+
 
 ##### Debian Jessie
 
@@ -207,6 +216,12 @@ Docker daemon:
   * Edit it to say `ExecStart=/usr/bin/dockerd -H tcp://127.0.0.1:4243 -H fd://`
   * `sudo systemctl daemon-reload`
   * `sudo /etc/init.d/docker restart`
+
+Debian is a bit behind with the latest versions of Docker. You may want to follow
+the instruction at https://docs.docker.com/engine/installation/linux/debian/ to
+get the latest and finest. Especially if you plan to be pushing docker images
+to a repository. The one in Debian should be enough to work through these
+examples.
 
 One good way to start Okapi is with
 ```
