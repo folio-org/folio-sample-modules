@@ -235,7 +235,7 @@ One good way to start Okapi is with
 
 Other good ways to get a good OKAPIHOST are
   * Ask a docker container what its default route is:
-`docker run indexdata/folio-hello-module "ip route" | grep default` and use the
+`docker run folio-hello-module "ip route" | grep default` and use the
 IP address directly
   * On many Debian installations it may be 172.17.0.1 or 172.17.41.1
   * Use the IP address of the public interface of your workstation with something
