@@ -205,6 +205,23 @@ images, but fails on some of the more important ones (since we did not specify
 `-f` for the `docker rmi` command). Docker may need to do some extra work next
 time you build images, but not too much.
 
+<!---  TODO - this does not seem to belong here, but on some more high-level
+document on module development.
+
+ Although these examples are meant to be run locally, at some point we wish
+to keep our Docker images in a repository. Obviously you will need login
+credentials for the repository before you can push your modules there. The
+relevant commands are
+```
+ - docker login # once on every new machine
+ - docker images -q |xargs docker rmi  # Kill lots of old images
+ - docker build -t folio-hello-module  # Build the image
+ - docker tag a31a1b728e79 folio-hello-module:v1.1.1  # Local tag
+ - docker tag a31a1b728e79 folio-docker-registry.indexdata.com/folio-hello-module:v1.1.1
+ - docker push folio-docker-registry.indexdata.com/folio-hello-module:v1.1.1
+```
+-->
+
 
 ##### Debian Jessie
 
