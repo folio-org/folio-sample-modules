@@ -119,9 +119,9 @@
 
   <repositories>
     <repository>
-      <id>id-maven-repo</id>
-      <name>Index Data Maven Repository</name>
-      <url>http://maven.indexdata.com/</url>
+      <id>folio-nexus</id>
+      <name>FOLIO Maven Repository</name>
+      <url>https://repository.folio.org/repository/maven-folio</url>
     </repository>
   </repositories>
 </project>
