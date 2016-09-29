@@ -222,10 +222,12 @@ relevant commands are
 ```
 -->
 
+##### Linux
 
-##### Debian Jessie
+With recent versions of Linux using 'systemd'
+(e.g. from Debian 8 Jessie, Ubuntu 15.04, etc.)
+[configure](https://docs.docker.com/engine/installation/linux/) the Docker daemon:
 
-Docker daemon:
   * Edit the file
 `/etc/systemd/system/multi-user.target.wants/docker.service`
   * Locate the line that says
