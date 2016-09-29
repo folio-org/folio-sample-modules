@@ -54,7 +54,8 @@ public class SimpleWebService {
           String simpleRes = hjo.encodePrettily();
           responseJson(ctx, 200).end(simpleRes);
         } else {
-          responseError(ctx, 500, postres.cause().getMessage());
+          String msg = postres.cause().getMessage();
+          responseError(ctx, 500, "Hello failed with " + msg);
         }
       });
     }
