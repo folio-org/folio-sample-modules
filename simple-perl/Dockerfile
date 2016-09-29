@@ -24,5 +24,4 @@ COPY ./$PERL_FILE $PERL_HOME/
 
 # Launch the module
 WORKDIR $PERL_HOME
-ENTRYPOINT ["sh", "-c"]
-CMD ["perl $PERL_FILE"]
+ENTRYPOINT ["perl", "simple.pl"]
