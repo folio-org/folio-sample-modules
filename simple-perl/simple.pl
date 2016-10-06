@@ -190,10 +190,7 @@ sub postdata {
 # Appends the path
 # Copies all X-Okapi- headers into the request
 sub httprequest {
-  my $cgi = shift;
-  my $method = shift;
-  my $path = shift;
-  my $content = shift;
+  my ($cgi, $method, $path, $content) = @_l
   my $okapiurl = $ENV{"HTTP_X_OKAPI_URL"};
   print STDERR "simple: okapi is at $okapiurl\n";
   my $url = "$okapiurl/hello";
@@ -208,7 +205,7 @@ sub httprequest {
       $req->header($hdr => $ENV{$k});
     }
   }
-  if ($content) {
+  if (defined $content) {
     $req->content($content);
     $req->content_type($json_content_type);
   }
