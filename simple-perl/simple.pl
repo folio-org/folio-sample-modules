@@ -11,6 +11,7 @@
 
 
 use strict;
+use warnings;
 use base qw(Net::Server::HTTP); # On Debian, apt-get install libnet-server-perl
 use JSON;
 use Data::Dumper;
@@ -22,9 +23,9 @@ my $plaintext_content_type = "text/plain";
 
 # Start the server in the foreground on given port (default to 8080)
 # (Okapi's exec will have forked a new process for us, and will kill it)
-my $port = $ARGV[0] || "8080";
-die "Need one argument, a port number (not '$port') "
-  unless ( $port !~ /d+/ ) ;
+my $port = @ARGV ? $ARGV[0] : 8080;
+die "Invalid port number: $port"
+  if $port !~ /^\d+$/;
 print STDERR "Okapi Perl module listening on port $port\n";
 main->run(
   port  => $port,
