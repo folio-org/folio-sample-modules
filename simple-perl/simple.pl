@@ -44,27 +44,26 @@ sub process_http_request {
 
   if (!$path) {
     err($cgi,"404 NOTFOUND","Not found (no path given)");
-    return;
   }
-  if ( $path eq "/hello" && $meth eq "GET" ) {
+  elsif ( $path eq "/hello" ) {
+    if ( $meth eq "GET" ) {
       response($cgi, "200 OK", $plaintext_content_type, "Hello, world\n");
-      return;
     }
-  if ( $path eq "/hello" && $meth eq "POST" ) {
+    elsif ( $meth eq "POST" ) {
       hello_post_handler($cgi);
-      return;
     }
-  if ( $path eq "/simple" && $meth eq "GET" ) {
+  elsif ( $path eq "/simple" ) {
+    if ( $meth eq "GET" ) {
       simple_get_handler($cgi);
-      return;
     }
-  if ( $path eq "/simple" && $meth eq "POST" ) {
+    elsif ( $meth eq "POST" ) {
       simple_post_handler($cgi);
-      return;
     }
-  # Fall through with other than GET or POST
-  err($cgi,"404 NOTFOUND","Not found");
-  return;
+  }
+  else {
+    # Fall through with other than GET or POST
+    err($cgi,"404 NOTFOUND","Not found");
+  }
 }
 
 ############
