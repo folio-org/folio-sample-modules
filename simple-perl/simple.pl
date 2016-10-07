@@ -11,6 +11,7 @@
 
 
 use strict;
+use warnings;
 use base qw(Net::Server::HTTP); # On Debian, apt-get install libnet-server-perl
 use JSON;
 use Data::Dumper;
@@ -22,9 +23,9 @@ my $plaintext_content_type = "text/plain";
 
 # Start the server in the foreground on given port (default to 8080)
 # (Okapi's exec will have forked a new process for us, and will kill it)
-my $port = $ARGV[0] || "8080";
-die "Need one argument, a port number (not '$port') "
-  unless ( $port !~ /d+/ ) ;
+my $port = @ARGV ? $ARGV[0] : 8080;
+die "Invalid port number: $port"
+  if $port !~ /^\d+$/;
 print STDERR "Okapi Perl module listening on port $port\n";
 main->run(
   port  => $port,
@@ -43,27 +44,26 @@ sub process_http_request {
 
   if (!$path) {
     err($cgi,"404 NOTFOUND","Not found (no path given)");
-    return;
   }
-  if ( $path eq "/hello" && $meth eq "GET" ) {
+  elsif ( $path eq "/hello" ) {
+    if ( $meth eq "GET" ) {
       response($cgi, "200 OK", $plaintext_content_type, "Hello, world\n");
-      return;
     }
-  if ( $path eq "/hello" && $meth eq "POST" ) {
+    elsif ( $meth eq "POST" ) {
       hello_post_handler($cgi);
-      return;
     }
-  if ( $path eq "/simple" && $meth eq "GET" ) {
+  elsif ( $path eq "/simple" ) {
+    if ( $meth eq "GET" ) {
       simple_get_handler($cgi);
-      return;
     }
-  if ( $path eq "/simple" && $meth eq "POST" ) {
+    elsif ( $meth eq "POST" ) {
       simple_post_handler($cgi);
-      return;
     }
-  # Fall through with other than GET or POST
-  err($cgi,"404 NOTFOUND","Not found");
-  return;
+  }
+  else {
+    # Fall through with other than GET or POST
+    err($cgi,"404 NOTFOUND","Not found");
+  }
 }
 
 ############
@@ -190,10 +190,7 @@ sub postdata {
 # Appends the path
 # Copies all X-Okapi- headers into the request
 sub httprequest {
-  my $cgi = shift;
-  my $method = shift;
-  my $path = shift;
-  my $content = shift;
+  my ($cgi, $method, $path, $content) = @_;
   my $okapiurl = $ENV{"HTTP_X_OKAPI_URL"};
   print STDERR "simple: okapi is at $okapiurl\n";
   my $url = "$okapiurl/hello";
@@ -208,7 +205,7 @@ sub httprequest {
       $req->header($hdr => $ENV{$k});
     }
   }
-  if ($content) {
+  if (defined $content) {
     $req->content($content);
     $req->content_type($json_content_type);
   }
