@@ -29,7 +29,7 @@ echo "Creating a tenant"
 curl -w '\n' -X POST -D - \
   -H "Content-type: application/json" \
   -d @TenantDescriptor.json  \
-  http://localhost:9130/_/proxy/tenants || exit 1
+  $OKAPI/_/proxy/tenants || exit 1
 echo OK
 sleep $SLEEP
 
@@ -40,7 +40,7 @@ echo "Declaring the simple module"
 curl -w '\n' -X POST -D -   \
    -H "Content-type: application/json"   \
    -d @ModuleDescriptor.json \
-   http://localhost:9130/_/proxy/modules || exit 1
+   $OKAPI/_/proxy/modules || exit 1
 echo OK
 sleep $SLEEP
 
@@ -49,7 +49,7 @@ echo "Deploying it on localhost"
 curl -w '\n' -X POST -D - \
   -H "Content-type: application/json" \
   -d @$DEPLOY  \
-  http://localhost:9130/_/discovery/modules || exit 1
+  $OKAPI/_/discovery/modules || exit 1
 echo OK
 sleep $SLEEP
 
@@ -58,13 +58,13 @@ echo "Enabling it for our tenant"
 curl -w '\n' -X POST -D -   \
     -H "Content-type: application/json"   \
     -d @TenantModuleDescriptor.json \
-    http://localhost:9130/_/proxy/tenants/testlib/modules || exit 1
+    $OKAPI/_/proxy/tenants/testlib/modules || exit 1
 echo OK
 sleep $SLEEP
 
 echo "Checking that it works"
 curl -w '\n' -D - -H "X-Okapi-Tenant: testlib" \
-  http://localhost:9130/hello || exit 1
+  $OKAPI/hello || exit 1
 echo OK
 sleep $SLEEP
 
@@ -74,12 +74,12 @@ curl -w '\n' -X POST -D - \
    -H "Content-type: application/json"  \
    -H "X-Okapi-Tenant: testlib" \
    -d @TenantModuleDescriptor.json  \
-   http://localhost:9130/hello || exit 1
+   $OKAPI/hello || exit 1
 echo OK
 
 echo "Making a request to /simple, which will call /hello"
 curl -w '\n' -D - -H "X-Okapi-Tenant: testlib" \
-  http://localhost:9130/simple || exit 1
+  $OKAPI/simple || exit 1
 echo OK
 sleep $SLEEP
 

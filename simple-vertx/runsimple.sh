@@ -30,7 +30,7 @@ echo "Declaring the simple module"
 curl $CURLOPTS -X POST \
    -H "Content-type: application/json"   \
    -d @ModuleDescriptor.json \
-   http://localhost:9130/_/proxy/modules || exit 1
+   $OKAPI/_/proxy/modules || exit 1
 echo OK
 sleep $SLEEP
 
@@ -39,7 +39,7 @@ echo "Deploying it on localhost"
 curl $CURLOPTS -X POST  \
   -H "Content-type: application/json" \
   -d @DeploymentDescriptor.json  \
-  http://localhost:9130/_/discovery/modules || exit 1
+  $OKAPI/_/discovery/modules || exit 1
 echo OK
 sleep $SLEEP
 
@@ -48,12 +48,12 @@ echo "Enabling it for our tenant"
 curl $CURLOPTS -X POST \
     -H "Content-type: application/json"   \
     -d @TenantModuleDescriptor.json \
-    http://localhost:9130/_/proxy/tenants/testlib/modules || exit 1
+    $OKAPI/_/proxy/tenants/testlib/modules || exit 1
 echo OK
 sleep $SLEEP
 
 echo "Checking that it works"
-curl $CURLOPTS -H "X-Okapi-Tenant: testlib" http://localhost:9130/simple || exit 1
+curl $CURLOPTS -H "X-Okapi-Tenant: testlib" $OKAPI/simple || exit 1
 echo OK
 sleep $SLEEP
 
@@ -63,6 +63,6 @@ curl $CURLOPTS -X POST \
    -H "Content-type: application/json"  \
    -H "X-Okapi-Tenant: testlib" \
    -d @TenantModuleDescriptor.json  \
-   http://localhost:9130/simple || exit 1
+   $OKAPI/simple || exit 1
 echo OK
 
