@@ -4,9 +4,9 @@
 # Assumes you have compiled the module, and started Okapi in another
 # terminal window.
 
-OKAPI=${1:-"http://localhost:9130"}   # The usual place it runs on a single-machine setup
+OKAPI=${1:-"http://localhost:9130"} # The usual place it runs on a single-machine setup
 SLEEP=${2:-"1"} # Time to sleep between requests
-CURLOPTS="-w\n -D - "   # -w to output a newline after, -D - to show headers
+CURLOPTS="-w\n -D - " # -w to output a newline after, -D - to show headers
 
 echo "Compiling the hello module"
 mvn install || exit 1
@@ -16,7 +16,6 @@ echo
 echo "Dockerizing it"
 docker build -t folio-hello-module . || exit 1
 echo OK
-
 
 echo
 echo "Check that Okapi is running ..."
@@ -34,17 +33,15 @@ curl $CURLOPTS -X POST  \
 echo OK
 sleep $SLEEP
 
-
 echo
 echo "Declaring the module"
 
 curl $CURLOPTS -X POST  \
-   -H "Content-type: application/json"   \
-   -d @ModuleDescriptor.json \
-   $OKAPI/_/proxy/modules || exit 1
+  -H "Content-type: application/json" \
+  -d @ModuleDescriptor.json \
+  $OKAPI/_/proxy/modules || exit 1
 echo OK
 sleep $SLEEP
-
 
 echo
 echo "Deploying it on localhost"
@@ -59,9 +56,9 @@ sleep $SLEEP
 echo
 echo "Enabling it for our tenant"
 curl $CURLOPTS -X POST \
-    -H "Content-type: application/json"   \
-    -d @TenantModuleDescriptor.json \
-    $OKAPI/_/proxy/tenants/testlib/modules || exit 1
+  -H "Content-type: application/json" \
+  -d @TenantModuleDescriptor.json \
+  $OKAPI/_/proxy/tenants/testlib/modules || exit 1
 echo OK
 sleep $SLEEP
 
@@ -69,12 +66,3 @@ echo
 echo "Checking that it works"
 curl $CURLOPTS -H "X-Okapi-Tenant: testlib" $OKAPI/hello || exit 1
 echo OK
-
-
-
-
-
-
-
-
-
