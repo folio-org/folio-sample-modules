@@ -1,8 +1,8 @@
-#! /bin/bash
+#!/bin/bash
 #
-# A simple script to run the 'simple-perl' sample module
-# Assumes you have started Okapi in another temrinal window
-# with something like
+# A simple script to run the 'simple-perl' sample module.
+# Assumes you have started Okapi in another terminal window
+# with something like:
 #  export HOST=`hostname`
 #  java -Dloglevel=DEBUG \
 #    -Dokapiurl="http://$HOSTNAME:9130" \

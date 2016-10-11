@@ -1,8 +1,9 @@
-#! /bin/bash
+#!/bin/bash
 #
-# A simple script to run the 'simple-vertx' sample module
-# Assumes you have compiled the module, and started Okapi in another temrinal window,
-# and loaded it up with the tenant and hello module, for example by running
+# A simple script to run the 'simple-vertx' sample module.
+# Assumes you have compiled the module, and started Okapi in another
+# terminal window, and loaded it up with the tenant and hello module,
+# for example by running:
 # ../hello-vertx/runhello.sh
 
 OKAPI=${1:-"http://localhost:9130"}   # The usual place it runs on a single-machine setup

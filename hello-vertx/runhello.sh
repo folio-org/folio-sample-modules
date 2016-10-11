@@ -1,7 +1,8 @@
-#! /bin/bash
+#!/bin/bash
 #
-# A simple script to set up the hello-vertx module in Okapi
-# Assumes you have compiled the module, and started Okapi in another temrinal window
+# A simple script to set up the hello-vertx module in Okapi.
+# Assumes you have compiled the module, and started Okapi in another
+# terminal window.
 
 OKAPI=${1:-"http://localhost:9130"}   # The usual place it runs on a single-machine setup
 SLEEP=${2:-"1"} # Time to sleep between requests
