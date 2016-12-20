@@ -8,6 +8,7 @@
   <groupId>org.folio</groupId>
   <artifactId>folio-simple-vertx</artifactId>
   <version>0.1-SNAPSHOT</version>
+  <name>folio-simple-vertx</name>
 
   <licenses>
     <license>
@@ -124,5 +125,4 @@
       <url>https://repository.folio.org/repository/maven-folio</url>
     </repository>
   </repositories>
-    <name>folio-simple-vertx</name>
 </project>
