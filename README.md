@@ -16,19 +16,27 @@ and some general information about writing, packaging and describing modules.
 For background understanding, see the
 [Okapi Guide and Reference](https://github.com/folio-org/okapi/blob/master/doc/guide.md).
 
+<!-- ../okapi/doc/md2toc -l 2 -h 4 README.md -->
 * [What is a module](#what-is-a-module)
     * [Module descriptor](#module-descriptor)
         * [Module tags](#module-tags)
         * [Routing Entries](#routing-entries)
 * [Server-side modules](#server-side-modules)
     * [Deployment and discovery](#deployment-and-discovery)
+    * [Logging, Health, and Metrics](#logging-health-and-metrics)
     * [Writing a module](#writing-a-module)
-        * [Java/Vert.x and Node.js](#javavert.x-and-node.js)
+        * [Java/Vert.x and Node.js](#javavertx-and-nodejs)
         * [Development environment](#development-environment)
+        * [Setting things up](#setting-things-up)
         * [Sample module: hello-vertx](#sample-module-hello-vertx)
         * [Sample module: simple-vertx](#sample-module-simple-vertx)
+        * [Sample module: simple-perl](#sample-module-simple-perl)
         * [Utility libraries](#utility-libraries)
         * [Starting your own module](#starting-your-own-module)
+    * [Running your module](#running-your-module)
+        * [Run it yourself](#run-it-yourself)
+        * [Let Okapi start the module](#let-okapi-start-the-module)
+        * [Run in a Docker](#run-in-a-docker)
 * [UI modules](#ui-modules)
 * [Virtual modules](#virtual-modules)
 * [Further reading](#further-reading)
@@ -194,7 +202,7 @@ a HTTP port, and not just a local socket, since the vertx HTTP client we use
 for talking to Docker can not talk to local sockets.
 
 We need to specify how the modules may talk back to Okapi. Especially if they
-run in Docker containers, as we do in most examples, some tricks may be needed,
+run in Docker containers (as we do in most examples) some tricks may be needed,
 since the default address `http://localhost:9130/` does not work from inside a
 Docker container.
 
