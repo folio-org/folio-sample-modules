@@ -27,7 +27,7 @@ of this module:
  - DeploymentDescriptor-url.json: To tell Okapi that the server is already running at a URL.
  - DeploymentDescriptor-exec.json: To tell Okapi to deploy the module directly.
  - DeploymentDescriptor-docker.json: To tell Okapi to deploy the module as a Docker container.
- 
+
 Other useful files include:
  - README.md: This file, explaining what is where and how to use the module.
  - example.sh: A script that sets things up in Okapi and invokes the module.
