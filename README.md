@@ -11,7 +11,7 @@ This project contains examples of FOLIO modules (currently a server-side
 Vert.x-based module, but more, e.g. a UI/front-end module will come later),
 and some general information about writing, packaging and describing modules.
 
-<!--- TODO: Add a few words about what FOLIO is, for new readers. Keep it short! --->
+<!-- TODO: Add a few words about what FOLIO is, for new readers. Keep it short! -->
 
 For background understanding, see the
 [Okapi Guide and Reference](https://github.com/folio-org/okapi/blob/master/doc/guide.md).
@@ -140,10 +140,10 @@ The deployment options are specified in the DeploymentDescriptor.
 Once deployed, Okapi's proxy part must be informed about the module, and then
 the module can be enabled for tenants to use.
 
-<!--- TODO
+<!-- TODO
 ### Logging, Health, and Metrics
 Write something about these
---->
+-->
 
 
 ### Writing a module
@@ -213,7 +213,7 @@ images, but fails on some of the more important ones (since we did not specify
 `-f` for the `docker rmi` command). Docker may need to do some extra work next
 time you build images, but not too much.
 
-<!---  TODO - this does not seem to belong here, but on some more high-level
+<!--  TODO - this does not seem to belong here, but on some more high-level
 document on module development.
 
  Although these examples are meant to be run locally, at some point we wish
@@ -430,7 +430,7 @@ The UI modules are quite different from the server-side modules and rely
 on the browser technology stack (React/Redux). The system's API is
 still under development, and an example module and guide will follow soon.
 
-<!--- TODO - Describe the way UI modules are written, and bundled --->
+<!-- TODO - Describe the way UI modules are written, and bundled -->
 
 ## Virtual modules
 
