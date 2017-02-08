@@ -448,15 +448,10 @@ useful ground.
 https://github.com/folio-org/folio-sample-modules/tree/master/hello-vertx
 
 Aside from the sample modules in this repository, work is proceeding
-on several other modules, which may also be instructive to
-browse. They include:
-
-* [mod-circulation](https://github.com/folio-org/mod-circulation)
-* [mod-acquisitions](https://github.com/folio-org/mod-acquisitions)
-* [mod-acquisitions-postgres](https://github.com/folio-org/mod-acquisitions-postgres)
-* [mod-configuration](https://github.com/folio-org/mod-configuration)
-* [mod-auth](https://github.com/folio-org/mod-auth)
-* [mod-metadata](https://github.com/folio-org/mod-metadata)
+on various other
+[server-side](http://dev.folio.org/source-code/#server-side) modules and
+[client-side](http://dev.folio.org/source-code/#client-side) UI modules,
+which would also be instructive to browse.
 
 Consult the individual repositories' documentation for the status of
 the code in these modules.
