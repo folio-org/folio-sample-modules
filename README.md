@@ -426,9 +426,10 @@ how this works.
 
 ## UI modules
 
-The UI modules are quite different from the server-side modules and rely
+The UI modules are quite different from the server-side modules, and rely
 on the browser technology stack (React/Redux). The system's API is
-still under development, and an example module and guide will follow soon.
+still under development. Refer to the FOLIO user-interface toolkit,
+called [Stripes](http://dev.folio.org/doc/#user-interface).
 
 <!-- TODO - Describe the way UI modules are written, and bundled -->
 
