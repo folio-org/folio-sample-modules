@@ -334,7 +334,7 @@ root directory in an environment variable $ROOTDIR.
 ```
   cd .../proj
   export ROOTDIR=`pwd`
-  git clone git@github.com:folio-org/okapi.git
+  git clone https://github.com/folio-org/okapi.git
 ```
 
 Next build Okapi itself:
@@ -350,7 +350,7 @@ start from, and make a new copy of it:
 
 ```
   cd $ROOTDIR
-  git clone git@github.com:folio-org/folio-sample-modules
+  git clone https://github.com/folio-org/folio-sample-modules.git
   cp -a folio-sample-modules/hello-vertx/ mymodule
 ```
 
