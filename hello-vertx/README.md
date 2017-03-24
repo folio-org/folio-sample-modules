@@ -62,8 +62,8 @@ Now stop that test run.
 ## Installing the module
 
 We are essentially following the
-[Deploying Modules](https://github.com/folio-org/okapi/blob/master/doc/guide.md#deploying-modules)
-section of the Okapi Guide and Reference, which describes the process in detail.
+[Deploying Modules](https://github.com/folio-org/okapi/blob/master/doc/guide.md#example-1-deploying-and-using-a-simple-module)
+sections of the Okapi Guide and Reference, which describe the process in detail.
 
 First of all you need a running Okapi instance:
 
@@ -159,7 +159,7 @@ curl -w '\n' -X POST -D -   \
 ## Restrict access
 
 Follow the
-[test-auth-module](https://github.com/folio-org/okapi/blob/master/doc/guide.md#the-auth-module)
+[auth-module](https://github.com/folio-org/okapi/blob/master/doc/guide.md#example-2-adding-the-auth-module)
 section of the Okapi Guide and Reference.
 
 ## Cleaning up
