@@ -7,7 +7,7 @@
   } ],
   "routingEntries" : [ {
     "methods" : [ "GET", "POST" ],
-    "path" : "/hello",
+    "pathPattern" : "/hello",
     "level" : "30",
     "type" : "request-response",
     "permissionsRequired" : [ ],
