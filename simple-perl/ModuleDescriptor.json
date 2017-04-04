@@ -3,7 +3,7 @@
   "name" : "SimplePerlModule",
   "provides" : [ {
     "id" : "simple",
-    "version" : "1.1.1",
+    "version" : "1.1",
     "handlers" : [ {
       "methods" : [ "GET", "POST" ],
       "pathPattern" : "/simple"
@@ -11,7 +11,7 @@
     },
     {
      "id" : "hello",
-     "version" : "1.1.1",
+     "version" : "1.1",
      "handlers" : [ {
        "methods" : [ "GET", "POST" ],
        "pathPattern" : "/hello"

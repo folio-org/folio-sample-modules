@@ -3,7 +3,7 @@
   "name" : "Hello World",
   "provides" : [ {
     "id" : "hello",
-    "version" : "1.1.1",
+    "version" : "1.1",
       "handlers" : [ {
       "methods" : [ "GET", "POST" ],
       "pathPattern" : "/hello"
