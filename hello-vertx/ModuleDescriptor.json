@@ -3,15 +3,11 @@
   "name" : "Hello World",
   "provides" : [ {
     "id" : "hello",
-    "version" : "1.1.1"
-  } ],
-  "routingEntries" : [ {
-    "methods" : [ "GET", "POST" ],
-    "pathPattern" : "/hello",
-    "level" : "30",
-    "type" : "request-response",
-    "permissionsRequired" : [ ],
-    "permissionsDesired" : [ ]
+    "version" : "1.1",
+      "handlers" : [ {
+      "methods" : [ "GET", "POST" ],
+      "pathPattern" : "/hello"
+    } ]
   } ],
   "launchDescriptor" : {
     "dockerImage" : "folio-hello-module"
