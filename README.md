@@ -20,7 +20,7 @@ For background understanding, see the
 * [What is a module](#what-is-a-module)
     * [Module descriptor](#module-descriptor)
         * [Module tags](#module-tags)
-        * [Routing Entries](#routing-entries)
+        * [Handlers](#handlers)
 * [Server-side modules](#server-side-modules)
     * [Deployment and discovery](#deployment-and-discovery)
     * [Logging, Health, and Metrics](#logging-health-and-metrics)
@@ -78,7 +78,7 @@ The main parts of a ModuleDescriptor are:
 * tags - A set of short strings that tell something about the module. See below.
 * provides - A set of interfaces, and their versions, that the module provides.
 * requires - A set of interfaces, and their versions, that the module requires.
-* routingEntries - Tells which HTTP requests the module is serving, and which
+* handlers - Tells which HTTP requests the module is serving, and which
 permissions are needed to make such a request.
 * uiModuleDescriptor - Placeholder for module-specific configuration for the UI
 modules.
@@ -94,11 +94,11 @@ to end up with at least the following:
 
 We may later add tags for various other purposes.
 
-#### Routing Entries
+#### Handlers
 
-A routing entry tells Okapi which requests should be routed to the module (for
-example, a GET request to /hello), in what order various modules should be
-invoked for that path (so that we can invoke an authentication check before
+The handlers array tells Okapi which requests should be routed to the module
+(for example, a GET request to /hello), in what order various modules should
+be invoked for that path (so that we can invoke an authentication check before
 the module itself, and a logging module after it), and what permission bits
 will be needed for making this request.
 
