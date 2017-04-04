@@ -3,20 +3,23 @@
   "name" : "SimplePerlModule",
   "provides" : [ {
     "id" : "simple",
-    "version" : "1.1.1"
-    },{
-   "id" : "hello",
-   "version" : "1.1.1"
-   } ],
-  "routingEntries" : [ {
-    "methods" : [ "GET", "POST" ],
-    "path" : "/hello",
-    "level" : "30",
-    "type" : "request-response"
-    },{
-    "methods" : [ "GET", "POST" ],
-    "path" : "/simple",
-    "level" : "30",
-    "type" : "request-response"
-    } ]
+    "version" : "1.1.1",
+    "handlers" : [ {
+      "methods" : [ "GET", "POST" ],
+      "path" : "/simple",
+      "level" : "30",
+      "type" : "request-response"
+      } ]
+    },
+    {
+     "id" : "hello",
+     "version" : "1.1.1",
+     "handlers" : [ {
+       "methods" : [ "GET", "POST" ],
+       "path" : "/hello",
+       "level" : "30",
+       "type" : "request-response"
+      } ]
+    }
+  ]
 }
