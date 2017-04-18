@@ -230,11 +230,15 @@ relevant commands are
 ```
 -->
 
+See notes about
+[configuring Docker](https://docs.docker.com/engine/installation/#platform-support-matrix)
+for all operating systems.
+
 ##### Linux
 
 With recent versions of Linux using 'systemd'
 (e.g. from Debian 8 Jessie, Ubuntu 15.04, etc.)
-[configure](https://docs.docker.com/engine/installation/linux/) the Docker daemon:
+[configure](https://docs.docker.com/engine/installation/#platform-support-matrix) the Docker daemon:
 
   * Edit the file
 `/etc/systemd/system/multi-user.target.wants/docker.service`
