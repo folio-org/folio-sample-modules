@@ -334,7 +334,7 @@ root directory in an environment variable $ROOTDIR.
 ```
   cd .../proj
   export ROOTDIR=`pwd`
-  git clone https://github.com/folio-org/okapi.git
+  git clone --recursive https://github.com/folio-org/okapi.git
 ```
 
 Next build Okapi itself:
