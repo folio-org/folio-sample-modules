@@ -65,7 +65,7 @@ FOLIO is an open-ended system and we may end up adding more module types later.
 ### Module descriptor
 
 A module must come with a JSON file that contains a descriptor for the module.
-Typically it is called ModuleDescriptor.json. This will tell what services
+Typically it is called `ModuleDescriptor.json`. This will tell what services
 the module provides, if it depends on some other services (and their versions),
 what permissions are needed to use the module, and a number of other things.
 
@@ -250,7 +250,7 @@ get the latest and finest. Especially if you plan to be pushing docker images
 to a repository. The one in Debian should be enough to work through these
 examples.
 
-One good way to start Okapi is with
+One good way to start Okapi is with:
 ```
    cd .../okapi
    export OKAPIHOST=`hostname`
@@ -260,7 +260,7 @@ One good way to start Okapi is with
       -jar okapi-core/target/okapi-core-fat.jar dev
 ```
 
-Other good ways to get a good OKAPIHOST are
+Other good ways to get a good OKAPIHOST are:
   * Ask a docker container what its default route is:
 `docker run folio-hello-module "ip route" | grep default` and use the
 IP address directly
@@ -362,10 +362,10 @@ You should probably rename the source package to something else like
 Now you can compile the module in your IDE or with `mvn install`. Again,
 check for the "BUILD SUCCESS" message.
 
-Next, edit the ModuleDescriptor.json, find all occurrences of "hello" and
+Next, edit the `ModuleDescriptor.json`. Find all occurrences of "hello" and
 change them to "mymodule".
 
-Edit also the Dockerfile. Change the VERTICLE_FILE ENV line to refer to
+Edit also the Dockerfile. Change the `VERTICLE_FILE ENV` line to refer to
 `mymodule-fat.jar` and edit the comments in the beginning.
 
 Now you can walk through the examples in README.md, substituting "mymodule" for
@@ -398,7 +398,7 @@ You are responsible for starting and stopping the module, possibly from your
 IDE or a separate console window. You can choose the port yourself, usually
 8080 is a good default. You should not provide a LaunchDescriptor at all, since
 Okapi is not launching the service for you. Instead you need to provide the
-URL where your module can be reached, often something like http://localhost:8080
+URL where your module can be reached, often something like `http://localhost:8080`
 
 This is a good way while you are working with your module. You set Okapi up once
 and leave it running. You can start and stop your module as many times as you

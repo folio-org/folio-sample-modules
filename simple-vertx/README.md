@@ -87,7 +87,7 @@ the `runhello.sh` script that comes with the hello module.
 The script sets everything up, and should end with a hello message.
 
 The process of running the simple module is the same as with the hello module,
-we POST a ModuleDescription, we deploy the module, and enable it for our tenant.
+we POST a ModuleDescriptor, we deploy the module, and enable it for our tenant.
 All this is encapsulated in the `runsimple.sh` script.
 
 ```
