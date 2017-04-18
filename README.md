@@ -444,12 +444,12 @@ concrete modules.
 For more about Okapi, refer to its documentation and even the source code at
 https://github.com/folio-org/okapi
 
-Also consult the README for the hello-vertx example, it covers some
-useful ground.
-https://github.com/folio-org/folio-sample-modules/tree/master/hello-vertx
+Also consult the README for the
+[hello-vertx](https://github.com/folio-org/folio-sample-modules/tree/master/hello-vertx)
+example which covers some useful ground.
 
-Aside from the sample modules in this repository, work is proceeding
-on various other
+Aside from the sample modules in this repository, there are
+various other
 [server-side](http://dev.folio.org/source-code/#server-side) modules and
 [client-side](http://dev.folio.org/source-code/#client-side) UI modules,
 which would also be instructive to browse.
