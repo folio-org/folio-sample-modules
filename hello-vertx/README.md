@@ -91,27 +91,11 @@ curl -w '\n' -X POST -D -   \
    http://localhost:9130/_/proxy/modules
 ```
 
-The ModuleDescriptor tells Okapi what the module is called, what services it
-provides, and how to deploy it. Note that the command line to start a docker
-is:
-```
-docker run --cidfile=/tmp/docker.%p.cid -p %p:8080 folio-hello-module
-```
-
-Some small details to note about that:
-  * Unlike in real production, we do not have a `-d` there. That would detach
-STDOUT and STDERR, and we would not see its log.
-  * The module listens on its default port 8080, and the Docker command line
-maps that to whatever port Okapi assigns to the module.
-  * We keep the docker id in a file in /tmp, so we know which docker to kill
-when that time comes. The file name includes the port number, as that must be
-unique within one node.
-
-
+That ModuleDescriptor tells Okapi what the module is called, what services it
+provides, and how to deploy it.
 
 Next we need to deploy the module. There is a deployment descriptor in
 `DeploymentDescriptor.json`. It tells Okapi to start the module on 'localhost'.
-
 
 Deploy it via Okapi discovery:
 
