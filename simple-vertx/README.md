@@ -64,12 +64,13 @@ window. There is one catch, Okapi needs to tell the modules how to contact it
 back. Since the module runs in a docker container, it can not refer to Okapi
 by its default address at `localhost` as that would refer to the thing inside
 the docker container. Instead we need to use the correct machine name.
+(Note that [specifying](../README.md#setting-things-up) an explicit 'okapiurl' might be needed.)
 
 ```
    cd .../okapi
-   export HOST=`hostname`
+   export OKAPIHOST=`hostname`
    java  \
-      -Dokapiurl="http://$HOSTNAME:9130" \
+      -Dokapiurl="http://$OKAPIHOST:9130" \
       -Dloglevel=DEBUG \
       -jar okapi-core/target/okapi-core-fat.jar dev
 ```

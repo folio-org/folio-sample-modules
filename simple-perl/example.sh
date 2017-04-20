@@ -3,9 +3,9 @@
 # A simple script to run the 'simple-perl' sample module.
 # Assumes you have started Okapi in another terminal window
 # with something like:
-#  export HOST=`hostname`
+#  export OKAPIHOST=`hostname`
 #  java -Dloglevel=DEBUG \
-#    -Dokapiurl="http://$HOSTNAME:9130" \
+#    -Dokapiurl="http://$OKAPIHOST:9130" \
 #    -jar okapi-core/target/okapi-core-fat.jar dev
 
 OKAPI=${1:-"http://localhost:9130"} # The usual place it runs on a single-machine setup

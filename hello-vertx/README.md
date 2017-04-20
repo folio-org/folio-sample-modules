@@ -65,7 +65,8 @@ We are essentially following the
 [Deploying Modules](https://github.com/folio-org/okapi/blob/master/doc/guide.md#example-1-deploying-and-using-a-simple-module)
 sections of the Okapi Guide and Reference, which describe the process in detail.
 
-First of all you need a running Okapi instance:
+First of all you need a running Okapi instance.
+(Note that [specifying](../README.md#setting-things-up) an explicit 'okapiurl' might be needed.)
 
 ```
    cd .../okapi

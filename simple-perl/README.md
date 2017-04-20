@@ -82,9 +82,9 @@ the docker container. Instead we need to use the correct machine name. -->
 
 ```
    cd .../okapi
-   export HOST=`hostname`
+   export OKAPIHOST=`hostname`
    java  \
-    -Dokapiurl="http://$HOSTNAME:9130" \
+    -Dokapiurl="http://$OKAPIHOST:9130" \
     -Dloglevel=DEBUG \
     -jar okapi-core/target/okapi-core-fat.jar dev
 ```
