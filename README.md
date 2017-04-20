@@ -264,10 +264,8 @@ One good way to start Okapi is with:
       -jar okapi-core/target/okapi-core-fat.jar dev
 ```
 
-Other good ways to get a good OKAPIHOST are:
-  * Ask a docker container what its default route is:
-`docker run folio-hello-module "ip route" | grep default` and use the
-IP address directly
+Other ways to get a value for OKAPIHOST are:
+  * `export OKAPIHOST=$(ifconfig docker0 | awk '/inet addr:/ { print $2 }' | cut -d: -f 2)`
   * On many Debian installations it may be 172.17.0.1 or 172.17.41.1
   * Use the IP address of the public interface of your workstation with something
 like `ip addr show eth0`
