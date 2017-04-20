@@ -73,24 +73,24 @@ For exact definitions, see the RAML from the Okapi-core project. The various
 example modules in this project may be helpful too.
 
 The main parts of a ModuleDescriptor are:
-* id - Primary key, uniquely identifying this module.
-* name - A short name to be used in logs and some administrative UIs.
-* tags - A set of short strings that tell something about the module. See below.
-* provides - A set of interfaces, and their versions, that the module provides.
-* requires - A set of interfaces, and their versions, that the module requires.
-* handlers - Tells which HTTP requests the module is serving, and which
+* id -- Primary key, uniquely identifying this module.
+* name -- A short name to be used in logs and some administrative UIs.
+* tags -- A set of short strings that tell something about the module. See below.
+* provides -- A set of interfaces, and their versions, that the module provides.
+* requires -- A set of interfaces, and their versions, that the module requires.
+* handlers -- Tells which HTTP requests the module is serving, and which
 permissions are needed to make such a request.
-* uiModuleDescriptor - Placeholder for module-specific configuration for the UI
+* uiModuleDescriptor -- Placeholder for module-specific configuration for the UI
 modules.
-* deploymentDescriptor - Tells how the module is to be deployed (started).
+* deploymentDescriptor -- Tells how the module is to be deployed (started).
 
 #### Module tags
 
 We have not really started to use module tags in the system, but we are likely
 to end up with at least the following:
-* ServerModule - Tells that this is a server side module.
-* UiModule - Tells that this is a UI module.
-* VirtualModule - Tells that this module is purely virtual, no code involved.
+* ServerModule -- Tells that this is a server side module.
+* UiModule -- Tells that this is a UI module.
+* VirtualModule -- Tells that this module is purely virtual, no code involved.
 
 We may later add tags for various other purposes.
 
@@ -379,7 +379,7 @@ what ever you want it to do, and for that we can not give detailed instructions.
 Some useful hints:
   * You probably want to make the module respond to some other path(s) than
 `/hello`. Change the RoutingEntries in the ModuleDescriptor, and the vertx
-router in the MainVerticle.java.
+router in the MainVerticle.java file.
   * You probably should move the actual processing methods away from the
 MainVerticle, into a class of its own, and make the vertx routes point to it.
 Most likely you will create other classes to support your operations.

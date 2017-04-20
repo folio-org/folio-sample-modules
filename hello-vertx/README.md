@@ -11,23 +11,23 @@ which accepts any JSON structure, and returns another, more complex one.
 
 There is only one source file:
 
- - MainVerticle.java: the "main program", an HTTP server that serves
+ - MainVerticle.java -- The "main program": an HTTP server that serves
    our requests.
 
 There are JSON structures, ready to POST to Okapi for setting up a demonstration
 of this module:
 
- - ModuleDescriptor.json: A module description for the module.
- - DeploymentDescriptor.json: A module deployment descriptor for running the module under Okapi.
- - TenantDescriptor.json: To create a tenant for whom we can enable the module.
- - TenantModuleDescriptor.json: A small structure to enable the module for our test tenant.
+ - ModuleDescriptor.json -- A module description for the module.
+ - DeploymentDescriptor.json -- A module deployment descriptor for running the module under Okapi.
+ - TenantDescriptor.json -- To create a tenant for whom we can enable the module.
+ - TenantModuleDescriptor.json -- A small structure to enable the module for our test tenant.
 
 Other noteworthy files are:
 
- - Dockerfile: Docker setup.
- - pom.xml: Maven config on how to build the project.
- - log4j.properties: Configuration for controlling the logging.
- - README.md: This file, explaining what is where and how to use the module.
+ - Dockerfile -- Docker setup.
+ - pom.xml -- Maven config on how to build the project.
+ - log4j.properties -- Configuration for controlling the logging.
+ - README.md -- This file, explaining what is where and how to use the module.
 
 ## Compiling
 
