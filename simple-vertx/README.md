@@ -23,23 +23,23 @@ container.
 
 There are two source files:
 
- - MainVerticle.java: the "main program", an HTTP server that serves
+ - MainVerticle.java -- The "main program": an HTTP server that serves
    our requests.
- - SimpleWebService.java: The web service handlers.
+ - SimpleWebService.java -- The web service handlers.
 
 There are JSON structures, ready to POST to Okapi for setting up a demonstration
 of this module:
 
- - ModuleDescriptor.json: A module description for the module.
- - DeploymentDescriptor: to tell where to deploy the module (localhost, in this case).
- - TenantModuleDescriptor.json: A small structure to enable the module for our test tenant.
+ - ModuleDescriptor.json -- A module description for the module.
+ - DeploymentDescriptor -- to tell where to deploy the module (localhost, in this case).
+ - TenantModuleDescriptor.json -- A small structure to enable the module for our test tenant.
 
 Other noteworthy files are:
 
- - Dockerfile: Docker setup.
- - pom.xml: Maven config on how to build the project.
- - log4j.properties: Configuration for controlling the logging.
- - README.md: This file, explaining what is where and how to use the module.
+ - Dockerfile -- Docker setup.
+ - pom.xml -- Maven config on how to build the project.
+ - log4j.properties -- Configuration for controlling the logging.
+ - README.md -- This file, explaining what is where and how to use the module.
 
 ## Compiling
 
@@ -64,12 +64,13 @@ window. There is one catch, Okapi needs to tell the modules how to contact it
 back. Since the module runs in a docker container, it can not refer to Okapi
 by its default address at `localhost` as that would refer to the thing inside
 the docker container. Instead we need to use the correct machine name.
+(Note that [specifying](../README.md#setting-things-up) an explicit 'okapiurl' might be needed.)
 
 ```
    cd .../okapi
-   export HOST=`hostname`
+   export OKAPIHOST=`hostname`
    java  \
-      -Dokapiurl="http://$HOSTNAME:9130" \
+      -Dokapiurl="http://$OKAPIHOST:9130" \
       -Dloglevel=DEBUG \
       -jar okapi-core/target/okapi-core-fat.jar dev
 ```

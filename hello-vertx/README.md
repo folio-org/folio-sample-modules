@@ -11,23 +11,23 @@ which accepts any JSON structure, and returns another, more complex one.
 
 There is only one source file:
 
- - MainVerticle.java: the "main program", an HTTP server that serves
+ - MainVerticle.java -- The "main program": an HTTP server that serves
    our requests.
 
 There are JSON structures, ready to POST to Okapi for setting up a demonstration
 of this module:
 
- - ModuleDescriptor.json: A module description for the module.
- - DeploymentDescriptor.json: A module deployment descriptor for running the module under Okapi.
- - TenantDescriptor.json: To create a tenant for whom we can enable the module.
- - TenantModuleDescriptor.json: A small structure to enable the module for our test tenant.
+ - ModuleDescriptor.json -- A module description for the module.
+ - DeploymentDescriptor.json -- A module deployment descriptor for running the module under Okapi.
+ - TenantDescriptor.json -- To create a tenant for whom we can enable the module.
+ - TenantModuleDescriptor.json -- A small structure to enable the module for our test tenant.
 
 Other noteworthy files are:
 
- - Dockerfile: Docker setup.
- - pom.xml: Maven config on how to build the project.
- - log4j.properties: Configuration for controlling the logging.
- - README.md: This file, explaining what is where and how to use the module.
+ - Dockerfile -- Docker setup.
+ - pom.xml -- Maven config on how to build the project.
+ - log4j.properties -- Configuration for controlling the logging.
+ - README.md -- This file, explaining what is where and how to use the module.
 
 ## Compiling
 
@@ -65,7 +65,8 @@ We are essentially following the
 [Deploying Modules](https://github.com/folio-org/okapi/blob/master/doc/guide.md#example-1-deploying-and-using-a-simple-module)
 sections of the Okapi Guide and Reference, which describe the process in detail.
 
-First of all you need a running Okapi instance:
+First of all you need a running Okapi instance.
+(Note that [specifying](../README.md#setting-things-up) an explicit 'okapiurl' might be needed.)
 
 ```
    cd .../okapi
@@ -90,27 +91,11 @@ curl -w '\n' -X POST -D -   \
    http://localhost:9130/_/proxy/modules
 ```
 
-The ModuleDescriptor tells Okapi what the module is called, what services it
-provides, and how to deploy it. Note that the command line to start a docker
-is:
-```
-docker run --cidfile=/tmp/docker.%p.cid -p %p:8080 folio-hello-module
-```
-
-Some small details to note about that:
-  * Unlike in real production, we do not have a `-d` there. That would detach
-STDOUT and STDERR, and we would not see its log.
-  * The module listens on its default port 8080, and the Docker command line
-maps that to whatever port Okapi assigns to the module.
-  * We keep the docker id in a file in /tmp, so we know which docker to kill
-when that time comes. The file name includes the port number, as that must be
-unique within one node.
-
-
+That ModuleDescriptor tells Okapi what the module is called, what services it
+provides, and how to deploy it.
 
 Next we need to deploy the module. There is a deployment descriptor in
 `DeploymentDescriptor.json`. It tells Okapi to start the module on 'localhost'.
-
 
 Deploy it via Okapi discovery:
 
