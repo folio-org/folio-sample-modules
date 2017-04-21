@@ -6,6 +6,8 @@
 
 # Start Okapi up first.
 
+N=${1:-20} # Number of clients to start.
+
 DIR=/tmp/simple-perl-loop
 
 STOP=$DIR/stoploop
@@ -18,7 +20,8 @@ echo "Setting up with example.sh"
 ./example.sh > $DIR/example.out 2>&1 || exit 1
 echo "Starting $N clients"
 
-for C in {1..20}   ## Edit number of clients here
+C=1
+while [ $C -le $N ]
 do
   OUT=`mktemp -p $DIR`
   echo "Client $C writes to $OUT"
@@ -35,6 +38,7 @@ do
     echo
     echo `date` "Done"
   ) >> $OUT 2>&1 &
+  C=$((C + 1))
 done
 
 wait
