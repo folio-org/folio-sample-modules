@@ -1,8 +1,8 @@
 #!/bin/bash
 #
-# Simple script to make many requests to the /simple service of the perl sample module
+# Simple script to make many requests to the /simple service of the perl sample module.
 # This can be used to check if Okapi can do serious amounts of recursive calls,
-# or just how it behaves under load
+# or just how it behaves under load.
 
 # Start Okapi up first.
 
@@ -13,7 +13,7 @@ STOP=$DIR/stoploop
 rm -rf $DIR
 mkdir -p $DIR
 
-# Run tyhe example.sh to load our module, tenant, etc
+# Run the example.sh to load our module, tenant, etc.
 echo "Setting up with example.sh"
 ./example.sh > $DIR/example.out 2>&1 || exit 1
 echo "Starting $N clients"
