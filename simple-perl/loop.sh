@@ -4,7 +4,7 @@
 # This can be used to check if Okapi can do serious amounts of recursive calls,
 # or just how it behaves under load
 
-# Start Okapi up first. 
+# Start Okapi up first.
 
 DIR=/tmp/simple-perl-loop
 
@@ -22,8 +22,8 @@ for C in {1..20}   ## Edit number of clients here
 do
   OUT=`mktemp -p $DIR`
   echo "Client $C writes to $OUT"
-  ( 
-    while [ ! -f $STOP ] && 
+  (
+    while [ ! -f $STOP ] &&
       curl -f -s -S \
         -H "X-Okapi-Tenant: testlib"  \
         http://localhost:9130/simple
