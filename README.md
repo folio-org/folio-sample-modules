@@ -459,4 +459,7 @@ which would also be instructive to browse.
 Consult the individual repositories' documentation for the status of
 the code in these modules.
 
+See project [OKAPI](https://issues.folio.org/browse/OKAPI)
+at the [FOLIO issue tracker](http://dev.folio.org/community/guide-issues).
+
 Other FOLIO Developer documentation is at [dev.folio.org](http://dev.folio.org/)
