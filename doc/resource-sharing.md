@@ -4,6 +4,7 @@
 * [Scenario](#scenario)
 * [Problems](#problems)
 * [Protocols](#protocols)
+* [Implementation](#implementation)
 * [Notes](#notes)
 
 ## Scenario
@@ -41,6 +42,20 @@ An ILS, or a discovery layer like EDS or Summon, might have resource-sharing bui
 **ISO ILL** is a rather different alternative to NCIP, based more on older procedures with stamps and forms.
 
 And finally, we can always **screen-scrape** to get at information that is not exposed, potentially including circulation status.
+
+## Implementation
+
+Much of what we need for this already exists in and around MasterKey.
+
+We can use SP/Pazpar2 to search the member libraries' Z39.50 catalogues for the desired item. Many libraries will return OPAC records that give (among other things) circulation status. For those that lack this, we can use RTAC-like connectors to scrape this status off their web-sites.
+
+The loan-rules part, and the UI for maintaining them, does not yet exist -- but we will be building something similar for FOLIO's circulation module, so it should be possible to either use that or adapt it. We will also need an engine for evaluating the rules to determine a set of candidate libraries that are able and willing to lend the item.
+
+Load-balancing in version 1 can just be asking a librarian to choose on the candidate libraries.
+
+The request can be encoded as a metadata object. The ISO ILL standard contains a format that may be suitable; or we may need to extend this or roll our own.
+
+Sending email is not rocket science, but [fraught with annoying wrinkles](https://blog.codinghorror.com/so-youd-like-to-send-some-email-through-code/). I don't think we have NCIP code at this point, but there may be an open-source implementation that we can use.
 
 ## Notes
 
