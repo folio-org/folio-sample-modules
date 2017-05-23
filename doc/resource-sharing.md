@@ -21,7 +21,7 @@ The first problem is **discovery**. We must determine:
 
 #1 is standard MasterKey-like discovery. #2 is more complex, as different libraries represent in the in-stock status of their items in different ways. There may be a role for the CF here. #3 depends on potentially fairly complex library-specific rule-sets depending on the material-type, the lending history, and other factors.
 
-Potentially many libraries survive these filters, so that several different sources could provide the library. To avoid over-stressing one library with a constant stream of requests (e.g. we always ask the Aardark Library, never the Zygote Library), we need to do **load-balancing** of requests. A simple approach just randomises requests. A more sophisticated approach counts loan requests sent to each library and tries to keep them in balance. "Balance" means in proportion to some factor such as library budget, patron-count, inventory size, or a combination.
+Potentially many libraries provide these filters, so that several different sources could provide the library. To avoid over-stressing one library with a constant stream of requests (e.g. we always ask the Aardark Library, never the Zygote Library), we need to do **load-balancing** of requests. A simple approach just randomises requests. A more sophisticated approach counts loan requests sent to each library and tries to keep them in balance. "Balance" means in proportion to some factor such as library budget, patron-count, inventory size, or a combination.
 
 Once a suitable lending library has been identified, the problem becomes **requesting**. First, we need to generate the data that constitutes the request: identification of the book and user, and perhaps user-provided data such as the reason for the loan.
 
@@ -61,5 +61,5 @@ Sending email is not rocket science, but [fraught with annoying wrinkles](https:
 
 It's possible to detect in the local library ILS's web logs that requests have been sent.
 
-There is a price for a loan-transaction (and of course to returning the loaned item). It may be cheaper to simply buy the item. A clever system can make this decision automatically. It may even be worth buying a book for a price higher than the loan cost, optimising for speed. In this case, integration with the acquisiion system will be desirable.
+There is a price for a loan-transaction (and of course to returning the loaned item). It may be cheaper to simply buy the item. A clever system can make this decision automatically. It may even be worth buying a book for a price higher than the loan cost, optimising for speed. In this case, integration with the acquisition system will be desirable.
 
