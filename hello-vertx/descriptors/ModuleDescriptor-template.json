@@ -1,5 +1,5 @@
 {
-  "id" : "hello",
+  "id" : "${artifactId}-${version}",
   "name" : "Hello World",
   "provides" : [ {
     "id" : "hello",

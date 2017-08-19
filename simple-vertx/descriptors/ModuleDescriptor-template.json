@@ -1,5 +1,5 @@
 {
-  "id" : "simple",
+  "id" : "${artifactId}-${version}",
   "name" : "Simple Sample Module",
   "provides" : [ {
     "id" : "simple",

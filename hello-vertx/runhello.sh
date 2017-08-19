@@ -28,7 +28,7 @@ echo "Creating a tenant"
 
 curl $CURLOPTS -X POST  \
   -H "Content-type: application/json" \
-  -d @TenantDescriptor.json  \
+  -d @target/TenantDescriptor.json  \
   $OKAPI/_/proxy/tenants || exit 1
 echo OK
 sleep $SLEEP
@@ -38,7 +38,7 @@ echo "Declaring the module"
 
 curl $CURLOPTS -X POST  \
   -H "Content-type: application/json" \
-  -d @ModuleDescriptor.json \
+  -d @target/ModuleDescriptor.json \
   $OKAPI/_/proxy/modules || exit 1
 echo OK
 sleep $SLEEP
@@ -47,7 +47,7 @@ echo
 echo "Deploying it on localhost"
 curl $CURLOPTS -X POST  \
   -H "Content-type: application/json" \
-  -d @DeploymentDescriptor.json  \
+  -d @target/DeploymentDescriptor.json  \
   $OKAPI/_/discovery/modules || exit 1
 echo OK
 sleep $SLEEP
@@ -57,7 +57,7 @@ echo
 echo "Enabling it for our tenant"
 curl $CURLOPTS -X POST \
   -H "Content-type: application/json" \
-  -d @TenantModuleDescriptor.json \
+  -d @target/TenantModuleDescriptor.json \
   $OKAPI/_/proxy/tenants/testlib/modules || exit 1
 echo OK
 sleep $SLEEP
