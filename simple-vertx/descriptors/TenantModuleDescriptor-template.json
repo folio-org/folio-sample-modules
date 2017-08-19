@@ -1,3 +1,3 @@
 {
-  "id" : "simple"
+  "id" : "${artifactId}-${version}"
 }

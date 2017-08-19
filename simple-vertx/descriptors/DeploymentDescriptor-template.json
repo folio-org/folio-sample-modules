@@ -1,4 +1,4 @@
 {
-  "srvcId" : "simple",
+  "srvcId" : "${artifactId}-${version}",
   "nodeId" : "localhost"
 }
