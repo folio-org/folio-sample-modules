@@ -1,5 +1,5 @@
 {
-  "srvcId" : "simpleperl",
+  "srvcId" : "simpleperl-1.0",
   "nodeId" : "localhost",
   "descriptor" : {
     "exec" : "../folio-sample-modules/simple-perl/simple.pl %p"

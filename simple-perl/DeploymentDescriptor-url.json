@@ -1,5 +1,5 @@
 {
-  "srvcId" : "simpleperl",
+  "srvcId" : "simpleperl-1.0",
   "instId" : "localhost-8080",
   "url" : "http://localhost:8080"
 }

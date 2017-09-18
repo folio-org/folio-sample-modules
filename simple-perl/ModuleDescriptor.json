@@ -1,5 +1,5 @@
 {
-  "id" : "simpleperl",
+  "id" : "simpleperl-1.0",
   "name" : "SimplePerlModule",
   "provides" : [ {
     "id" : "simple",
