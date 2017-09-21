@@ -1,0 +1,76 @@
+{
+  "id": "thing-module",
+  "name": "thing",
+  "provides": [
+    {
+      "id": "thing",
+      "version": "0.2.0",
+      "handlers" : [
+        {
+            "methods" : [ "GET" ],
+            "pathPattern" : "/things/{id}",
+            "permissionsRequired" : [ "things.item.get" ]
+        },
+        {
+            "methods" : [ "GET" ],
+            "pathPattern" : "/things*",
+            "permissionsRequired" : [ "things.collection.get" ]
+        },
+        {
+            "methods" : [ "POST" ],
+            "pathPattern" : "/things*",
+            "permissionsRequired" : [ "things.item.post" ]
+        },
+        {
+            "methods" : [ "PUT" ],
+            "pathPattern" : "/things/{id}",
+            "permissionsRequired" : [ "things.item.put" ]
+        },
+        {
+            "methods" : [ "DELETE" ],
+            "pathPattern" : "/things/{id}",
+            "permissionsRequired" : [ "things.item.delete" ]
+        }
+      ]
+    }
+  ],
+  "permissionSets" : [
+    {
+      "permissionName" : "things.item.get",
+      "displayName" : "things item get",
+      "description" : "Get a single thing"
+    },
+    {
+      "permissionName" : "things.collection.get",
+      "displayName" : "things collection get",
+      "description" : "Get a list of things"
+    },
+    {
+      "permissionName" : "things.item.post",
+      "displayName" : "things item post",
+      "description" : "Create a new thing"
+    },
+    {
+      "permissionName" : "things.item.put",
+      "displayName" : "things item put",
+      "description" : "Modify a single thing"
+    },
+    {
+      "permissionName" : "things.item.delete",
+      "displayName" : "things item delete",
+      "description" : "Delete a single thing"
+    },
+    {
+      "permissionName" : "things.all",
+      "displayName" : "things all",
+      "description" : "All permissions for the Thing module",
+      "subPermissions" : [
+        "things.item.get",
+        "things.collection.get",
+        "things.item.post",
+        "things.item.put",
+        "things.item.delete"
+      ]
+    } 
+  ]
+}

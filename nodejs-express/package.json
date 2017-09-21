@@ -1,0 +1,12 @@
+{
+  "name": "permissions_app",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node src/Server.js"
+  },
+  "dependencies": {
+    "express": "latest",
+    "body-parser": "latest",
+    "minimist": "latest"
+  }
+}
