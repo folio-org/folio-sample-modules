@@ -13,7 +13,7 @@
 use strict;
 use warnings;
 use base qw(Net::Server::HTTP); # On Debian, apt-get install libnet-server-perl
-use JSON;
+use JSON;   #   libjson-perl
 use Data::Dumper;
 use CGI;
 use LWP::UserAgent;  # libwww-perl
