@@ -88,9 +88,9 @@ the docker container. Instead we need to use the correct machine name.
       -jar okapi-core/target/okapi-core-fat.jar dev
 ```
 
-You also need to define a tenant, and have the hello module running. If you do
+You also need to define a tenant, and have the folio-hello-vertx module running. If you do
 not want to follow the instructions in its README, the easiest way is to use
-the `runhello.sh` script that comes with the hello module.
+the `runhello.sh` script that comes with the folio-hello-vertx module.
 
 ```
     cd .../folio-sample-modules/hello-vertx
@@ -100,7 +100,7 @@ the `runhello.sh` script that comes with the hello module.
 
 The script sets everything up, and should end with a hello message.
 
-The process of running the simple module is the same as with the hello module,
+The process of running this folio-simple-vertx module is the same as with the folio-hello-vertx module:
 we POST a ModuleDescriptor, we deploy the module, and enable it for our tenant.
 All this is encapsulated in the `runsimple.sh` script.
 
@@ -124,17 +124,17 @@ curl -w '\n' -X POST -D -   \
     -H "Content-type: application/json"   \
     -H "X-Okapi-Tenant: testlib" \
     -d @target/TenantModuleDescriptor.json \
-    http://localhost:9130/hello
+    http://localhost:9130/simple
 ```
 
 ## Cleaning up
 
 ```
-curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/proxy/tenants/testlib/modules/hello
+curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/proxy/tenants/testlib/modules/simple
 
-curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/proxy/modules/hello
+curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/proxy/modules/simple
 
-curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/deployment/modules/localhost-9131
+curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/deployment/modules/localhost-9132
 ```
 
 Finally you can stop the Okapi, with a Ctrl-C in its terminal window.
