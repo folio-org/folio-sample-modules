@@ -6,6 +6,7 @@
 * [Compiling](#compiling)
 * [Docker](#docker)
 * [Installing the module](#installing-the-module)
+* [Deploying the module](#deploying-the-module)
 * [Using the module](#using-the-module)
 * [Restrict access](#restrict-access)
 * [Cleaning up](#cleaning-up)
@@ -108,6 +109,8 @@ curl -w '\n' -X POST -D -   \
 
 That ModuleDescriptor tells Okapi what the module is called, what services it
 provides, and how to deploy it.
+
+## Deploying the module
 
 Next we need to deploy the module. There is a deployment descriptor in
 `target/DeploymentDescriptor.json`. It tells Okapi to start the module on 'localhost'.
