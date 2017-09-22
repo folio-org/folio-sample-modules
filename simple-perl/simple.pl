@@ -40,7 +40,7 @@ sub process_http_request {
 
   my $path = $cgi->path_info();
   my $meth = $cgi->request_method();
-  print STDERR "simple.pl received a $meth request for $path\n";
+  print STDERR "\nsimple.pl received a $meth request for $path\n";
 
   if (!$path) {
     err($cgi,"404 NOTFOUND","Not found (no path given)");
@@ -63,7 +63,7 @@ sub process_http_request {
       return;
     }
   # Fall through with other than GET or POST
-  err($cgi,"404 NOTFOUND","Not found");
+  err($cgi,"404 NOTFOUND","Not found: $path");
   return;
 }
 
@@ -94,6 +94,9 @@ sub hello_post_handler {
 sub simple_get_handler {
   my $cgi  = shift;
   my $req = httprequest($cgi,"GET", "/hello");
+  if (!$req) { #something wrong, probably no X-Okapi-Url
+    return; # req has set up the error response
+  }
   my $ua = new LWP::UserAgent;
   my $resp = $ua->request($req);
   my $content = $resp->decoded_content();
@@ -116,6 +119,9 @@ sub simple_post_handler {
     err($cgi,400,"Received No content");
   }
   my $req = httprequest($cgi,"POST", "/hello",$reqdata);
+  if (!$req) { #something wrong, probably no X-Okapi-Url
+    return; # req has set up the error response
+  }
   my $ua = new LWP::UserAgent;
   my $resp = $ua->request($req);
   my $content = $resp->decoded_content();
@@ -162,14 +168,17 @@ sub err {
 # Either from $cgi, or read from STDIN, if chunked
 sub postdata {
   my $cgi  = shift;
-  if ( $ENV{"HTTP_TRANSFER_ENCODING"} ne "chunked" ) {
-    return $cgi->param("POSTDATA");
+  my $enc = $ENV{"HTTP_TRANSFER_ENCODING"} || "";
+  if ( $enc ne "chunked" ) {
+    my $body = $cgi->param("POSTDATA");
+    print STDERR "Received POST data in one go: $body\n";
+    return $body;
   }
   my $buf = "";
   while(1) {
     my $len = <STDIN>;
     chomp($len);
-    $len =~ s/[^0-9]//g;
+    $len =~ s/[^0-9a-fA-F]//g;
     if (! $len ) {
       return $buf;
     }
@@ -181,6 +190,7 @@ sub postdata {
       return $buf;
     }
     $buf .= $chunk;
+    print STDERR ".. .. Received a chunk of $declen bytes: $chunk\n";
   }
 }
 
@@ -192,7 +202,11 @@ sub postdata {
 # Copies all X-Okapi- headers into the request
 sub httprequest {
   my ($cgi, $method, $path, $content) = @_;
-  my $okapiurl = $ENV{"HTTP_X_OKAPI_URL"};
+  my $okapiurl = $ENV{"HTTP_X_OKAPI_URL"} || "";
+  if (!$okapiurl) {
+    err($cgi,500,"X-Okapi-Url not defined");
+    return "";
+  }
   print STDERR "simple: okapi is at $okapiurl\n";
   my $url = "$okapiurl/hello";
   my $req = new HTTP::Request $method=> $url;
