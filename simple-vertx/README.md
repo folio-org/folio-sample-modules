@@ -130,9 +130,9 @@ curl -w '\n' -X POST -D -   \
 ## Cleaning up
 
 ```
-curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/proxy/tenants/testlib/modules/simple
+curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/proxy/tenants/testlib/modules/folio-simple-vertx-0.1-SNAPSHOT
 
-curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/proxy/modules/simple
+curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/proxy/modules/folio-simple-vertx-0.1-SNAPSHOT
 
 curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/deployment/modules/localhost-9132
 ```

@@ -166,11 +166,11 @@ section of the Okapi Guide and Reference.
 ## Cleaning up
 
 ```
-curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/proxy/tenants/testlib/modules/hello
+curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/proxy/tenants/testlib/modules/folio-hello-vertx-0.1-SNAPSHOT
 
-curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/discovery/modules/hello/localhost-9131
+curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/discovery/modules/folio-hello-vertx-0.1-SNAPSHOT/localhost-9131
 
-curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/proxy/modules/hello
+curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/proxy/modules/folio-hello-vertx-0.1-SNAPSHOT
 ```
 
 and Okapi would have also removed the Docker container for that module.
