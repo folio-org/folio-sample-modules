@@ -1,5 +1,17 @@
 # Simple-vertx
 
+<!-- ../../okapi/doc/md2toc -l 2 -h 4 README.md -->
+* [Introduction](#introduction)
+* [Files](#files)
+* [Compiling](#compiling)
+* [Docker](#docker)
+* [Installing the module](#installing-the-module)
+* [Using the module](#using-the-module)
+* [Cleaning up](#cleaning-up)
+* [What next](#what-next)
+
+## Introduction
+
 A fairly small module written in Java, using the Vert.x framework,
 the same tools as we use for developing Okapi core.
 
