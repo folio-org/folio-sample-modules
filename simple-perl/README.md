@@ -1,5 +1,19 @@
 # Simple-perl
 
+<!-- ../../okapi/doc/md2toc -l 2 -h 4 README.md -->
+* [Introduction](#introduction)
+* [Files](#files)
+* [Overview](#overview)
+* [Dependencies](#dependencies)
+* [Setting things up](#setting-things-up)
+* [Running the module separately](#running-the-module-separately)
+    * [Telling Okapi to use the module](#telling-okapi-to-use-the-module)
+* [Running the module inside Okapi](#running-the-module-inside-okapi)
+* [Running in a docker](#running-in-a-docker)
+* [What next](#what-next)
+
+## Introduction
+
 A fairly small module written in Perl, just to show that modules can be
 written in other languages.
 
@@ -92,7 +106,7 @@ the docker container. Instead we need to use the correct machine name. -->
 You also need to define a tenant, who will be using this module later.
 
 ```
- curl -w '\n' -X POST -D - \
+curl -w '\n' -X POST -D - \
   -H "Content-type: application/json" \
   -d @TenantDescriptor.json  \
   http://localhost:9130/_/proxy/tenants || exit 1
@@ -151,10 +165,10 @@ curl -D - -w '\n' \
 You should see that out comes a different JSON structure that incudes a field
 called "greeting".
 
-## Telling Okapi to use the module
+### Telling Okapi to use the module
 
 Now we need to tell Okapi that we have the module running on port 8080. This is
-done by posting a DeploymentDescriptor to /_/discovery/modules. The file
+done by posting a DeploymentDescriptor to `/_/discovery/modules`. The file
 DeploymentDescriptor-url.json contains one that does actually not deploy anything,
 but tells Okapi that we have one already deployed. Post it to Okapi:
 
@@ -219,7 +233,7 @@ docker build -t folio-simple-perl-module .
 ```
 
 To use the image, DeploymentDescriptor-docker.json is all set up with the right
-command lines. Just POST that to /_/discovery, like before.
+command lines. Just POST that to `/_/discovery` like before.
 
 ```
 curl -w '\n' -X POST -D - \
