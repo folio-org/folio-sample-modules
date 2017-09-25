@@ -1,5 +1,20 @@
 # Hello-vertx
 
+<!-- ../../okapi/doc/md2toc -l 2 -h 4 README.md -->
+* [Introduction](#introduction)
+* [Files](#files)
+* [Compiling](#compiling)
+* [Docker](#docker)
+* [Installing the module](#installing-the-module)
+* [Deploying the module](#deploying-the-module)
+* [Using the module](#using-the-module)
+* [Restrict access](#restrict-access)
+* [Cleaning up](#cleaning-up)
+* [Scripting it](#scripting-it)
+* [What next](#what-next)
+
+## Introduction
+
 A minimal "Hello, world" module written in Java, using the Vert.x framework,
 the same tools as we use for developing Okapi core.
 
@@ -95,6 +110,8 @@ curl -w '\n' -X POST -D -   \
 That ModuleDescriptor tells Okapi what the module is called, what services it
 provides, and how to deploy it.
 
+## Deploying the module
+
 Next we need to deploy the module. There is a deployment descriptor in
 `target/DeploymentDescriptor.json`. It tells Okapi to start the module on 'localhost'.
 
@@ -152,11 +169,11 @@ section of the Okapi Guide and Reference.
 ## Cleaning up
 
 ```
-curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/proxy/tenants/testlib/modules/hello
+curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/proxy/tenants/testlib/modules/folio-hello-vertx-0.1-SNAPSHOT
 
-curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/discovery/modules/hello/localhost-9131
+curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/discovery/modules/folio-hello-vertx-0.1-SNAPSHOT/localhost-9131
 
-curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/proxy/modules/hello
+curl -w '\n' -X DELETE  -D -    http://localhost:9130/_/proxy/modules/folio-hello-vertx-0.1-SNAPSHOT
 ```
 
 and Okapi would have also removed the Docker container for that module.
