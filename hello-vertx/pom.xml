@@ -18,7 +18,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <vertx-version>3.2.1</vertx-version>
+    <vertx-version>3.5.4</vertx-version>
     <docker.registry>docker.indexdata.com:5000</docker.registry>
   </properties>
 
@@ -26,7 +26,7 @@
     <dependency>
       <groupId>org.folio.okapi</groupId>
       <artifactId>okapi-common</artifactId>
-      <version>0.4-SNAPSHOT</version>
+      <version>2.23.0</version>
     </dependency>
     <!-- logging see http://www.slf4j.org/legacy.html -->
     <!-- we use SLF4J for our logging interface -->
