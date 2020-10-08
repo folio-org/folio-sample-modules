@@ -6,7 +6,8 @@
     "version" : "1.1",
       "handlers" : [ {
       "methods" : [ "GET", "POST" ],
-      "pathPattern" : "/hello"
+      "pathPattern" : "/hello",
+      "permissionsRequired": [ ]
     } ]
   } ],
   "launchDescriptor" : {

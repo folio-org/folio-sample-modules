@@ -6,7 +6,8 @@
     "version" : "1.1",
     "handlers" : [ {
       "methods" : [ "GET", "POST" ],
-      "pathPattern" : "/simple"
+      "pathPattern" : "/simple",
+      "permissionsRequired": [ ]
       } ]
     },
     {
@@ -14,7 +15,8 @@
      "version" : "1.1",
      "handlers" : [ {
        "methods" : [ "GET", "POST" ],
-       "pathPattern" : "/hello"
+       "pathPattern" : "/hello",
+       "permissionsRequired": [ ]
       } ]
     }
   ]
