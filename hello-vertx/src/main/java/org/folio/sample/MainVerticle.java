@@ -21,7 +21,8 @@ public class MainVerticle extends AbstractVerticle {
   @Override
   public void start(Future<Void> fut) throws IOException {
 
-    final int port = Integer.parseInt(System.getProperty("port", "8080"));
+    final int port = Integer.parseInt(
+      System.getProperty("http.port", System.getProperty("port", "8080")));
     logger.info("Starting hello "
             + ManagementFactory.getRuntimeMXBean().getName()
             + " on port " + port);
