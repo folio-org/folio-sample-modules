@@ -23,7 +23,7 @@ For background understanding, see the
         * [Handlers](#handlers)
 * [Server-side modules](#server-side-modules)
     * [Deployment and discovery](#deployment-and-discovery)
-    * [Logging, Health, and Metrics](#logging-health-and-metrics)
+    <!-- TODO: * [Logging, Health, and Metrics](#logging-health-and-metrics) -->
     * [Writing a module](#writing-a-module)
         * [Java/Vert.x and Node.js](#javavertx-and-nodejs)
         * [Development environment](#development-environment)
