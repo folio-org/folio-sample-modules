@@ -4,10 +4,10 @@
   "provides" : [ {
     "id" : "hello",
     "version" : "1.1",
-      "handlers" : [ {
+    "handlers" : [ {
       "methods" : [ "GET", "POST" ],
       "pathPattern" : "/hello",
-      "permissionsRequired": [ ]
+      "permissionsRequired": []
     } ]
   } ],
   "launchDescriptor" : {
