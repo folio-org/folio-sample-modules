@@ -1,13 +1,13 @@
 package org.folio.sample;
 
 import io.vertx.core.AbstractVerticle;
-import io.vertx.core.Future;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
+import io.vertx.core.Promise;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
-import java.io.IOException;
 import java.lang.management.ManagementFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import static org.folio.okapi.common.HttpResponse.*;
 
 /**
@@ -16,39 +16,34 @@ import static org.folio.okapi.common.HttpResponse.*;
  */
 public class MainVerticle extends AbstractVerticle {
 
-  private final Logger logger = LoggerFactory.getLogger("folio-sample");
+  private static final Logger logger = LogManager.getLogger(MainVerticle.class);
 
   @Override
-  public void start(Future<Void> fut) throws IOException {
+  public void start(Promise<Void> startPromise) {
 
     final int port = Integer.parseInt(System.getProperty("port", "8080"));
     logger.info("Starting hello "
-            + ManagementFactory.getRuntimeMXBean().getName()
-            + " on port " + port);
+        + ManagementFactory.getRuntimeMXBean().getName()
+        + " on port " + port);
 
-    // Define the routes for HTTP requests. Both GET and POST go to the same
-    // one here...
+    // Define the routes for HTTP requests.
     Router router = Router.router(vertx);
-    router.get("/hello").handler(this::get_handle);
-    router.post("/hello").handler(this::post_handle);
+    router.get("/hello").handler(this::getHandle);
+    router.post("/hello").handler(this::postHandle);
 
     // And start listening
     vertx.createHttpServer()
-            .requestHandler(router::accept)
-            .listen(port, result -> {
-              if (result.succeeded()) {
-                logger.debug("Hello: Succeeded in starting the listener");
-                fut.complete();
-              } else {
-                logger.error("Hello failed to start the listener: " + result.cause());
-                fut.fail(result.cause());
-              }
-            });
+    .requestHandler(router)
+    .listen(port)
+    .onSuccess(x -> logger.debug("Hello: Succeeded in starting the listener"))
+    .onFailure(e -> logger.error("Hello failed to start the listener: " + e))
+    .<Void>mapEmpty()
+    .onComplete(startPromise);
   }
 
   // Handler for the GET requests.
   // Just replies "Hello, world" in plain text
-  public void get_handle(RoutingContext ctx) {
+  public void getHandle(RoutingContext ctx) {
     logger.debug("Hello: handling a GET request");
     responseText(ctx, 200).end("Hello, world\n");
   }
@@ -56,21 +51,21 @@ public class MainVerticle extends AbstractVerticle {
   // Handler for the POST request
   // Replies with a JSON structure that contains all posted data
   // As long as the input data is valid JSON, the output should be too.
-  public void post_handle(RoutingContext ctx) {
+  public void postHandle(RoutingContext ctx) {
     logger.debug("Hello: handling a POST request");
-    String contentType = ctx.request().getHeader("Content-Type");
-    if (contentType != null && contentType.compareTo("application/json") != 0) {
-      responseError(ctx, 400, "Only accepts Content-Type application/json");
-    } else {
-      responseJson(ctx, 200);
-      ctx.response().setChunked(true);
-      ctx.response().write("{ \"greeting\": \"Hello, world\",\n \"data\" : ");
-      ctx.request().handler(x -> { // Pass the request body into the response, as it comes along
-        ctx.response().write(x);
-      });
-      ctx.request().endHandler(x -> { // At the end of the body, close the structure
-        ctx.response().end("\n}\n"); // and end the response processing
-      });
+    if (! "application/json".equals(ctx.request().getHeader("Content-Type"))) {
+      responseError(ctx, 400, "Content-Type must be application/json");
+      return;
     }
+
+    responseJson(ctx, 200);
+    ctx.response().setChunked(true);
+    ctx.response().write("{ \"greeting\": \"Hello, world\",\n \"data\" : ");
+    ctx.request().handler(x -> { // Pass the request body into the response, as it comes along
+      ctx.response().write(x);
+    });
+    ctx.request().endHandler(x -> { // At the end of the body, close the structure
+      ctx.response().end("\n}\n"); // and end the response processing
+    });
   }
 }

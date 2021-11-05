@@ -1,0 +1,29 @@
+name: hello-vertx
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Start Okapi
+        run: |
+          docker create --name okapi folioorg/okapi
+          docker cp okapi:/usr/verticles/okapi-core-fat.jar okapi-core-fat.jar
+          docker rm -f okapi
+          java -jar okapi-core-fat.jar dev &
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
+        with:
+          java-version: 11
+          distribution: temurin
+          cache: maven
+      - name: Okapi health
+        run: curl --retry 30 --retry-delay 1 --retry-connrefused -sS http://localhost:9130/_/proxy/health
+      - run: cd hello-vertx; ./runhello.sh
+
