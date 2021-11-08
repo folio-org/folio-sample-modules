@@ -61,7 +61,7 @@ See that it says "BUILD SUCCESS" near the end.
 Build the docker container with:
 
 ```sh
-docker build -t docker.ci.folio.org/folio-hello-module .
+docker build -t folio-hello-module .
 ```
 
 Test that it runs with:
