@@ -8,7 +8,18 @@
 
 OKAPI=${1:-"http://localhost:9130"} # The usual place it runs on a single-machine setup
 SLEEP=${2:-"1"} # Time to sleep between requests
-CURLOPTS="-w\n -D - " # -w to output a newline after, -D - to show headers
+
+# curl that fails if HTTP response code is not 2xx
+curlf ()
+{
+  # -w\n to output a newline at the end
+  # -s -S to show error messages, but no progress meter
+  # -D - to show headers
+  OUT=$(curl -w"\n" -s -S -D - "$@")
+  echo "$OUT"
+  # success if HTTP status code from range 200-299 in the first line
+  echo "$OUT" | head -1 | grep --quiet '\b2[0-9][0-9]\b'
+}
 
 echo "Compiling the simple module"
 mvn install || exit 1
@@ -19,24 +30,25 @@ echo "Dockerizing it"
 docker build -t folio-simple-module . || exit 1
 echo OK
 
+echo
 echo "Check that Okapi is running ..."
-curl $CURLOPTS $OKAPI/_/discovery/nodes || exit 1
+curlf $OKAPI/_/discovery/nodes || exit 1
 echo "OK"
 sleep $SLEEP
 
 echo
 echo "Declaring the simple module"
 
-curl $CURLOPTS -X POST \
-  -H "Content-type: application/json" \
-  -d @target/ModuleDescriptor.json \
-  $OKAPI/_/proxy/modules || exit 1
+curlf -X POST \
+    -H "Content-type: application/json" \
+    -d @target/ModuleDescriptor.json \
+    $OKAPI/_/proxy/modules || exit 1
 echo OK
 sleep $SLEEP
 
 echo
 echo "Deploying it on localhost"
-curl $CURLOPTS -X POST  \
+curlf -X POST  \
   -H "Content-type: application/json" \
   -d @target/DeploymentDescriptor.json  \
   $OKAPI/_/discovery/modules || exit 1
@@ -45,21 +57,22 @@ sleep $SLEEP
 
 echo
 echo "Enabling it for our tenant"
-curl $CURLOPTS -X POST \
+curlf -X POST \
   -H "Content-type: application/json" \
   -d @target/TenantModuleDescriptor.json \
   $OKAPI/_/proxy/tenants/testlib/modules || exit 1
 echo OK
 sleep $SLEEP
 
+echo
 echo "Checking that it works"
-curl $CURLOPTS -H "X-Okapi-Tenant: testlib" $OKAPI/simple || exit 1
+curlf -H "X-Okapi-Tenant: testlib" $OKAPI/simple || exit 1
 echo OK
 sleep $SLEEP
 
 echo
 echo "Checking a POST request "
-curl $CURLOPTS -X POST \
+curlf -X POST \
   -H "Content-type: application/json" \
   -H "X-Okapi-Tenant: testlib" \
   -d @target/TenantModuleDescriptor.json  \

@@ -33,12 +33,12 @@ public class MainVerticle extends AbstractVerticle {
 
     // And start listening
     vertx.createHttpServer()
-    .requestHandler(router)
-    .listen(port)
-    .onSuccess(x -> logger.debug("Hello: Succeeded in starting the listener"))
-    .onFailure(e -> logger.error("Hello failed to start the listener: " + e))
-    .<Void>mapEmpty()
-    .onComplete(startPromise);
+      .requestHandler(router)
+      .listen(port)
+      .onSuccess(x -> logger.debug("Hello: Succeeded in starting the listener"))
+      .onFailure(e -> logger.error("Hello failed to start the listener: " + e))
+      .<Void>mapEmpty()
+      .onComplete(startPromise);
   }
 
   // Handler for the GET requests.
