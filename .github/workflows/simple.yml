@@ -1,4 +1,4 @@
-name: hello-vertx
+name: simple
 
 on:
   push:
@@ -16,13 +16,21 @@ jobs:
           docker create --name okapi folioorg/okapi
           docker cp okapi:/usr/verticles/okapi-core-fat.jar okapi-core-fat.jar
           docker rm -f okapi
-          java -jar okapi-core-fat.jar dev &
+          OKAPI=http://`docker network inspect --format='{{range .IPAM.Config}}{{.Gateway}}{{end}}' bridge`:9130
+          java -Dokapiurl=$OKAPI -jar okapi-core-fat.jar dev &
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
         with:
           path: ~/.m2/repository
-          key: hello-vertx
+          key: vertx
       - name: Okapi health
         run: curl --retry 30 --retry-delay 1 --retry-connrefused -sS http://localhost:9130/_/proxy/health
       - run: cd hello-vertx; ./runhello.sh
-
+      - run: cd simple-vertx; ./runsimple.sh
+      - name: Disable *-vertx modules and tenant
+        run: |
+          curl -s -S -D - -XDELETE http://localhost:9130/_/proxy/tenants/testlib/modules
+          curl -s -S -D - -XDELETE http://localhost:9130/_/proxy/tenants/testlib
+      - name: Install Net::Server Perl Module
+        run: sudo cpan -Ti Net::Server
+      - run: cd simple-perl; ./example.sh

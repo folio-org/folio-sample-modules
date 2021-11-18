@@ -1,17 +1,12 @@
 package org.folio.simple;
 
 import io.vertx.core.AbstractVerticle;
-import io.vertx.core.Future;
-import io.vertx.core.json.JsonObject;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
+import io.vertx.core.Promise;
 import io.vertx.ext.web.Router;
-import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
-import java.io.IOException;
 import java.lang.management.ManagementFactory;
-import static org.folio.okapi.common.HttpResponse.*;
-import org.folio.okapi.common.OkapiClient;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * The main verticle. This is the HTTP server that accepts incoming requests and
@@ -19,11 +14,11 @@ import org.folio.okapi.common.OkapiClient;
  */
 public class MainVerticle extends AbstractVerticle {
 
-  private final Logger logger = LoggerFactory.getLogger("folio-simple");
+  private static final Logger logger = LogManager.getLogger(MainVerticle.class);
   private final SimpleWebService simple = new SimpleWebService();
 
   @Override
-  public void start(Future<Void> fut) throws IOException {
+  public void start(Promise<Void> startPromise) {
 
     final int port = Integer.parseInt(System.getProperty("port", "8080"));
     logger.info("Starting simple "
@@ -39,17 +34,11 @@ public class MainVerticle extends AbstractVerticle {
 
     // And start listening
     vertx.createHttpServer()
-            .requestHandler(router::accept)
-            .listen(port, result -> {
-              if (result.succeeded()) {
-                logger.debug("Succeeded in starting the listener for simple");
-                fut.complete();
-              } else {
-                logger.error("simple failed: " + result.cause());
-                fut.fail(result.cause());
-              }
-            });
+      .requestHandler(router)
+      .listen(port)
+      .onSuccess(x -> logger.debug("Succeeded in starting the listener for simple"))
+      .onFailure(e -> logger.error("simple failed: " + e.getMessage(), e))
+      .<Void>mapEmpty()
+      .onComplete(startPromise);
   }
-
-
 }
