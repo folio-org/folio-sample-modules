@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: initalizr-spring
+  datasource:
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+    url: jdbc:postgresql://${DB_HOST:postgres}:${DB_PORT:5432}/${DB_DATABASE:okapi_modules}?stringtype=unspecified
+  banner:
+    location: classpath:/banner.txt
