@@ -1,6 +1,6 @@
 spring:
   application:
-    name: initalizr-spring
+    name: hello
   datasource:
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:postgres}
@@ -12,3 +12,13 @@ management:
   endpoints:
     web:
       base-path: /admin
+
+folio:
+  tenant:
+    validation:
+      enabled: true
+  logging:
+    request:
+      enabled: true
+    feign:
+      enabled: true
