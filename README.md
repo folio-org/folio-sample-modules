@@ -29,6 +29,7 @@ For background understanding, see the
         * [Development environment](#development-environment)
         * [Setting things up](#setting-things-up)
         * [Sample module: hello-vertx](#sample-module-hello-vertx)
+        * [Sample module: hello-spring](#sample-module-hello-spring)
         * [Sample module: simple-vertx](#sample-module-simple-vertx)
         * [Sample module: simple-perl](#sample-module-simple-perl)
         * [Utility libraries](#utility-libraries)
@@ -291,7 +292,6 @@ issues with the firewall...
 
 <!-- TODO - What is needed on other Linuxes, Mac, Windows, others -->
 
-
 #### Sample module: hello-vertx
 
 There is a very minimal "hello, world" module in the hello-vertx directory.
@@ -302,6 +302,11 @@ Docker container.
 
 The sample module uses Apache Log4j for its logging, the same way as Okapi itself
 does, so its logs should be compatible.
+
+#### Sample module: hello-spring
+
+This is a reimplementation of hello-vertx, but using the Java Spring Boot 
+framework and OpenAPI specification.
 
 #### Sample module: simple-vertx
 
