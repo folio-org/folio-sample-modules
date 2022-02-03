@@ -27,14 +27,14 @@
       <dependency>
         <groupId>io.vertx</groupId>
         <artifactId>vertx-stack-depchain</artifactId>
-        <version>4.2.1</version>
+        <version>4.2.4</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.apache.logging.log4j</groupId>
         <artifactId>log4j-bom</artifactId>
-        <version>2.14.1</version>
+        <version>2.17.1</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -53,7 +53,7 @@
     <dependency>
       <groupId>org.folio.okapi</groupId>
       <artifactId>okapi-common</artifactId>
-      <version>4.9.0</version>
+      <version>4.12.0</version>
     </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
