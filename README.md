@@ -340,9 +340,9 @@ into a separate module, okapi-common, for easier reuse.
 #### Starting your own module
 
 Assume that you want to write your own module. Here is one way to get started.
-We take the hello-vertx module as a starting point, and produce a new module
-that we call vertx-module. These examples are written for Linux, but something
-similar ought to work on any other platform.
+We take the hello-vertx (or hello-spring) module as a starting point, and
+produce a new module that we call my-module. These examples are written for
+Linux, but something similar ought to work on any other platform.
 
 First, make sure you have all the development tools you need. Check out Okapi
 itself, and these folio-sample-modules. We assume all your projects live under
@@ -363,13 +363,14 @@ Next build Okapi itself:
 ```
 
 Check that you see the `BUILD SUCCESS` line near the end of the output. Next
-check out the folio-sample-modules to get the hello-vertx module we want to
+check out the folio-sample-modules to get the module we want to
 start from, and make a new copy of it:
 
 ```
   cd $ROOTDIR
   git clone https://github.com/folio-org/folio-sample-modules.git
-  cp -a folio-sample-modules/hello-vertx/ mymodule
+  cp -a folio-sample-modules/hello-spring/ mymodule # spring way
+  cp -a folio-sample-modules/hello-vertx/ mymodule # vert.x
 ```
 
 Open the project in your favourite IDE, in this example NetBeans. Use its
@@ -383,8 +384,9 @@ check for the "BUILD SUCCESS" message.
 Next, edit the `ModuleDescriptor.json`. Find all occurrences of "hello" and
 change them to "mymodule".
 
-Edit also the Dockerfile. Change the `VERTICLE_FILE ENV` line to refer to
-`mymodule-fat.jar` and edit the comments in the beginning.
+Edit also the Dockerfile. If you are using `hello-vertx`, change the
+`ENV VERTICLE_FILE` line to refer to `mymodule-fat.jar` and edit the comments
+in the beginning.  If you are using `hello-spring`, modify the `APP_FILE ENV`.
 
 Now you can walk through the examples in README.md, substituting "mymodule" for
 "hello" where proper. You should be able to create the docker image, see that
@@ -394,11 +396,12 @@ Congratulations, you have your own module! Now you just need to make it do
 what ever you want it to do, and for that we can not give detailed instructions.
 Some useful hints:
   * You probably want to make the module respond to some other path(s) than
-`/hello`. Change the RoutingEntries in the ModuleDescriptor, and the vertx
-router in the MainVerticle.java file.
-  * You probably should move the actual processing methods away from the
-MainVerticle, into a class of its own, and make the vertx routes point to it.
-Most likely you will create other classes to support your operations.
+`/hello`. Change the `RoutingEntries` in the ModuleDescriptor, and, for vert.x,
+the vertx router in the MainVerticle.java file.  For spring, modify the `api.yaml`
+per openapi specifications.
+  * You probably should move the actual processing methods away from the current
+main class, likely into a class of its own, and make the routes/controller point
+to it.  Most likely you will create other classes to support your operations.
   * Rewrite most of the README to reflect _your_ module.
 
 ### Running your module
