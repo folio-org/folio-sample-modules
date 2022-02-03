@@ -152,16 +152,27 @@ Write something about these
 FOLIO is designed so that different modules can be written in different
 languages with different tools.
 
-#### Java/Vert.x and Node.js
+#### Language Choice
 
-So far we have only written server-side modules in Java, using Vert.x and
-Node.js. Because we use them internally, those two technologies will have
-a prominent place in the FOLIO ecosystem and, initially, it may be easiest
-to get started using them. We provide libraries and utilities that
-help with development (especially with writing standard boiler-plate code and
-scaffolding) but we hope to eventually gain a wide coverage among other
-tools and technologies (e.g. Python, Ruby, etc.). We are counting on an active
-engagement from the community to help out in this area.
+Within FOLIO, server-side modules are primarily written in Java (wiht some
+in Node.js).  These are used a lot within FOLIO, therefore, we have build
+libraries and utilities to work with them (especially for standard scaffolding
+and boiler-plate code).
+
+Currently, a lot of these modules are written using Vert.x (and built with
+our [raml-module-builder](https://github.com/folio-org/raml-module-builder)
+framework).  However, this method is on the way out and being replaced
+with the 
+[Spring Way](https://docs.google.com/presentation/d/1YgDCBimLTQ1ou-fPhvyKbWpVkec3Goa8lyJJe2hcLHk/edit).
+
+The Spring Way uses Spring Boot, a more modern Java framework, as well as
+openapi, making it easier to take advantage of more modern Java features.
+If you are looking to start a new FOLIO module, you will probably want to
+use this methodology and framework as opposed to something RMB/Vert.x based.
+
+We hope to eventually gain a wide coverage among other tools and technologies
+(e.g. Python, Ruby, etc.). We are counting on an active engagement from the
+community to help out in this area.
 
 #### Development environment
 
@@ -174,10 +185,10 @@ and the
 
 So that will require:
  * Apache Maven 3.3.1 or later.
- * Java 8 JDK
+ * Java 11 JDK (https://adoptopenjdk.net)
 
 As shown in the Okapi Guide and these samples, the command-line http client
-'curl' is used extensively for demonstration and development.
+`curl` is used extensively for demonstration and development.
 
 As explained above, using Docker is not necessary, but certainly is useful,
 and these samples do use it. So take the plunge. Okapi cleans up its own
