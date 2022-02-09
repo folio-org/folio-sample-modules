@@ -154,7 +154,7 @@ languages with different tools.
 
 #### Language Choice
 
-Within FOLIO, server-side modules are primarily written in Java (wiht some
+Within FOLIO, server-side modules are primarily written in Java (with some
 in Node.js).  These are used a lot within FOLIO, therefore, we have build
 libraries and utilities to work with them (especially for standard scaffolding
 and boiler-plate code).
