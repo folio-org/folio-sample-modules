@@ -159,13 +159,14 @@ in Node.js).  These are used a lot within FOLIO, therefore, we have build
 libraries and utilities to work with them (especially for standard scaffolding
 and boiler-plate code).
 
-Currently, a lot of these modules are written using Vert.x (and built with
-our [raml-module-builder](https://github.com/folio-org/raml-module-builder)
-framework).  However, this method is on the way out and being replaced
-with the 
-[Spring Way](https://docs.google.com/presentation/d/1YgDCBimLTQ1ou-fPhvyKbWpVkec3Goa8lyJJe2hcLHk/edit).
+Currently, a lot of these modules are written in Java using Vert.x (and built
+with our
+[raml-module-builder](https://github.com/folio-org/raml-module-builder)
+framework).
 
-The Spring Way uses Spring Boot, a more modern Java framework, as well as
+Some newer modules are written with the 
+[Spring Way](https://docs.google.com/presentation/d/1YgDCBimLTQ1ou-fPhvyKbWpVkec3Goa8lyJJe2hcLHk/edit)
+philosophy.  This uses Spring Boot, a more popular Java framework, as well as
 openapi, making it easier to take advantage of more modern Java features.
 If you are looking to start a new FOLIO module, you will probably want to
 use this methodology and framework as opposed to something RMB/Vert.x based.
