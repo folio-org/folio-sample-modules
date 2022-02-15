@@ -4,7 +4,7 @@ info:
   description: A minimal "Hello, world" FOLIO module written in Java, inspired by the `hello-vertx` example.
   license:
     name: Apache 2.0
-    url: https://www.apache.org/licenses/LICENSE-2.0.html
+    url: https://spdx.org/licenses/Apache-2.0
   version: v1.0
 paths:
   /hello:
