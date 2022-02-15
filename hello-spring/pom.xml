@@ -65,8 +65,8 @@
 
     <plugins>
       <plugin>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-maven-plugin</artifactId>
+	      <groupId>org.springframework.boot</groupId>
+	      <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
 
       <plugin>
@@ -136,7 +136,7 @@
               <goal>generate</goal>
             </goals>
             <configuration>
-              <inputSpec>${project.basedir}/src/main/resources/api.yaml</inputSpec>
+              <inputSpec>${project.basedir}/src/main/resources/openapi/api.yaml</inputSpec>
               <generatorName>spring</generatorName>
               <apiPackage>org.folio.hello.api</apiPackage>
               <modelPackage>org.folio.hello.model</modelPackage>
