@@ -2,19 +2,31 @@
 
 ## Introduction
 
-A minimal "Hello, world" FOLIO module written in Java, inspired by the `hello-vertx` example. However, this example uses the Spring framework and OpenAPI. This module is intended as a minimal use case of these technologies as they are used in FOLIO modules.
+A minimal "Hello, world" FOLIO module written in Java, inspired by the `hello-vertx` example.
+However, this example uses the Spring framework and OpenAPI. This module is intended as a minimal
+use case of these technologies as they are used in FOLIO modules.
 
-The API is exactly that of `hello-vertx`, with the small caveat that it validates the JSON that is posted in the request. To see the API specification, refer to [api.yaml](src/main/resources/api.yaml).
+The API is exactly that of `hello-vertx`, with the small caveat that it validates the JSON that is
+posted in the request. To see the API specification, refer to
+[api.yaml](src/main/resources/api.yaml).
 
 ## Files
 
-There are two source files in this project: [HelloController.java](src/main/java/org/folio/hello/HelloController.java), which implements the API specified by the OpenAPI specification, and [HelloApplication.java](src/main/java/org/folio/hello/HelloApplication.java), which starts up the Spring Boot Application.
+There are two source files in this project:
+[HelloController.java](src/main/java/org/folio/hello/HelloController.java), which implements the API
+specified by the OpenAPI specification, and
+[HelloApplication.java](src/main/java/org/folio/hello/HelloApplication.java), which starts up the
+Spring Boot Application.
 
 Other notable files in this project include:
-  * [README.md](README.md), this file;
-  * [pom.xml](pom.xml), the Maven project config;
-  * [api.yaml](src/main/resources/api.yaml), the API specification;
-  * and both [descriptors/ModuleDescriptor-template.json](descriptors/ModuleDescriptor-template.json) and [descriptors/DeploymentDescriptor-template.json](descriptors/DeploymentDescriptor-template.json), which generate the descriptor files needed by Okapi.
+
+- [README.md](README.md), this file;
+- [pom.xml](pom.xml), the Maven project config;
+- [api.yaml](src/main/resources/api.yaml), the API specification;
+- and both [descriptors/ModuleDescriptor-template.json](descriptors/ModuleDescriptor-template.json)
+  and
+  [descriptors/DeploymentDescriptor-template.json](descriptors/DeploymentDescriptor-template.json),
+  which generate the descriptor files needed by Okapi.
 
 ## Compiling
 
@@ -26,7 +38,10 @@ Should report a `BUILD SUCCESS` at the end.
 
 ## Running Locally
 
-Despite not needing to actually access a PostgreSQL database, `folio-spring-base` has it as a dependency, so in order for it to run properly, you must have the variables specified in [descriptors/ModuleDescriptor-template.json](descriptors/ModuleDescriptor-template.json) set in your environment to connect to a running PostgreSQL database. Then you can run
+Despite not needing to actually access a PostgreSQL database, `folio-spring-base` has it as a
+dependency, so in order for it to run properly, you must have the variables specified in
+[descriptors/ModuleDescriptor-template.json](descriptors/ModuleDescriptor-template.json) set in your
+environment to connect to a running PostgreSQL database. Then you can run
 
 ```sh
 mvn spring-boot:run
@@ -36,7 +51,8 @@ To kick things off.
 
 ## Runing module in Okapi / FOLIO
 
-The following will assume that you have a Okapi / FOLIO instance running (e.g. the `folio/testing` Vagrantbox). Additionally, it will assume that you are located inside in the root of this project.
+The following will assume that you have a Okapi / FOLIO instance running (e.g. the `folio/testing`
+Vagrantbox). Additionally, it will assume that you are located inside in the root of this project.
 
 ### Build module in Docker
 

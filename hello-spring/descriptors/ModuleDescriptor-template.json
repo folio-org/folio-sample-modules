@@ -19,11 +19,11 @@
       "interfaceType": "system",
       "handlers": [
         {
-          "methods": [ "POST" ],
+          "methods": ["POST"],
           "pathPattern": "/_/tenant"
         },
         {
-          "methods": [ "GET", "DELETE" ],
+          "methods": ["GET", "DELETE"],
           "pathPattern": "/_/tenant/{id}"
         }
       ]
