@@ -159,12 +159,11 @@ in Node.js).  These are used a lot within FOLIO, therefore, we have build
 libraries and utilities to work with them (especially for standard scaffolding
 and boiler-plate code).
 
-Currently, a lot of these modules are written in Java using Vert.x (and built
-with our
-[raml-module-builder](https://github.com/folio-org/raml-module-builder)
-framework).
+Currently, a lot of these modules are written in Java using Vert.x. FOLIO has two Vert.x based frameworks:
+* [raml-module-builder](https://github.com/folio-org/raml-module-builder) for RAML files
+* [folio-vertx-lib](https://github.com/folio-org/folio-vertx-lib) for OpenAPI files
 
-Some newer modules are written with the 
+Some newer modules are written with the
 [Spring Way](https://docs.google.com/presentation/d/1YgDCBimLTQ1ou-fPhvyKbWpVkec3Goa8lyJJe2hcLHk/edit)
 philosophy.  This uses Spring Boot, a more popular Java framework, as well as
 openapi, making it easier to take advantage of more modern Java features.
@@ -186,7 +185,7 @@ and the
 
 So that will require:
  * Apache Maven 3.3.1 or later.
- * Java 11 JDK (https://adoptopenjdk.net)
+ * Java 11 JDK
 
 As shown in the Okapi Guide and these samples, the command-line http client
 `curl` is used extensively for demonstration and development.
@@ -317,7 +316,7 @@ does, so its logs should be compatible.
 
 #### Sample module: hello-spring
 
-This is a reimplementation of hello-vertx, but using the Java Spring Boot 
+This is a reimplementation of hello-vertx, but using the Java Spring Boot
 framework and OpenAPI specification.
 
 #### Sample module: simple-vertx
