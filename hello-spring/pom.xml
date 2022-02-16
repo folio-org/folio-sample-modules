@@ -38,7 +38,7 @@
       <version>${folio-spring-base.version}</version>
     </dependency>
 
-    <!-- Currently only required because folio-spring-base uses it but does not specify it as a dependency (see FOLSPRINGB-36) -->
+    <!-- Currently only required because Spring looks for a database on startup, despite no actual use -->
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
