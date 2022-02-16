@@ -3,7 +3,7 @@ info:
   title: Hello Spring
   description: A minimal "Hello, world" FOLIO module written in Java, inspired by the `hello-vertx` example.
   license:
-    name: Apache 2.0
+    name: Apache License 2.0
     url: https://spdx.org/licenses/Apache-2.0
   version: v1.0
 paths:
