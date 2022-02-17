@@ -31,5 +31,23 @@ jobs:
         run: |
           curl -s -S -D - -XDELETE http://localhost:9130/_/proxy/tenants/testlib/modules
           curl -s -S -D - -XDELETE http://localhost:9130/_/proxy/tenants/testlib
+
+      # hello-spring
+      - name: hello-spring
+        run: |
+          docker run --name postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres:alpine
+          cd hello-spring
+          mvn clean install
+          docker build -t docker.ci.folio.org/folio-hello-spring .
+          HOST="`docker network inspect --format='{{range .IPAM.Config}}{{.Gateway}}{{end}}' bridge`"
+          docker run --name folio-hello-spring --rm -p 8080:8080 -e DB_HOST=$HOST -e DB_PORT=5432 \
+            -e DB_USERNAME=postgres -e DB_PASSWORD=postgres -e DB_DATABASE=postgres \
+            docker.ci.folio.org/folio-hello-spring &
+          curl --retry 30 --retry-delay 1 --retry-connrefused -sS "http://$HOST:8080"
+          curl -w"\n" -sS -D - -Hx-okapi-tenant:diku "http://$HOST:8080/hello" | tee out
+          cat out | grep "Hello, world!"
+          docker rm -f folio-hello-spring postgres
+
+      # simple-perl
       - run: sudo apt-get -y install libnet-server-perl libjson-perl libcgi-pm-perl libmodule-build-perl libwww-perl
       - run: cd simple-perl; ./example.sh
