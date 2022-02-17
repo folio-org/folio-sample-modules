@@ -1,0 +1,4 @@
+{
+  "srvcId": "@artifactId@-@version@",
+  "nodeId": "10.0.2.15"
+}

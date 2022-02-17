@@ -1,3 +1,26 @@
 FAQ.html
 README.html
 target/
+
+## general
+*.log
+
+## macos
+*.DS_Store
+
+## maven
+target/
+
+## gradle
+.gradle/
+build/
+
+## node
+node_modules/
+
+## vim
+*~
+.*.sw?
+
+## folio
+.vertx/

@@ -1,6 +1,6 @@
 # Folio-Sample-Modules
 
-Copyright (C) 2016-2018 The Open Library Foundation
+Copyright (C) 2016-2022 The Open Library Foundation
 
 This software is distributed under the terms of the Apache License,
 Version 2.0. See the file "[LICENSE](LICENSE)" for more information.
@@ -29,6 +29,7 @@ For background understanding, see the
         * [Development environment](#development-environment)
         * [Setting things up](#setting-things-up)
         * [Sample module: hello-vertx](#sample-module-hello-vertx)
+        * [Sample module: hello-spring](#sample-module-hello-spring)
         * [Sample module: simple-vertx](#sample-module-simple-vertx)
         * [Sample module: simple-perl](#sample-module-simple-perl)
         * [Utility libraries](#utility-libraries)
@@ -151,16 +152,27 @@ Write something about these
 FOLIO is designed so that different modules can be written in different
 languages with different tools.
 
-#### Java/Vert.x and Node.js
+#### Language Choice
 
-So far we have only written server-side modules in Java, using Vert.x and
-Node.js. Because we use them internally, those two technologies will have
-a prominent place in the FOLIO ecosystem and, initially, it may be easiest
-to get started using them. We provide libraries and utilities that
-help with development (especially with writing standard boiler-plate code and
-scaffolding) but we hope to eventually gain a wide coverage among other
-tools and technologies (e.g. Python, Ruby, etc.). We are counting on an active
-engagement from the community to help out in this area.
+Within FOLIO, server-side modules are primarily written in Java (with some
+in Node.js).  These are used a lot within FOLIO, therefore, we have build
+libraries and utilities to work with them (especially for standard scaffolding
+and boiler-plate code).
+
+Currently, a lot of these modules are written in Java using Vert.x. FOLIO has two Vert.x based frameworks:
+* [raml-module-builder](https://github.com/folio-org/raml-module-builder) for RAML files
+* [folio-vertx-lib](https://github.com/folio-org/folio-vertx-lib) for OpenAPI files
+
+Some newer modules are written with the
+[Spring Way](https://docs.google.com/presentation/d/1YgDCBimLTQ1ou-fPhvyKbWpVkec3Goa8lyJJe2hcLHk/edit)
+philosophy.  This uses Spring Boot, a more popular Java framework, as well as
+openapi, making it easier to take advantage of more modern Java features.
+If you are looking to start a new FOLIO module, you will probably want to
+use this methodology and framework as opposed to something RMB/Vert.x based.
+
+We hope to eventually gain a wide coverage among other tools and technologies
+(e.g. Python, Ruby, etc.). We are counting on an active engagement from the
+community to help out in this area.
 
 #### Development environment
 
@@ -173,10 +185,10 @@ and the
 
 So that will require:
  * Apache Maven 3.3.1 or later.
- * Java 8 JDK
+ * Java 11 JDK
 
 As shown in the Okapi Guide and these samples, the command-line http client
-'curl' is used extensively for demonstration and development.
+`curl` is used extensively for demonstration and development.
 
 As explained above, using Docker is not necessary, but certainly is useful,
 and these samples do use it. So take the plunge. Okapi cleans up its own
@@ -291,7 +303,6 @@ issues with the firewall...
 
 <!-- TODO - What is needed on other Linuxes, Mac, Windows, others -->
 
-
 #### Sample module: hello-vertx
 
 There is a very minimal "hello, world" module in the hello-vertx directory.
@@ -302,6 +313,11 @@ Docker container.
 
 The sample module uses Apache Log4j for its logging, the same way as Okapi itself
 does, so its logs should be compatible.
+
+#### Sample module: hello-spring
+
+This is a reimplementation of hello-vertx, but using the Java Spring Boot
+framework and OpenAPI specification.
 
 #### Sample module: simple-vertx
 
@@ -324,9 +340,9 @@ into a separate module, okapi-common, for easier reuse.
 #### Starting your own module
 
 Assume that you want to write your own module. Here is one way to get started.
-We take the hello-vertx module as a starting point, and produce a new module
-that we call vertx-module. These examples are written for Linux, but something
-similar ought to work on any other platform.
+We take the hello-vertx (or hello-spring) module as a starting point, and
+produce a new module that we call my-module. These examples are written for
+Linux, but something similar ought to work on any other platform.
 
 First, make sure you have all the development tools you need. Check out Okapi
 itself, and these folio-sample-modules. We assume all your projects live under
@@ -347,13 +363,14 @@ Next build Okapi itself:
 ```
 
 Check that you see the `BUILD SUCCESS` line near the end of the output. Next
-check out the folio-sample-modules to get the hello-vertx module we want to
+check out the folio-sample-modules to get the module we want to
 start from, and make a new copy of it:
 
 ```
   cd $ROOTDIR
   git clone https://github.com/folio-org/folio-sample-modules.git
-  cp -a folio-sample-modules/hello-vertx/ mymodule
+  cp -a folio-sample-modules/hello-spring/ mymodule # spring way
+  cp -a folio-sample-modules/hello-vertx/ mymodule # vert.x
 ```
 
 Open the project in your favourite IDE, in this example NetBeans. Use its
@@ -367,8 +384,9 @@ check for the "BUILD SUCCESS" message.
 Next, edit the `ModuleDescriptor.json`. Find all occurrences of "hello" and
 change them to "mymodule".
 
-Edit also the Dockerfile. Change the `VERTICLE_FILE ENV` line to refer to
-`mymodule-fat.jar` and edit the comments in the beginning.
+Edit also the Dockerfile. If you are using `hello-vertx`, change the
+`ENV VERTICLE_FILE` line to refer to `mymodule-fat.jar` and edit the comments
+in the beginning.  If you are using `hello-spring`, modify the `APP_FILE ENV`.
 
 Now you can walk through the examples in README.md, substituting "mymodule" for
 "hello" where proper. You should be able to create the docker image, see that
@@ -378,11 +396,12 @@ Congratulations, you have your own module! Now you just need to make it do
 what ever you want it to do, and for that we can not give detailed instructions.
 Some useful hints:
   * You probably want to make the module respond to some other path(s) than
-`/hello`. Change the RoutingEntries in the ModuleDescriptor, and the vertx
-router in the MainVerticle.java file.
-  * You probably should move the actual processing methods away from the
-MainVerticle, into a class of its own, and make the vertx routes point to it.
-Most likely you will create other classes to support your operations.
+`/hello`. Change the `RoutingEntries` in the ModuleDescriptor, and, for vert.x,
+the vertx router in the MainVerticle.java file.  For spring, modify the `api.yaml`
+per openapi specifications.
+  * You probably should move the actual processing methods away from the current
+main class, likely into a class of its own, and make the routes/controller point
+to it.  Most likely you will create other classes to support your operations.
   * Rewrite most of the README to reflect _your_ module.
 
 ### Running your module

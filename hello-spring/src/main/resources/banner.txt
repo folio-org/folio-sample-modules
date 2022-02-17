@@ -1,0 +1,18 @@
+                                                              .'  `.
+                                                               -``.
+                                                               `++`
+   -oyyys+-                  ooss-    .--            `hhyo/.   :dh:   ./oyhh`
+  oddds-:+.                  dddd:   sdddy            -shhhhy//dddd/+yhhhhs-
+ .dddd-                      dddd:   +dddo             .hddddo/dddh/sddddh`
+ -dddd.                      dddd:                       .-.  .syys.  .-`
+:oddddsooo.   :+syyyys+-     dddd:   /ooo+     .+syyyys+-     osoos+
++sddddsooo. /dddy:-:oddds`   dddd:   odddy   .yddd+--/dddy-   -+++/.
+ -dddd.    :dddd`    sdddy   dddd:   odddy  .dddd:    :dddd.   .++.
+ -dddd.    hdddy     /dddd:  dddd:   odddy  odddd`    `ddddo
+ -dddd.    ddddy     :dddd/  dddd:   odddy  sdddd      dddds
+ -dddd.    ydddh     /dddd-  dddd:   odddy  +dddd`    `dddd+
+ -dddd.    -dddd.    ydddo   dddd:   odddy  `yddd+    /dddh`
+ -dddd.     .sdddo++yddh:    dddd:   odddy   `oddds++sddd+`
+ `////`       `:/+o++:.      ////.   -///:      -/+oo+/-
+
+  (${application.title} ${application.version} with Spring Boot${spring-boot.formatted-version})

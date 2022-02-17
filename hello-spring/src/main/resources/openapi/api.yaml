@@ -1,0 +1,53 @@
+openapi: 3.0.3
+info:
+  title: Hello Spring
+  description:
+    A minimal "Hello, world" FOLIO module written in Java, inspired by the `hello-vertx` example.
+  license:
+    name: Apache License 2.0
+    url: https://spdx.org/licenses/Apache-2.0
+  version: v1.0
+paths:
+  /hello:
+    get:
+      summary: Get "Hello, World!"
+      responses:
+        "200":
+          description: The traditional greeting
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "Hello, World!\n"
+    post:
+      summary: Send data to be wrapped up in a response object.
+      requestBody:
+        description: Data to be wrapped up in response object
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                123:
+                  - a
+                  - b
+                  - c
+      responses:
+        "200":
+          description: The supplied data wrapped up in a JSON object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  greeting:
+                    type: string
+                  data:
+                    type: object
+                example:
+                  greeting: "Hello, World!\n"
+                  data:
+                    123:
+                      - a
+                      - b
+                      - c
