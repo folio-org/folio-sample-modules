@@ -4,6 +4,7 @@ import static org.folio.okapi.common.HttpResponse.responseError;
 import static org.folio.okapi.common.HttpResponse.responseJson;
 import static org.folio.okapi.common.HttpResponse.responseText;
 
+import io.vertx.core.http.HttpClient;
 import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.RoutingContext;
 import java.util.Map;
@@ -17,12 +18,17 @@ import org.folio.okapi.common.OkapiClient;
  */
 public class SimpleWebService {
   private static final Logger logger = LogManager.getLogger(SimpleWebService.class);
+  private final HttpClient httpClient;
+
+  public SimpleWebService(HttpClient httpClient) {
+    this.httpClient = httpClient;
+  }
 
   // Handler for the GET requests.
   // Calls the hello module, and reports its success
   public void get_handle(RoutingContext ctx) {
     logger.debug("Simple: Handling a GET request. About to call the hello module");
-    OkapiClient okapiClient = new OkapiClient(ctx);
+    OkapiClient okapiClient = new OkapiClient(httpClient, ctx);
     logger.debug("Contacting Okapi via " + okapiClient.getOkapiUrl());
     okapiClient.get("/hello")
       .onSuccess(body -> responseText(ctx, 200).end("Hello module says: '" + body + "'"))
@@ -39,7 +45,7 @@ public class SimpleWebService {
     }
     String reqData = ctx.getBodyAsString();
     logger.debug("Simple: Received a POST of " + reqData);
-    OkapiClient okapiClient = new OkapiClient(ctx);
+    OkapiClient okapiClient = new OkapiClient(httpClient, ctx);
     okapiClient.setHeaders(Map.of(
         "Content-Type", "application/json",
         "X-Okapi-Tenant", ctx.request().getHeader("X-Okapi-Tenant")));
