@@ -11,6 +11,16 @@ target/
 ## maven
 target/
 
+## Java IDEs
+.classpath
+.project
+hello-spring/.settings/
+hello-spring/bin/
+hello-vertx/.settings/
+hello-vertx/bin/
+simple-vertx/.settings/
+simple-vertx/bin/
+
 ## gradle
 .gradle/
 build/

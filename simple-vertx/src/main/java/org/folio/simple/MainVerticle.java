@@ -2,6 +2,7 @@ package org.folio.simple;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
+import io.vertx.core.http.HttpClient;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.BodyHandler;
 import java.lang.management.ManagementFactory;
@@ -15,10 +16,15 @@ import org.apache.logging.log4j.Logger;
 public class MainVerticle extends AbstractVerticle {
 
   private static final Logger logger = LogManager.getLogger(MainVerticle.class);
-  private final SimpleWebService simple = new SimpleWebService();
 
   @Override
   public void start(Promise<Void> startPromise) {
+    /**
+     * All services of one Verticle instance should share a single HttpClient (or WebClient)
+     * to allow for HTTP pooling and HTTP pipe-lining and to avoid HttpClient socket leaks.
+     */
+    final HttpClient httpClient = vertx.createHttpClient();
+    final SimpleWebService simple = new SimpleWebService(httpClient);
 
     final int port = Integer.parseInt(System.getProperty("port", "8080"));
     logger.info("Starting simple "
