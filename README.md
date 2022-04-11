@@ -170,9 +170,11 @@ openapi, making it easier to take advantage of more modern Java features.
 If you are looking to start a new FOLIO module, you will probably want to
 use this methodology and framework as opposed to something RMB/Vert.x based.
 
-We hope to eventually gain a wide coverage among other tools and technologies
-(e.g. Python, Ruby, etc.). We are counting on an active engagement from the
-community to help out in this area.
+FOLIO is language agnostic because modules and Okapi communicate over APIs only.
+
+However, FOLIO has implemented a
+[Technical Designs and Decisions](https://wiki.folio.org/display/DD/Technical+Designs+and+Decisions)
+process to provide consistency in FOLIO and to minimize the use of alternative tech stacks.
 
 #### Development environment
 
