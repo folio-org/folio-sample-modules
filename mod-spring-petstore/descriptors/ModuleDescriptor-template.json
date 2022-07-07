@@ -68,7 +68,7 @@
       "permissionName": "pets.item.post",
       "displayName": "pets - create pet",
       "description": "Create pet"
-    ,
+    },
     {
       "permissionName": "pets.all",
       "displayName": "pets module - all permissions",
