@@ -2,6 +2,6 @@
   "srvcId": "@artifactId@-@version@",
   "nodeId": "localhost",
   "descriptor": {
-    "exec": "java -Dport=%p -jar ../mod-spring-template/target/mod-spring-petstore.jar -Dhttp.port=%p embed_postgres=true"
+    "exec": "java -Dport=%p -jar ../@artifactId@/target/@artifactId@.jar -Dhttp.port=%p embed_postgres=true"
   }
 }
