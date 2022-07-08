@@ -1,0 +1,9 @@
+{
+  "description": "List of key/value parameters of an error",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "$ref": "parameter.json"
+  },
+  "additionalProperties": false
+}

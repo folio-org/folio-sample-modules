@@ -1,0 +1,108 @@
+{
+  "id": "@artifactId@-@version@",
+  "name": "The blueprint module that could be used as a template for folio spring based backend modules.",
+  "provides": [
+    {
+      "id": "pet-store",
+      "version": "1.0",
+      "handlers": [
+        {
+          "methods": [
+            "GET"
+          ],
+          "pathPattern": "/pets",
+          "permissionsRequired": [
+            "pets.collection.get"
+          ]
+        },
+        {
+          "methods": [
+            "POST"
+          ],
+          "pathPattern": "/pets",
+          "permissionsRequired": [
+            "pets.item.post"
+          ]
+        },
+        {
+          "methods": [
+            "GET"
+          ],
+          "pathPattern": "/pets/{id}",
+          "permissionsRequired": [
+            "pets.item.get"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "_tenant",
+      "version": "2.0",
+      "interfaceType": "system",
+      "handlers": [
+        {
+          "methods": ["POST"],
+          "pathPattern": "/_/tenant",
+          "permissionsRequired": []
+        },
+        {
+          "methods": ["GET", "DELETE"],
+          "pathPattern": "/_/tenant/{id}",
+          "permissionsRequired": []
+        }
+      ]
+    }
+  ],
+  "permissionSets" : [
+    {
+      "permissionName": "pets.collection.get",
+      "displayName": "pets - get pets collection",
+      "description": "Get pets collection"
+    },
+    {
+      "permissionName": "pets.item.get",
+      "displayName": "pets - get individual pet from storage",
+      "description": "Get individual pet"
+    },
+    {
+      "permissionName": "pets.item.post",
+      "displayName": "pets - create pet",
+      "description": "Create pet"
+    },
+    {
+      "permissionName": "pets.all",
+      "displayName": "pets module - all permissions",
+      "description": "Entire set of permissions needed to use the pets module",
+      "subPermissions": [
+        "pets.collection.get",
+        "pets.item.get",
+        "pets.item.post"
+      ],
+      "visible": false
+    }
+  ],
+  "requires": [],
+  "launchDescriptor": {
+    "dockerImage": "@artifactId@:@version@",
+    "dockerPull": false,
+    "dockerArgs": {
+      "HostConfig": {
+        "Memory": 357913941,
+        "PortBindings": { "8081/tcp": [ { "HostPort": "%p" } ] }
+      }
+    },
+    "env": [
+      { "name": "JAVA_OPTIONS",
+        "value": "-XX:MaxRAMPercentage=66.0"
+      },
+      { "name": "DB_HOST", "value": "postgres" },
+      { "name": "DB_PORT", "value": "5432" },
+      { "name": "DB_USERNAME", "value": "folio_admin" },
+      { "name": "DB_PASSWORD", "value": "folio_admin" },
+      { "name": "DB_DATABASE", "value": "okapi_modules" },
+      { "name": "DB_QUERYTIMEOUT", "value": "60000" },
+      { "name": "DB_CHARSET", "value": "UTF-8" },
+      { "name": "DB_MAXPOOLSIZE", "value": "5" }
+    ]
+  }
+}

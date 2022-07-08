@@ -1,0 +1,23 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: mod-spring-template
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  liquibase:
+    enabled: true
+  jpa:
+    show-sql: true
+folio:
+  tenant:
+    validation:
+      enabled: false
+management:
+  endpoints:
+    enabled-by-default: false
+logging:
+  level:
+    org.springframework.web: debug

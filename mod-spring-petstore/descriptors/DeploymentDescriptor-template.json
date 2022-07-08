@@ -1,0 +1,7 @@
+{
+  "srvcId": "@artifactId@-@version@",
+  "nodeId": "localhost",
+  "descriptor": {
+    "exec": "java -Dport=%p -jar ../@artifactId@/target/@artifactId@.jar -Dhttp.port=%p"
+  }
+}

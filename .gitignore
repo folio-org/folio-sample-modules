@@ -34,3 +34,9 @@ node_modules/
 
 ## folio
 .vertx/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
