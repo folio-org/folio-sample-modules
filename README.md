@@ -30,6 +30,7 @@ For background understanding, see the
         * [Setting things up](#setting-things-up)
         * [Sample module: hello-vertx](#sample-module-hello-vertx)
         * [Sample module: hello-spring](#sample-module-hello-spring)
+        * [Sample module: mod-spring-petstore](#sample-module-mod-spring-petstore)
         * [Sample module: simple-vertx](#sample-module-simple-vertx)
         * [Sample module: simple-perl](#sample-module-simple-perl)
         * [Utility libraries](#utility-libraries)
@@ -320,6 +321,12 @@ does, so its logs should be compatible.
 
 This is a reimplementation of hello-vertx, but using the Java Spring Boot
 framework and OpenAPI specification.
+
+#### Sample module: mod-spring-petstore
+
+This is an example of the FOLIO backend module built using folio-spring-base library.
+The module has been created using the mod-spring-template.
+Please find all the details regarding creating new folio Spring based modules using mod-spring-template at https://github.com/folio-org/mod-spring-template
 
 #### Sample module: simple-vertx
 
