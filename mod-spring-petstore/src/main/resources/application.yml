@@ -5,8 +5,8 @@ spring:
     name: mod-spring-petstore
   datasource:
     username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:postgres}
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_DATABASE:db}
+    password: ${DB_PASSWORD:root}
+    url: jdbc:postgresql://${DB_HOST:127.0.0.1}:${DB_PORT:5432}/${DB_DATABASE:db}
   sql:
     init:
       # to boot up application despite of any DB connection issues
@@ -22,8 +22,9 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQL10Dialect
         format_sql: true
-    show-sql: false
+    show-sql: true
   liquibase:
+    drop-first: false
     enabled: true
     change-log: classpath:db/changelog/changelog-master.xml
   jackson:

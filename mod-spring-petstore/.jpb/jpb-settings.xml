@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DatabaseMigrationSettings" mainChangeLogDir="" mainChangeLogName="" secondaryChangeLogDir="" secondaryChangeLogName="">
+    <database-infos>
+      <database-info>
+        <option name="enabled" value="true" />
+        <dbms-id>postgres</dbms-id>
+      </database-info>
+      <database-info>
+        <option name="enabled" value="true" />
+        <dbms-id>h2</dbms-id>
+      </database-info>
+    </database-infos>
+  </component>
+  <component name="JpaPluginProjectSettings">
+    <option name="entityNameTemplate" />
+    <option name="generateJpaOnGetter" value="true" />
+    <option name="generateSerialVersionUID" value="true" />
+    <option name="generateTypeOnEntity" value="true" />
+    <option name="useBuilderSetters" value="true" />
+    <option name="useLazyOnToOneAssociations" value="true" />
+  </component>
+</project>
