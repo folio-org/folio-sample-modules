@@ -254,7 +254,7 @@
         <version>${liquibase.version}</version>
         <configuration>
           <promptOnNonLocalDatabase>true</promptOnNonLocalDatabase>
-          <changeLogFile>${project.build.directory}/classes/changelog/db.changelog-master.xml</changeLogFile>
+          <changeLogFile>src/main/resources/db/changelog/changelog-master.xml</changeLogFile>
           <propertyFile>src/main/resources/liquibase.properties</propertyFile>
         </configuration>
       </plugin>
