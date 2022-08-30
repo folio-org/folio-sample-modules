@@ -1,59 +1,37 @@
 package org.folio.petstore.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.folio.petstore.domain.dto.Pet;
-import org.folio.petstore.rest.resource.PetsApi;
+import org.folio.petstore.domain.dto.PetDTO;
+import org.folio.petstore.domain.service.impl.PetServiceImpl;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
-@RestController
+@RestController("/api/v1")
 @RequiredArgsConstructor
-public class PetsController implements PetsApi {
+public class PetsController {
+  private PetServiceImpl petService;
 
-  private Map<Long, Pet> petStorage = new ConcurrentHashMap<>();
-
-  @Override
-  public ResponseEntity<Void> createPets() {
+  @PostMapping("/pets")
+  public ResponseEntity<Void> createPet(@RequestBody PetDTO petDTO) {
+    petService.createPet(petDTO);
     return ResponseEntity.ok().build();
   }
 
-  @Override
-  public ResponseEntity<List<Pet>> listPets(Integer limit) {
-    return ResponseEntity.ok(new ArrayList<>(petStorage.values()));
+  @GetMapping("/pets")
+  public ResponseEntity<List<PetDTO>> showPetsList() {
+    return ResponseEntity.ok(petService.listPetDTOs(10));
   }
 
-  @Override
-  public ResponseEntity<Pet> showPetById(String petId) {
-    return ResponseEntity.ok(petStorage.get(Long.valueOf(petId)));
+  @GetMapping("/pets/{petId}")
+  public ResponseEntity<PetDTO> getPetById(@PathVariable String petId) {
+    return ResponseEntity.ok(petService.getPetDTOById(petId));
   }
 
-  @PostConstruct
-  public void init() {
-    var pet = new Pet();
-    pet.setId(1L);
-    pet.setName("Doggy Dog");
-    pet.setTag("Lucky boy");
-
-    petStorage.put(pet.getId(), pet);
-
-    pet = new Pet();
-    pet.setId(2L);
-    pet.setName("Red Fox");
-    pet.setTag("Cunning foxy");
-
-    petStorage.put(pet.getId(), pet);
-
-    pet = new Pet();
-    pet.setId(3L);
-    pet.setName("Colorful Parrot");
-    pet.setTag("Rainbow bird");
-
-    petStorage.put(pet.getId(), pet);
+  @DeleteMapping("/pets/{petId}")
+  public ResponseEntity<Void> deletePetById(@PathVariable String petId) {
+    petService.deletePetById(petId);
+    return ResponseEntity.ok().build();
   }
 }
