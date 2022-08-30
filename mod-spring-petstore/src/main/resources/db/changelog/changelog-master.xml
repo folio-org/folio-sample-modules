@@ -4,37 +4,5 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-  <include file="changes/initial_schema.xml" relativeToChangelogFile="true"/>
-    <changeSet author="Nirmal_Shah (generated)" id="1661860407408-1">
-        <createTable tableName="pets">
-            <column name="id" type="INTEGER">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="pets_pkey"/>
-            </column>
-            <column name="name" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="tag" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="Nirmal_Shah (generated)" id="1661860407408-2">
-        <addUniqueConstraint columnNames="name" constraintName="pets_name_key" tableName="pets"/>
-    </changeSet>
-    <changeSet author="Nirmal_Shah (generated)" id="1661860496144-1">
-        <createTable tableName="pets">
-            <column name="id" type="INTEGER">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="pets_pkey"/>
-            </column>
-            <column name="name" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="tag" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-    </changeSet>
-    <changeSet author="Nirmal_Shah (generated)" id="1661860496144-2">
-        <addUniqueConstraint columnNames="name" constraintName="pets_name_key" tableName="pets"/>
-    </changeSet>
+  <include file="changes/v1.0.0/changelog-v1.0.0.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
