@@ -3,14 +3,17 @@ package org.folio.petstore.controller;
 import lombok.RequiredArgsConstructor;
 import org.folio.petstore.domain.dto.PetDTO;
 import org.folio.petstore.domain.service.impl.PetServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/api/v1")
+@RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/v1")
 public class PetsController {
+  @Autowired
   private PetServiceImpl petService;
 
   @PostMapping("/pets")
