@@ -7,6 +7,8 @@ import java.util.List;
 public interface PetService {
   void createPet(PetDTO petDTO);
 
+  PetDTO updatePet(PetDTO petDTO);
+
   List<PetDTO> listPetDTOs(Integer limit);
 
   PetDTO getPetDTOById(String petId);

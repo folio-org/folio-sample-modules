@@ -54,6 +54,27 @@ public class PetServiceTest {
   }
 
   @Test
+  public void shouldUpdatePet() {
+    // Given
+    PetDTO petDTO = new PetDTO();
+    petDTO.setId(1);
+    petDTO.setName("Fluffy");
+    petDTO.setTag("husky");
+
+    Pet pet = new Pet(1, "Fluffy", "husky");
+
+    // When
+    when(petRepository.findById(1L)).thenReturn(Optional.of(pet));
+    when(petRepository.save(pet)).thenReturn(pet);
+    when(mapper.toPetEntity(petDTO)).thenReturn(pet);
+    when(mapper.toPetDTO(pet)).thenReturn(petDTO);
+
+    // Then
+    assertEquals(petDTO, petService.updatePet(petDTO));
+    verify(petRepository, times(1)).save(pet);
+  }
+
+  @Test
   public void shouldGetPetList() {
     // Given
     List<Pet> pet = new ArrayList<>();

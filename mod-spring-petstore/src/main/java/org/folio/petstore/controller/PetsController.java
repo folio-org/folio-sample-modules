@@ -22,6 +22,11 @@ public class PetsController {
     return ResponseEntity.ok().build();
   }
 
+  @PutMapping("/pets")
+  public ResponseEntity<PetDTO> updatePet(@RequestBody PetDTO petDTO) {
+    return ResponseEntity.ok(petService.updatePet(petDTO));
+  }
+
   @GetMapping("/pets")
   public ResponseEntity<List<PetDTO>> showPetsList() {
     return ResponseEntity.ok(petService.listPetDTOs(10));
