@@ -13,8 +13,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1")
 public class PetsController {
-  @Autowired
-  private PetServiceImpl petService;
+
+  private final PetServiceImpl petService;
 
   @PostMapping("/pets")
   public ResponseEntity<Void> createPet(@RequestBody PetDTO petDTO) {
