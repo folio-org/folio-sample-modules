@@ -6,9 +6,11 @@ import org.folio.petstore.domain.service.PetService;
 import org.folio.petstore.mapper.PetMapper;
 import org.folio.petstore.repository.PetRepository;
 import org.folio.spring.exception.NotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -17,12 +19,14 @@ public class PetServiceImpl implements PetService {
 
   private final PetMapper mapper;
 
+  @Autowired
   public PetServiceImpl(PetRepository petRepository, PetMapper mapper) {
     this.petRepository = petRepository;
     this.mapper = mapper;
   }
 
   @Override
+  @Transactional
   public void createPet(PetDTO petDTO) {
     Pet pet = mapper.toPetEntity(petDTO);
     petRepository.save(pet);
@@ -32,7 +36,7 @@ public class PetServiceImpl implements PetService {
   public List<PetDTO> listPetDTOs(Integer limit) {
     Pageable pageable = Pageable.ofSize(limit);
     List<PetDTO> petDTOList = mapper.toPetDTOList(petRepository.findAll(pageable));
-    return null;
+    return petDTOList;
   }
 
   @Override
@@ -41,7 +45,13 @@ public class PetServiceImpl implements PetService {
   }
 
   @Override
+  @Transactional
   public void deletePetById(String petId) {
+    if (petRepository.existsById(Long.valueOf(petId))) {
       petRepository.deleteById(Long.valueOf(petId));
+    }
+    else {
+      throw new NotFoundException("Pet not found");
+    }
   }
 }

@@ -1,14 +1,18 @@
 package org.folio.petstore.domain.entity;
 
+import lombok.AllArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "pets")
+@AllArgsConstructor
 public class Pet {
   @Id
-  @GeneratedValue
+  @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(updatable = false)
   private long id;
 
