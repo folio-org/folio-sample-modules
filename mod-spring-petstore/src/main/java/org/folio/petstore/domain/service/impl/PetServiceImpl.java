@@ -33,6 +33,16 @@ public class PetServiceImpl implements PetService {
   }
 
   @Override
+  @Transactional
+  public PetDTO updatePet(PetDTO petDTO) {
+    Pet pet = petRepository.findById(petDTO.getId()).orElseThrow(()->new NotFoundException("Pet not found"));
+    pet.setName(petDTO.getName());
+    pet.setTag(petDTO.getTag());
+    pet = petRepository.save(mapper.toPetEntity(petDTO));
+    return mapper.toPetDTO(pet);
+  }
+
+  @Override
   public List<PetDTO> listPetDTOs(Integer limit) {
     Pageable pageable = Pageable.ofSize(limit);
     List<PetDTO> petDTOList = mapper.toPetDTOList(petRepository.findAll(pageable));

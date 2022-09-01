@@ -1,6 +1,7 @@
 package org.folio.petstore.domain.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "pets")
+@Data
 @AllArgsConstructor
 public class Pet {
   @Id
