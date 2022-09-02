@@ -2,6 +2,7 @@ package org.folio.petstore.domain.service.impl;
 
 import org.folio.petstore.domain.dto.PetDTO;
 import org.folio.petstore.domain.entity.Pet;
+import org.folio.petstore.domain.exception.EntityNotFoundException;
 import org.folio.petstore.domain.service.PetService;
 import org.folio.petstore.mapper.PetMapper;
 import org.folio.petstore.repository.PetRepository;
@@ -35,7 +36,7 @@ public class PetServiceImpl implements PetService {
   @Override
   @Transactional
   public PetDTO updatePet(PetDTO petDTO) {
-    Pet pet = petRepository.findById(petDTO.getId()).orElseThrow(()->new NotFoundException("Pet not found"));
+    Pet pet = petRepository.findById(petDTO.getId()).orElseThrow(()->new EntityNotFoundException("Pet not found"));
     pet.setName(petDTO.getName());
     pet.setTag(petDTO.getTag());
     pet = petRepository.save(mapper.toPetEntity(petDTO));
@@ -51,7 +52,7 @@ public class PetServiceImpl implements PetService {
 
   @Override
   public PetDTO getPetDTOById(String petId) {
-    return mapper.toPetDTO(petRepository.findById(Long.valueOf(petId)).orElseThrow(()->new NotFoundException("Pet not found")));
+    return mapper.toPetDTO(petRepository.findById(Long.valueOf(petId)).orElseThrow(()->new EntityNotFoundException("Pet not found")));
   }
 
   @Override
@@ -61,7 +62,7 @@ public class PetServiceImpl implements PetService {
       petRepository.deleteById(Long.valueOf(petId));
     }
     else {
-      throw new NotFoundException("Pet not found");
+      throw new EntityNotFoundException("Pet not found");
     }
   }
 }
