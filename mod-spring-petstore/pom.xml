@@ -248,16 +248,6 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.liquibase</groupId>
-        <artifactId>liquibase-maven-plugin</artifactId>
-        <version>${liquibase.version}</version>
-        <configuration>
-          <promptOnNonLocalDatabase>true</promptOnNonLocalDatabase>
-          <changeLogFile>src/main/resources/db/changelog/changelog-master.xml</changeLogFile>
-          <propertyFile>src/main/resources/liquibase.properties</propertyFile>
-        </configuration>
-      </plugin>
       <!--
       <plugin>
         <groupId>org.openapitools</groupId>
