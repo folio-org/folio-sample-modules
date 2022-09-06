@@ -2,7 +2,7 @@ package org.folio.petstore.domain.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,6 +12,7 @@ import javax.validation.constraints.Size;
 @Table(name = "pets")
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class Pet {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)

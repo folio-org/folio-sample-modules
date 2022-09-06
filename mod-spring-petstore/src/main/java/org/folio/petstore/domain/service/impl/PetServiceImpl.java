@@ -6,7 +6,6 @@ import org.folio.petstore.domain.exception.EntityNotFoundException;
 import org.folio.petstore.domain.service.PetService;
 import org.folio.petstore.mapper.PetMapper;
 import org.folio.petstore.repository.PetRepository;
-import org.folio.spring.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
