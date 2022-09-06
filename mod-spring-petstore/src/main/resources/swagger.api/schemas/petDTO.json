@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "Pet Entity DTO",
+  "type": "object",
+  "properties": {
+    "id" : {
+      "description": "Pet id",
+      "type": "integer"
+    },
+    "name" : {
+      "description": "Pet name",
+      "type": "string"
+    },
+    "tag" : {
+      "description": "Pet tag",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "tag"
+  ]
+}

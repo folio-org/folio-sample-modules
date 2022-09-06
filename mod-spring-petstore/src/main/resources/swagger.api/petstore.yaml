@@ -38,12 +38,44 @@ paths:
                 $ref: "#/components/schemas/Error"
     post:
       summary: Create a pet
-      operationId: createPets
+      operationId: createPet
       tags:
         - pets
+      requestBody:
+        description: Pet object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PetDTO'
       responses:
         '201':
           description: Null response
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      summary: Update a pet
+      operationId: updatePet
+      tags:
+        - pets
+      requestBody:
+        description: Pet object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PetDTO'
+      responses:
+        '201':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PetDTO"
         default:
           description: unexpected error
           content:
@@ -69,16 +101,38 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Pet"
+                $ref: "#/components/schemas/PetDTO"
         default:
           description: unexpected error
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+    delete:
+      summary: Delete pet by id
+      operationId: deletePetById
+      tags:
+        - pets
+      parameters:
+        - name: petId
+          in: path
+          required: true
+          description: The id of the pet to delete
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Null response
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
 components:
   schemas:
-    Pet:
+    PetDTO:
       type: object
       required:
         - id
@@ -94,7 +148,7 @@ components:
     Pets:
       type: array
       items:
-        $ref: "#/components/schemas/Pet"
+        $ref: "#/components/schemas/PetDTO"
     Error:
       type: object
       required:

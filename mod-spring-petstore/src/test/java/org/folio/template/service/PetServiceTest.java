@@ -57,7 +57,7 @@ public class PetServiceTest {
   public void shouldUpdatePet() {
     // Given
     PetDTO petDTO = new PetDTO();
-    petDTO.setId(1);
+    petDTO.setId(1L);
     petDTO.setName("Fluffy");
     petDTO.setTag("husky");
 

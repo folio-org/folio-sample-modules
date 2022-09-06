@@ -236,7 +236,7 @@
               <generateModelDocumentation>true</generateModelDocumentation>
               <skipIfSpecIsUnchanged>true</skipIfSpecIsUnchanged>
               <importMappings>
-                <importMapping>errors=org.folio.tenant.domain.dto.Errors</importMapping>
+                <importMapping>errors=org.folio.tenant.domain.dto.ErrorDTO</importMapping>
               </importMappings>
               <configOptions>
                 <dateLibrary>java8</dateLibrary>
