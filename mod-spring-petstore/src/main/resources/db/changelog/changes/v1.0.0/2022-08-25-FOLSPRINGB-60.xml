@@ -4,5 +4,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-  <include file="changes/v1.0.0/2022-08-25-FOLSPRINGB-60.xml" relativeToChangelogFile="true"/>
+    <changeSet id="pets-table" author="nirmalr-shah">
+        <sqlFile path="sql/pets.sql" relativeToChangelogFile="true"/>
+    </changeSet>
 </databaseChangeLog>
