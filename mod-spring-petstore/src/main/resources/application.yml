@@ -66,7 +66,10 @@ application:
       - name: spring-petStore
         numPartitions: ${KAFKA_CONTIBUTORS_TOPIC_PARTITIONS:2}
         replicationFactor: ${KAFKA_CONTIBUTORS_TOPIC_REPLICATION_FACTOR:1}
-        groupId: spring-petStore-group
+    listener:
+      events:
+        concurrency: ${KAFKA_EVENTS_CONCURRENCY:2}
+        group-id: spring-petStore-group
 
 
   #  endpoint:

@@ -23,14 +23,11 @@ import static org.apache.kafka.clients.producer.ProducerConfig.VALUE_SERIALIZER_
 @Configuration
 @RequiredArgsConstructor
 public class KafkaConfiguration {
-
-  @Value("${application.kafka.topics[0].groupId}")
-  private String groupId;
   private final KafkaProperties kafkaProperties;
 
   @Bean
   public ProducerFactory<String, PetEvent> producerFactory() {
-    Map<String, Object> configProps = new HashMap<>(kafkaProperties.buildProducerProperties());
+    var configProps = new HashMap<>(kafkaProperties.buildProducerProperties());
     configProps.put(KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
     configProps.put(VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
     return new DefaultKafkaProducerFactory<>(configProps);
@@ -47,7 +44,6 @@ public class KafkaConfiguration {
     Map<String, Object> config = new HashMap<>(kafkaProperties.buildConsumerProperties());
     config.put(KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
     config.put(VALUE_DESERIALIZER_CLASS_CONFIG, deserializer);
-    config.put(ConsumerConfig.GROUP_ID_CONFIG,groupId);
     return new DefaultKafkaConsumerFactory<>(config, new StringDeserializer(), deserializer);
   }
 

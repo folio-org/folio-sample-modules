@@ -12,7 +12,8 @@ public class KafkaMessageListner {
 
   @KafkaListener(
     topics = "${application.kafka.topics[0].name}",
-    groupId = "${application.kafka.topics[0].groupId}",
+    concurrency = "#{petKafkaProperties.listener['events'].concurrency}",
+    groupId = "#{petKafkaProperties.listener['events'].groupId}",
     containerFactory = "kafkaListenerContainerFactory"
   )
   public void handlePetEvents(ConsumerRecord<String, PetEvent> consumerRecord){
