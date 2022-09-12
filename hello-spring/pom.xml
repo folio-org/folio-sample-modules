@@ -10,7 +10,7 @@
     <!-- lookup parent from repository -->
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.6.2</version>
+    <version>2.7.3</version>
     <relativePath />
   </parent>
 
@@ -29,8 +29,8 @@
 
   <properties>
     <java.version>11</java.version>
-    <folio-spring-base.version>3.0.0</folio-spring-base.version>
-    <openapi-generator.version>5.3.0</openapi-generator.version>
+    <folio-spring-base.version>4.1.2</folio-spring-base.version>
+    <openapi-generator.version>5.4.0</openapi-generator.version>
   </properties>
 
   <dependencies>
@@ -39,23 +39,6 @@
       <groupId>org.folio</groupId>
       <artifactId>folio-spring-base</artifactId>
       <version>${folio-spring-base.version}</version>
-    </dependency>
-
-    <!-- Currently only required because Spring looks for a database on startup, despite no actual use -->
-    <dependency>
-      <groupId>org.postgresql</groupId>
-      <artifactId>postgresql</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.openapitools</groupId>
-      <artifactId>jackson-databind-nullable</artifactId>
-      <version>0.2.2</version>
-    </dependency>
-    <dependency>
-      <groupId>io.springfox</groupId>
-      <artifactId>springfox-swagger2</artifactId>
-      <version>2.9.2</version>
     </dependency>
   </dependencies>
 
