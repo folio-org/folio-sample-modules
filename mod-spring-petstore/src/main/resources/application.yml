@@ -6,7 +6,7 @@ spring:
   datasource:
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:postgres}
-    url: jdbc:postgresql://${DB_HOST:127.0.0.1}:${DB_PORT:5432}/${DB_DATABASE:db}
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_DATABASE:db}
   sql:
     init:
       # to boot up application despite of any DB connection issues
@@ -22,7 +22,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQL10Dialect
         format_sql: true
-    show-sql: true
+    show-sql: false
   liquibase:
     drop-first: false
     enabled: true
