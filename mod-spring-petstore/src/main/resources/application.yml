@@ -24,7 +24,6 @@ spring:
         format_sql: true
     show-sql: false
   liquibase:
-    drop-first: false
     enabled: true
     change-log: classpath:db/changelog/changelog-master.xml
   jackson:
