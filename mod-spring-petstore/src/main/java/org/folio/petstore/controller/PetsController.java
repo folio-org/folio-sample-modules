@@ -1,59 +1,58 @@
 package org.folio.petstore.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.folio.petstore.domain.dto.Pet;
+import org.folio.petstore.domain.dto.PetDTO;
 import org.folio.petstore.rest.resource.PetsApi;
+import org.folio.petstore.domain.service.impl.PetServiceImpl;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/v1")
 public class PetsController implements PetsApi {
 
-  private Map<Long, Pet> petStorage = new ConcurrentHashMap<>();
+  private final PetServiceImpl petService;
 
   @Override
-  public ResponseEntity<Void> createPets() {
+  @PostMapping("/pets")
+  public ResponseEntity<Void> createPet(@RequestBody PetDTO petDTO) {
+    petService.createPet(petDTO);
     return ResponseEntity.ok().build();
   }
 
   @Override
-  public ResponseEntity<List<Pet>> listPets(Integer limit) {
-    return ResponseEntity.ok(new ArrayList<>(petStorage.values()));
+  @PutMapping("/pets")
+  public ResponseEntity<PetDTO> updatePet(@RequestBody PetDTO petDTO) {
+    return ResponseEntity.ok(petService.updatePet(petDTO));
   }
 
   @Override
-  public ResponseEntity<Pet> showPetById(String petId) {
-    return ResponseEntity.ok(petStorage.get(Long.valueOf(petId)));
+  @GetMapping("/pets")
+  public ResponseEntity<List<PetDTO>> listPets(@RequestParam Integer limit) {
+    return ResponseEntity.ok(petService.listPetDTOs(limit));
   }
 
-  @PostConstruct
-  public void init() {
-    var pet = new Pet();
-    pet.setId(1L);
-    pet.setName("Doggy Dog");
-    pet.setTag("Lucky boy");
+  @Override
+  @GetMapping("/pets/{petId}")
+  public ResponseEntity<PetDTO> showPetById(@PathVariable String petId) {
+    return ResponseEntity.ok(petService.getPetDTOById(petId));
+  }
 
-    petStorage.put(pet.getId(), pet);
-
-    pet = new Pet();
-    pet.setId(2L);
-    pet.setName("Red Fox");
-    pet.setTag("Cunning foxy");
-
-    petStorage.put(pet.getId(), pet);
-
-    pet = new Pet();
-    pet.setId(3L);
-    pet.setName("Colorful Parrot");
-    pet.setTag("Rainbow bird");
-
-    petStorage.put(pet.getId(), pet);
+  @Override
+  @DeleteMapping("/pets/{petId}")
+  public ResponseEntity<Void> deletePetById(@PathVariable String petId) {
+    petService.deletePetById(petId);
+    return ResponseEntity.ok().build();
   }
 }
