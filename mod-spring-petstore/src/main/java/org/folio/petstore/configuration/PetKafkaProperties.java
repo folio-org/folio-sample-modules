@@ -37,5 +37,4 @@ public class PetKafkaProperties {
 
     private Short replicationFactor;
   }
-
 }
