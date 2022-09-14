@@ -24,7 +24,7 @@
 
   <properties>
     <openapi.input.file>${project.basedir}/src/main/resources/swagger.api/petstore.yaml</openapi.input.file>
-    <java.version>11</java.version>
+    <java.version>17</java.version>
     <folio-spring-base.version>4.1.0</folio-spring-base.version>
     <openapi-generator.version>5.4.0</openapi-generator.version>
     <mapstruct.version>1.5.2.Final</mapstruct.version>
