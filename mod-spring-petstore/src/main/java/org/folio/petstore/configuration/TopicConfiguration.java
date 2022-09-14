@@ -1,5 +1,6 @@
 package org.folio.petstore.configuration;
 
+import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -8,9 +9,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.TopicBuilder;
 
 @Configuration
+@RequiredArgsConstructor
 public class TopicConfiguration {
-  @Autowired
-  PetKafkaProperties kafkaProperties;
+
+  private final PetKafkaProperties kafkaProperties;
 
   @Bean
   public NewTopic generalTopic() {
