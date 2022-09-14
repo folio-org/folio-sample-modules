@@ -4,4 +4,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
+    <changeSet id="pets-table" author="nirmalr-shah">
+        <sqlFile path="sql/pets.sql" relativeToChangelogFile="true"/>
+    </changeSet>
 </databaseChangeLog>
