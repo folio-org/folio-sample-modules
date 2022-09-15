@@ -1,5 +1,9 @@
 package org.folio.template.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.folio.petstore.client.CreateUserClient;
+import org.folio.petstore.client.UserClient;
 import org.folio.petstore.domain.dto.PetDTO;
 import org.folio.petstore.domain.entity.Pet;
 import org.folio.petstore.domain.service.impl.PetServiceImpl;
@@ -16,12 +20,16 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.doNothing;
 
 @ExtendWith(MockitoExtension.class)
 public class PetServiceTest {
@@ -30,6 +38,12 @@ public class PetServiceTest {
 
   @Mock
   private PetMapper mapper;
+
+  @Mock
+  private UserClient userClient;
+
+  @Mock
+  private CreateUserClient createUserClient;
 
   @InjectMocks
   private PetServiceImpl petService;
@@ -131,5 +145,38 @@ public class PetServiceTest {
     // Then
     petService.deletePetById("1");
     verify(petRepository, times(1)).deleteById(1L);
+  }
+
+  @Test
+  public void shouldGetRandomUser() {
+    // Given
+    LinkedHashMap<String,String> data = new LinkedHashMap<>();
+    data.put("email", "james@bond.com");
+    ObjectMapper objectMapper = new ObjectMapper();
+    JsonNode user = objectMapper.convertValue(data, JsonNode.class);
+
+    // When
+    when(userClient.getRandomUser()).thenReturn(user);
+
+    // Then
+    assertEquals(user, petService.getUser());
+    verify(userClient, times(1)).getRandomUser();
+  }
+
+  @Test
+  public void shouldCreateUser() {
+    // Given
+    LinkedHashMap<String,String> data = new LinkedHashMap<>();
+    data.put("name", "morpheus");
+    data.put("job", "leader");
+    ObjectMapper objectMapper = new ObjectMapper();
+    JsonNode user = objectMapper.convertValue(data, JsonNode.class);
+
+    // When
+    when(createUserClient.createUser(user)).thenReturn(user);
+
+    // Then
+    assertEquals(user, petService.createUser(user));
+    verify(createUserClient, times(1)).createUser(user);
   }
 }

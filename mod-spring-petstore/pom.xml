@@ -24,6 +24,7 @@
 
   <properties>
     <openapi.input.file>${project.basedir}/src/main/resources/swagger.api/petstore.yaml</openapi.input.file>
+    <openapi.external.file>${project.basedir}/src/main/resources/swagger.api/petstore-external.yaml</openapi.external.file>
     <java.version>17</java.version>
     <folio-spring-base.version>4.1.0</folio-spring-base.version>
     <openapi-generator.version>5.4.0</openapi-generator.version>
@@ -229,6 +230,36 @@
             </goals>
             <configuration>
               <inputSpec>${openapi.input.file}</inputSpec>
+              <output>${project.build.directory}/generated-sources</output>
+              <modelPackage>${project.groupId}.petstore.domain.dto</modelPackage>
+              <apiPackage>${project.groupId}.petstore.rest.resource</apiPackage>
+              <generatorName>spring</generatorName>
+              <generateApis>true</generateApis>
+              <generateApiTests>true</generateApiTests>
+              <generateApiDocumentation>true</generateApiDocumentation>
+              <generateModels>true</generateModels>
+              <generateModelTests>true</generateModelTests>
+              <generateSupportingFiles>true</generateSupportingFiles>
+              <generateModelDocumentation>true</generateModelDocumentation>
+              <skipIfSpecIsUnchanged>true</skipIfSpecIsUnchanged>
+              <importMappings>
+                <importMapping>errors=org.folio.tenant.domain.dto.ErrorDTO</importMapping>
+              </importMappings>
+              <configOptions>
+                <dateLibrary>java8</dateLibrary>
+                <interfaceOnly>true</interfaceOnly>
+                <useTags>true</useTags>
+                <library>spring-boot</library>
+              </configOptions>
+            </configuration>
+          </execution>
+          <execution>
+            <id>External API generation</id>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <inputSpec>${openapi.external.file}</inputSpec>
               <output>${project.build.directory}/generated-sources</output>
               <modelPackage>${project.groupId}.petstore.domain.dto</modelPackage>
               <apiPackage>${project.groupId}.petstore.rest.resource</apiPackage>

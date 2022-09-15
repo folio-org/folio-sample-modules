@@ -1,0 +1,68 @@
+openapi: 3.0.3
+info:
+  title: Petstore External API
+  description: Petstore Feign Client API
+  version: 1.0.0
+paths:
+  /random-user:
+    get:
+      summary: Get a random user
+      operationId: getUser
+      tags:
+        - external
+      responses:
+        '200':
+          description: A user JSON object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/JSON"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /create-user:
+    post:
+      summary: Create a new user
+      operationId: createUser
+      tags:
+        - external
+      requestBody:
+        description: Text object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JSON'
+      responses:
+        '200':
+          description: A text JSON object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/JSON"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    JSON:
+      type: object
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+
