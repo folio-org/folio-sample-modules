@@ -93,6 +93,12 @@
       <scope>provided</scope>
     </dependency>
 
+    <dependency>
+      <groupId>io.micrometer</groupId>
+      <artifactId>micrometer-registry-prometheus</artifactId>
+    </dependency>
+
+
     <!-- Test dependencies -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -279,69 +285,6 @@
           </execution>
         </executions>
       </plugin>
-      <!--
-      <plugin>
-        <groupId>org.openapitools</groupId>
-        <artifactId>openapi-generator-maven-plugin</artifactId>
-        <version>${openapi-generator.version}</version>
-        <executions>
-          <execution>
-            <id>validator-registry</id>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-            <configuration>
-              <inputSpec>${openapi.input.file}</inputSpec>
-              <output>${project.build.directory}/generated-sources</output>
-              <generatorName>spring</generatorName>
-              <modelPackage>${project.groupId}.pv.domain.dto</modelPackage>
-              <apiPackage>${project.groupId}.pv.rest.resource</apiPackage>
-              <generateApis>true</generateApis>
-              <generateApiTests>true</generateApiTests>
-              <generateApiDocumentation>true</generateApiDocumentation>
-              <generateModels>true</generateModels>
-              <modelsToGenerate>error,errors,parameter,metadata,validationRule,validationRuleCollection</modelsToGenerate>
-              <generateModelTests>false</generateModelTests>
-              <generateSupportingFiles>true</generateSupportingFiles>
-              <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
-              <generateModelDocumentation>true</generateModelDocumentation>
-              <configOptions>
-                <java8>true</java8>
-                <dateLibrary>java</dateLibrary>
-                <interfaceOnly>true</interfaceOnly>
-              </configOptions>
-
-            </configuration>
-          </execution>
-          <execution>
-            <id>validator</id>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-            <configuration>
-              <inputSpec>${password-validator.yaml.file}</inputSpec>
-              <output>${project.build.directory}/generated-sources</output>
-              <generatorName>spring</generatorName>
-              <modelPackage>${project.groupId}.pv.domain.dto</modelPackage>
-              <apiPackage>${project.groupId}.pv.rest.resource</apiPackage>
-              <generateApis>true</generateApis>
-              <generateApiTests>true</generateApiTests>
-              <generateApiDocumentation>true</generateApiDocumentation>
-              <generateModels>true</generateModels>
-              <modelsToGenerate>password,validation_result</modelsToGenerate>
-              <generateModelTests>false</generateModelTests>
-              <generateSupportingFiles>false</generateSupportingFiles>
-              <generateModelDocumentation>true</generateModelDocumentation>
-              <configOptions>
-                <java8>true</java8>
-                <dateLibrary>java</dateLibrary>
-                <interfaceOnly>true</interfaceOnly>
-              </configOptions>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
--->
     </plugins>
   </build>
 
