@@ -1,5 +1,8 @@
 package org.folio.petstore.domain.service.impl;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import org.folio.petstore.client.CreateUserClient;
+import org.folio.petstore.client.UserClient;
 import org.folio.petstore.domain.dto.PetDTO;
 import org.folio.petstore.domain.entity.Pet;
 import org.folio.petstore.domain.exception.EntityNotFoundException;
@@ -19,10 +22,16 @@ public class PetServiceImpl implements PetService {
 
   private final PetMapper mapper;
 
+  private final UserClient userClient;
+
+  private final CreateUserClient createUserClient;
+
   @Autowired
-  public PetServiceImpl(PetRepository petRepository, PetMapper mapper) {
+  public PetServiceImpl(PetRepository petRepository, PetMapper mapper, UserClient userClient, CreateUserClient createUserClient) {
     this.petRepository = petRepository;
     this.mapper = mapper;
+    this.userClient = userClient;
+    this.createUserClient = createUserClient;
   }
 
   @Override
@@ -63,5 +72,15 @@ public class PetServiceImpl implements PetService {
     else {
       throw new EntityNotFoundException("Pet not found");
     }
+  }
+
+  @Override
+  public JsonNode getUser() {
+    return userClient.getRandomUser();
+  }
+
+  @Override
+  public JsonNode createUser(Object user) {
+    return createUserClient.createUser(user);
   }
 }

@@ -24,6 +24,7 @@
 
   <properties>
     <openapi.input.file>${project.basedir}/src/main/resources/swagger.api/petstore.yaml</openapi.input.file>
+    <openapi.external.file>${project.basedir}/src/main/resources/swagger.api/petstore-external.yaml</openapi.external.file>
     <java.version>17</java.version>
     <folio-spring-base.version>4.1.0</folio-spring-base.version>
     <openapi-generator.version>5.4.0</openapi-generator.version>
@@ -106,6 +107,12 @@
       <version>${mapstruct.version}</version>
       <scope>provided</scope>
     </dependency>
+
+    <dependency>
+      <groupId>io.micrometer</groupId>
+      <artifactId>micrometer-registry-prometheus</artifactId>
+    </dependency>
+
 
     <!-- Test dependencies -->
     <dependency>
@@ -261,71 +268,38 @@
               </configOptions>
             </configuration>
           </execution>
-        </executions>
-      </plugin>
-      <!--
-      <plugin>
-        <groupId>org.openapitools</groupId>
-        <artifactId>openapi-generator-maven-plugin</artifactId>
-        <version>${openapi-generator.version}</version>
-        <executions>
           <execution>
-            <id>validator-registry</id>
+            <id>External API generation</id>
             <goals>
               <goal>generate</goal>
             </goals>
             <configuration>
-              <inputSpec>${openapi.input.file}</inputSpec>
+              <inputSpec>${openapi.external.file}</inputSpec>
               <output>${project.build.directory}/generated-sources</output>
+              <modelPackage>${project.groupId}.petstore.domain.dto</modelPackage>
+              <apiPackage>${project.groupId}.petstore.rest.resource</apiPackage>
               <generatorName>spring</generatorName>
-              <modelPackage>${project.groupId}.pv.domain.dto</modelPackage>
-              <apiPackage>${project.groupId}.pv.rest.resource</apiPackage>
               <generateApis>true</generateApis>
               <generateApiTests>true</generateApiTests>
               <generateApiDocumentation>true</generateApiDocumentation>
               <generateModels>true</generateModels>
-              <modelsToGenerate>error,errors,parameter,metadata,validationRule,validationRuleCollection</modelsToGenerate>
-              <generateModelTests>false</generateModelTests>
+              <generateModelTests>true</generateModelTests>
               <generateSupportingFiles>true</generateSupportingFiles>
-              <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
               <generateModelDocumentation>true</generateModelDocumentation>
+              <skipIfSpecIsUnchanged>true</skipIfSpecIsUnchanged>
+              <importMappings>
+                <importMapping>errors=org.folio.tenant.domain.dto.ErrorDTO</importMapping>
+              </importMappings>
               <configOptions>
-                <java8>true</java8>
-                <dateLibrary>java</dateLibrary>
+                <dateLibrary>java8</dateLibrary>
                 <interfaceOnly>true</interfaceOnly>
-              </configOptions>
-
-            </configuration>
-          </execution>
-          <execution>
-            <id>validator</id>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-            <configuration>
-              <inputSpec>${password-validator.yaml.file}</inputSpec>
-              <output>${project.build.directory}/generated-sources</output>
-              <generatorName>spring</generatorName>
-              <modelPackage>${project.groupId}.pv.domain.dto</modelPackage>
-              <apiPackage>${project.groupId}.pv.rest.resource</apiPackage>
-              <generateApis>true</generateApis>
-              <generateApiTests>true</generateApiTests>
-              <generateApiDocumentation>true</generateApiDocumentation>
-              <generateModels>true</generateModels>
-              <modelsToGenerate>password,validation_result</modelsToGenerate>
-              <generateModelTests>false</generateModelTests>
-              <generateSupportingFiles>false</generateSupportingFiles>
-              <generateModelDocumentation>true</generateModelDocumentation>
-              <configOptions>
-                <java8>true</java8>
-                <dateLibrary>java</dateLibrary>
-                <interfaceOnly>true</interfaceOnly>
+                <useTags>true</useTags>
+                <library>spring-boot</library>
               </configOptions>
             </configuration>
           </execution>
         </executions>
       </plugin>
--->
     </plugins>
   </build>
 

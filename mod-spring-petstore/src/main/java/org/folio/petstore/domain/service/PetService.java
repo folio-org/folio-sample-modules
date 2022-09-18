@@ -1,5 +1,6 @@
 package org.folio.petstore.domain.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import org.folio.petstore.domain.dto.PetDTO;
 
 import java.util.List;
@@ -14,4 +15,8 @@ public interface PetService {
   PetDTO getPetDTOById(String petId);
 
   void deletePetById(String petId);
+
+  JsonNode getUser();
+
+  JsonNode createUser(Object user);
 }

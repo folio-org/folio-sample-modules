@@ -58,7 +58,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: info,health,env,httptrace
+        include: info,health,env,httptrace,metrics,prometheus
       base-path: /admin
 application:
   kafka:
