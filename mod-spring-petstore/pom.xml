@@ -29,6 +29,7 @@
     <folio-spring-base.version>4.1.0</folio-spring-base.version>
     <openapi-generator.version>5.4.0</openapi-generator.version>
     <mapstruct.version>1.5.2.Final</mapstruct.version>
+    <spring-kafka.version>2.8.6</spring-kafka.version>
     <!-- test dependencies -->
     <wiremock.version>2.33.2</wiremock.version>
     <testcontainers.version>1.17.2</testcontainers.version>
@@ -50,6 +51,20 @@
           <artifactId>spring-boot-starter-logging</artifactId>
         </exclusion>
       </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.kafka</groupId>
+      <artifactId>spring-kafka</artifactId>
+      <version>${spring-kafka.version}</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>kafka</artifactId>
+      <version>${testcontainers.version}</version>
+      <scope>test</scope>
     </dependency>
 
     <dependency>

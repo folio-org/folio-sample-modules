@@ -7,6 +7,23 @@ spring:
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:postgres}
     url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_DATABASE:db}
+  kafka:
+    bootstrap-servers: ${KAFKA_HOST:localhost}:${KAFKA_PORT:9092}
+    consumer:
+      max-poll-records: 50
+    security:
+      protocol: ${KAFKA_SECURITY_PROTOCOL:PLAINTEXT}
+    ssl:
+      key-store-password: ${KAFKA_SSL_KEYSTORE_PASSWORD:}
+      key-store-location: ${KAFKA_SSL_KEYSTORE_LOCATION:}
+      trust-store-password: ${KAFKA_SSL_TRUSTSTORE_PASSWORD:}
+      trust-store-location: ${KAFKA_SSL_TRUSTSTORE_LOCATION:}
+    producer:
+      acks: all
+      properties:
+        enable.idempotence: true
+        max.in.flight.requests.per.connection: 5
+        retries: 5
   sql:
     init:
       # to boot up application despite of any DB connection issues
@@ -43,6 +60,18 @@ management:
       exposure:
         include: info,health,env,httptrace,metrics,prometheus
       base-path: /admin
+application:
+  kafka:
+    topics:
+      - name: spring-petStore
+        numPartitions: ${KAFKA_CONTIBUTORS_TOPIC_PARTITIONS:2}
+        replicationFactor: ${KAFKA_CONTIBUTORS_TOPIC_REPLICATION_FACTOR:1}
+    listener:
+      events:
+        concurrency: ${KAFKA_EVENTS_CONCURRENCY:2}
+        group-id: spring-petStore-group
+
+
   #  endpoint:
   #    health:
   #      show-details: always

@@ -2,6 +2,7 @@ package org.folio.petstore.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.folio.petstore.domain.dto.PetDTO;
+import org.folio.petstore.domain.kafka.KafkaMessageProducer;
 import org.folio.petstore.rest.resource.PetsApi;
 import org.folio.petstore.domain.service.impl.PetServiceImpl;
 import org.springframework.http.ResponseEntity;
@@ -24,10 +25,13 @@ public class PetsController implements PetsApi {
 
   private final PetServiceImpl petService;
 
+  private final KafkaMessageProducer kafkaMessageProducer;
+
   @Override
   @PostMapping("/pets")
   public ResponseEntity<Void> createPet(@RequestBody PetDTO petDTO) {
     petService.createPet(petDTO);
+    kafkaMessageProducer.producePet(petDTO);
     return ResponseEntity.ok().build();
   }
 
