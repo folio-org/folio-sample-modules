@@ -1,0 +1,6 @@
+type: object
+properties:
+  sum:
+    type: integer
+    description: The calculated sum
+    example: 6

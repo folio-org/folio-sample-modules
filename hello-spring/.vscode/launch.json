@@ -1,0 +1,14 @@
+{
+  // Copy and modify the provided .env.sample to your needs
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Run API Server",
+      "request": "launch",
+      "mainClass": "org.folio.hello.HelloApplication",
+      "projectName": "folio-hello-spring",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}

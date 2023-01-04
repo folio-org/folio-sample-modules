@@ -1,0 +1,9 @@
+type: object
+properties:
+  a:
+    type: integer
+  b:
+    type: integer
+example:
+  a: 3
+  b: 4

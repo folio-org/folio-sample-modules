@@ -43,3 +43,6 @@ buildNumber.properties
 .factorypath
 
 .settings/
+
+# Vscode
+.vscode

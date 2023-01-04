@@ -51,3 +51,40 @@ paths:
                       - a
                       - b
                       - c
+  /sum/body:
+    get:
+      summary: Get sum of two integers with a JSON blob
+      requestBody:
+        description: Two integers provided in a JSON blob
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/InputIntegers.yaml"
+      responses:
+        "200":
+          description: The sum of two provided integers
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/SumResponse.yaml"
+  /sum/query:
+    get:
+      summary: Get sum of two integers with query parameters
+      parameters:
+        - in: query
+          name: a
+          schema:
+            type: integer
+          description: first integer
+        - in: query
+          name: b
+          schema:
+            type: integer
+          description: second integer
+      responses:
+        "200":
+          description: The sum of two provided integers
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/SumResponse.yaml"
