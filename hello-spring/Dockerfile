@@ -1,11 +1,17 @@
-FROM folioci/alpine-jre-openjdk11:latest
+FROM folioci/alpine-jre-openjdk17:latest
+
+# Install latest patch versions of packages: https://pythonspeed.com/articles/security-updates-in-docker/
+USER root
+RUN apk upgrade --no-cache
+USER folio
+
+ENV VERTICLE_FILE folio-hello-spring-fat.jar
+
+# Set the location of the verticles
+ENV VERTICLE_HOME /usr/verticles
 
 # Copy your fat jar to the container
-ENV APP_FILE folio-hello-spring-fat.jar
-# - should be a single jar file
-ARG JAR_FILE=./target/*.jar
-# - copy
-COPY ${JAR_FILE} ${JAVA_APP_DIR}/${APP_FILE}
+COPY target/*.jar ${VERTICLE_HOME}/${VERTICLE_FILE}
 
 # Expose this port locally in the container.
 EXPOSE 8080

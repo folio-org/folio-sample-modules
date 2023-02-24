@@ -28,7 +28,7 @@
   </licenses>
 
   <properties>
-    <java.version>11</java.version>
+    <java.version>17</java.version>
     <folio-spring-base.version>4.1.2</folio-spring-base.version>
     <openapi-generator.version>5.4.0</openapi-generator.version>
   </properties>
