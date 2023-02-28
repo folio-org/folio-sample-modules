@@ -6,7 +6,12 @@
 #   docker run -t -i -p 8080:8080 folio-hello-module
 ###
 
-FROM folioci/alpine-jre-openjdk11:latest
+FROM folioci/alpine-jre-openjdk17:latest
+
+# Install latest patch versions of packages: https://pythonspeed.com/articles/security-updates-in-docker/
+USER root
+RUN apk upgrade --no-cache
+USER folio
 
 ENV VERTICLE_FILE folio-hello-vertx-fat.jar
 
