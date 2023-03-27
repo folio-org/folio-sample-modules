@@ -1,4 +1,4 @@
-package org.folio.template.kafka;
+package org.folio.petstore.kafka;
 
 import org.folio.petstore.ModPetstoreApplication;
 import org.folio.petstore.domain.kafka.event.PetEvent;

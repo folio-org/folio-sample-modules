@@ -1,4 +1,4 @@
-package org.folio.template;
+package org.folio.petstore;
 
 import org.folio.spring.liquibase.FolioLiquibaseConfiguration;
 import org.folio.tenant.domain.dto.TenantAttributes;

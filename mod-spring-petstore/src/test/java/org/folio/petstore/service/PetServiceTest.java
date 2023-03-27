@@ -1,4 +1,4 @@
-package org.folio.template.service;
+package org.folio.petstore.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
