@@ -1,4 +1,4 @@
-package org.folio.template.context;
+package org.folio.petstore.context;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
