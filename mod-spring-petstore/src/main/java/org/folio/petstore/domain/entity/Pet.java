@@ -1,23 +1,33 @@
 package org.folio.petstore.domain.entity;
 
+
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "pets")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Pet {
+
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(updatable = false)
-  private long id;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id", nullable = false)
+  private Long id;
 
   @Column(name = "name")
   @NotNull

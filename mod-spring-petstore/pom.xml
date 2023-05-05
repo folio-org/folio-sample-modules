@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.7.1</version>
+    <version>3.0.2</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>org.folio</groupId>
@@ -26,13 +26,14 @@
     <openapi.input.file>${project.basedir}/src/main/resources/swagger.api/petstore.yaml</openapi.input.file>
     <openapi.external.file>${project.basedir}/src/main/resources/swagger.api/petstore-external.yaml</openapi.external.file>
     <java.version>17</java.version>
-    <folio-spring-base.version>4.1.0</folio-spring-base.version>
-    <openapi-generator.version>5.4.0</openapi-generator.version>
+    <folio-spring-base.version>6.1.0</folio-spring-base.version>
+    <openapi-generator.version>6.2.1</openapi-generator.version>
+    <spring-cloud-starter-openfeign.version>4.0.0</spring-cloud-starter-openfeign.version>
     <mapstruct.version>1.5.2.Final</mapstruct.version>
-    <spring-kafka.version>2.8.6</spring-kafka.version>
+<!--    <spring-kafka.version>2.8.6</spring-kafka.version>-->
     <!-- test dependencies -->
     <wiremock.version>2.33.2</wiremock.version>
-    <testcontainers.version>1.17.2</testcontainers.version>
+    <testcontainers.version>1.17.6</testcontainers.version>
   </properties>
 
   <dependencies>
@@ -40,6 +41,12 @@
       <groupId>org.folio</groupId>
       <artifactId>folio-spring-base</artifactId>
       <version>${folio-spring-base.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-openfeign</artifactId>
+      <version>${spring-cloud-starter-openfeign.version}</version>
     </dependency>
 
     <dependency>
@@ -56,7 +63,6 @@
     <dependency>
       <groupId>org.springframework.kafka</groupId>
       <artifactId>spring-kafka</artifactId>
-      <version>${spring-kafka.version}</version>
     </dependency>
 
 
@@ -255,16 +261,18 @@
               <generateModels>true</generateModels>
               <generateModelTests>true</generateModelTests>
               <generateSupportingFiles>true</generateSupportingFiles>
+              <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
               <generateModelDocumentation>true</generateModelDocumentation>
               <skipIfSpecIsUnchanged>true</skipIfSpecIsUnchanged>
               <importMappings>
                 <importMapping>errors=org.folio.tenant.domain.dto.ErrorDTO</importMapping>
               </importMappings>
               <configOptions>
-                <dateLibrary>java8</dateLibrary>
+                <java8>true</java8>
+                <dateLibrary>java</dateLibrary>
                 <interfaceOnly>true</interfaceOnly>
+                <useSpringBoot3>true</useSpringBoot3>
                 <useTags>true</useTags>
-                <library>spring-boot</library>
               </configOptions>
             </configuration>
           </execution>
@@ -291,10 +299,11 @@
                 <importMapping>errors=org.folio.tenant.domain.dto.ErrorDTO</importMapping>
               </importMappings>
               <configOptions>
-                <dateLibrary>java8</dateLibrary>
+                <java8>true</java8>
+                <dateLibrary>java</dateLibrary>
                 <interfaceOnly>true</interfaceOnly>
+                <useSpringBoot3>true</useSpringBoot3>
                 <useTags>true</useTags>
-                <library>spring-boot</library>
               </configOptions>
             </configuration>
           </execution>

@@ -29,15 +29,14 @@ spring:
       # to boot up application despite of any DB connection issues
       continue-on-error: true
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
     hibernate:
       ddl-auto: none
       naming:
-        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQL10Dialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: false
   liquibase:
@@ -50,6 +49,10 @@ spring:
       accept-single-value-as-array: true
   mustache:
     check-template-location: false
+  cloud:
+    openfeign:
+      okhttp:
+        enabled: true
 folio:
   tenant:
     validation:

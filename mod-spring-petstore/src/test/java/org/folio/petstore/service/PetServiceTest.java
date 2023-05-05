@@ -55,7 +55,7 @@ public class PetServiceTest {
     petDTO.setName("Fluffy");
     petDTO.setTag("husky");
 
-    Pet pet = new Pet(1, "Fluffy", "Husky");
+    Pet pet = new Pet(1L, "Fluffy", "Husky");
 
     // When
     when(petRepository.save(pet)).thenReturn(pet);
@@ -75,7 +75,7 @@ public class PetServiceTest {
     petDTO.setName("Fluffy");
     petDTO.setTag("husky");
 
-    Pet pet = new Pet(1, "Fluffy", "husky");
+    Pet pet = new Pet(1L, "Fluffy", "husky");
 
     // When
     when(petRepository.findById(1L)).thenReturn(Optional.of(pet));
@@ -112,7 +112,7 @@ public class PetServiceTest {
     petDTO.setName("Fluffy");
     petDTO.setTag("husky");
 
-    Pet pet = new Pet(1, "Fluffy", "Husky");
+    Pet pet = new Pet(1L, "Fluffy", "Husky");
 
     // When
     when(petRepository.findById(Long.valueOf("1"))).thenReturn(Optional.of(pet));
