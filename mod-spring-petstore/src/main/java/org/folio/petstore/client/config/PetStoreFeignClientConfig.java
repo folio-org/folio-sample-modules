@@ -5,8 +5,8 @@ import feign.okhttp.OkHttpClient;
 import org.springframework.context.annotation.Bean;
 
 public class PetStoreFeignClientConfig {
-    @Bean
-    public Client feignClient(okhttp3.OkHttpClient okHttpClient) {
-      return new OkHttpClient(okHttpClient);
-    }
+  @Bean
+  public Client feignClient(okhttp3.OkHttpClient okHttpClient) {
+    return new OkHttpClient(okHttpClient);
+  }
 }
