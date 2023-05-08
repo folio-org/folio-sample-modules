@@ -5,6 +5,6 @@
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
     <changeSet id="pets-table" author="nirmalr-shah">
-        <sqlFile path="sql/pets.sql" relativeToChangelogFile="true"/>
+        <sqlFile path="v1.0.0/sql/pets.sql" relativeToChangelogFile="true"/>
     </changeSet>
 </databaseChangeLog>

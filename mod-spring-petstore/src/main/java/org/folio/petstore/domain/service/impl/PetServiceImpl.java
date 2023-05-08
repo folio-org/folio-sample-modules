@@ -1,6 +1,7 @@
 package org.folio.petstore.domain.service.impl;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import jakarta.transaction.Transactional;
 import org.folio.petstore.client.CreateUserClient;
 import org.folio.petstore.client.UserClient;
 import org.folio.petstore.domain.dto.PetDTO;
@@ -13,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
 
 @Service

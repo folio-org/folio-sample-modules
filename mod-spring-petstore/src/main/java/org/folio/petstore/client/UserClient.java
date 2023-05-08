@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @FeignClient(name = "user", url="https://randomuser.me", configuration = PetStoreFeignClientConfig.class)
 public interface UserClient {
-  @GetMapping("/api/")
+  @GetMapping("/api")
   JsonNode getRandomUser();
 }
