@@ -127,8 +127,6 @@
               <apiPackage>org.folio.hello.api</apiPackage>
               <modelPackage>org.folio.hello.model</modelPackage>
               <configOptions>
-                <java8>true</java8>
-                <dateLibrary>java</dateLibrary>
                 <interfaceOnly>true</interfaceOnly>
                 <useSpringBoot3>true</useSpringBoot3>
               </configOptions>
