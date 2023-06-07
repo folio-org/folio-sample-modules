@@ -20,6 +20,7 @@ public final class HelloController implements HelloApi {
     return new ResponseEntity<>(GREETING, HttpStatus.OK);
   }
 
+
   /** {@inheritDoc} */
   @Override
   public ResponseEntity<InlineResponse200> helloPost(Object body) {
