@@ -31,7 +31,6 @@
     <java.version>17</java.version>
     <folio-spring-base.version>6.1.0</folio-spring-base.version>
     <openapi-generator.version>6.2.1</openapi-generator.version>
-    <spring-cloud-starter-openfeign.version>4.0.0</spring-cloud-starter-openfeign.version>
   </properties>
 
   <dependencies>
@@ -40,11 +39,6 @@
       <groupId>org.folio</groupId>
       <artifactId>folio-spring-base</artifactId>
       <version>${folio-spring-base.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-openfeign</artifactId>
-      <version>${spring-cloud-starter-openfeign.version}</version>
     </dependency>
   </dependencies>
 
@@ -132,11 +126,7 @@
               <generatorName>spring</generatorName>
               <apiPackage>org.folio.hello.api</apiPackage>
               <modelPackage>org.folio.hello.model</modelPackage>
-              <generateSupportingFiles>true</generateSupportingFiles>
-              <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
               <configOptions>
-                <java8>true</java8>
-                <dateLibrary>java</dateLibrary>
                 <interfaceOnly>true</interfaceOnly>
                 <useSpringBoot3>true</useSpringBoot3>
               </configOptions>
