@@ -16,7 +16,7 @@
 
   <groupId>org.folio</groupId>
   <artifactId>folio-hello-spring</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <name>hello-spring</name>
   <description>Hello world demo project for FOLIO, using Spring and OpenAPI</description>
 
