@@ -1,7 +1,7 @@
 package org.folio.hello;
 
 import org.folio.hello.api.HelloApi;
-import org.folio.hello.model.InlineResponse200;
+import org.folio.hello.model.HelloGet200Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,8 +22,8 @@ public final class HelloController implements HelloApi {
 
   /** {@inheritDoc} */
   @Override
-  public ResponseEntity<InlineResponse200> helloPost(Object body) {
-    InlineResponse200 response = new InlineResponse200();
+  public ResponseEntity<HelloGet200Response> helloPost(Object body) {
+    HelloGet200Response response = new HelloGet200Response();
     response.setGreeting(GREETING);
     response.setData(body);
 
