@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.0.2</version>
+    <version>3.1.4</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>org.folio</groupId>
@@ -26,13 +26,13 @@
     <openapi.input.file>${project.basedir}/src/main/resources/swagger.api/petstore.yaml</openapi.input.file>
     <openapi.external.file>${project.basedir}/src/main/resources/swagger.api/petstore-external.yaml</openapi.external.file>
     <java.version>17</java.version>
-    <folio-spring-base.version>6.1.0</folio-spring-base.version>
-    <openapi-generator.version>6.2.1</openapi-generator.version>
-    <spring-cloud-starter-openfeign.version>4.0.0</spring-cloud-starter-openfeign.version>
+    <folio-spring-base.version>7.2.0</folio-spring-base.version>
+    <openapi-generator.version>6.6.0</openapi-generator.version>
+    <spring-cloud-starter-openfeign.version>4.0.4</spring-cloud-starter-openfeign.version>
     <mapstruct.version>1.5.2.Final</mapstruct.version>
     <!-- test dependencies -->
-    <wiremock.version>2.33.2</wiremock.version>
-    <testcontainers.version>1.17.6</testcontainers.version>
+    <wiremock.version>3.2.0</wiremock.version>
+    <testcontainers.version>1.19.1</testcontainers.version>
   </properties>
 
   <dependencies>
@@ -148,8 +148,8 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>com.github.tomakehurst</groupId>
-      <artifactId>wiremock-jre8</artifactId>
+      <groupId>org.wiremock</groupId>
+      <artifactId>wiremock</artifactId>
       <version>${wiremock.version}</version>
       <scope>test</scope>
     </dependency>
@@ -171,7 +171,7 @@
 
       <plugin>
         <artifactId>maven-resources-plugin</artifactId>
-        <version>3.2.0</version>
+        <version>3.3.1</version>
         <executions>
           <execution>
             <id>filter-descriptor-inputs</id>
@@ -222,7 +222,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
-        <version>3.2.0</version>
+        <version>3.4.0</version>
         <executions>
           <execution>
             <phase>generate-sources</phase>
