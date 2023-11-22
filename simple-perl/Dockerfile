@@ -8,11 +8,16 @@
 
 FROM alpine
 
-RUN apk add --no-cache perl perl-net-server perl-json perl-cgi perl-lwp-useragent-determined
+# Install latest patch versions of packages: https://pythonspeed.com/articles/security-updates-in-docker/
+RUN apk upgrade \
+ && apk add \
+      perl perl-net-server perl-json perl-cgi perl-lwp-useragent-determined \
+ && rm -rf /var/cache/apk/*
 
 # or:
 #FROM perl:slim
-#RUN apt-get update && apt-get -y install libnet-server-perl libjson-perl libcgi-pm-perl libmodule-build-perl libwww-perl
+## Install latest patch versions of packages: https://pythonspeed.com/articles/security-updates-in-docker/
+#RUN apt-get update && apt-get -y upgrade && apt-get -y install libnet-server-perl libjson-perl libcgi-pm-perl libmodule-build-perl libwww-perl
 #ENV PERL5LIB /usr/share/perl5
 
 # Set the location of the script
