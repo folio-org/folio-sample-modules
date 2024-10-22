@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
