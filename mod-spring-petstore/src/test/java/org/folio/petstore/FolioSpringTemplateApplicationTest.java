@@ -1,6 +1,7 @@
 package org.folio.petstore;
 
 import org.folio.spring.liquibase.FolioLiquibaseConfiguration;
+import org.folio.spring.testing.extension.EnableKafka;
 import org.folio.tenant.domain.dto.TenantAttributes;
 import org.folio.tenant.rest.resource.TenantApi;
 import org.junit.jupiter.api.Test;
@@ -17,6 +18,7 @@ import jakarta.validation.Valid;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ActiveProfiles({"test", "testcontainers-pg"})
+@EnableKafka
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class FolioSpringTemplateApplicationTest {
 

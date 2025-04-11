@@ -6,7 +6,7 @@
 #   docker run -t -i -p 8080:8080 folio-simple-module
 ###
 
-FROM folioci/alpine-jre-openjdk17:latest
+FROM folioci/alpine-jre-openjdk21:latest
 
 # Install latest patch versions of packages: https://pythonspeed.com/articles/security-updates-in-docker/
 USER root
