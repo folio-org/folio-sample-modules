@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.4.5</version>
+    <version>3.4.8</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>org.folio</groupId>
@@ -27,8 +27,8 @@
     <openapi.external.file>${project.basedir}/src/main/resources/swagger.api/petstore-external.yaml</openapi.external.file>
     <java.version>21</java.version>
     <folio-spring-support.version>9.0.1</folio-spring-support.version>
-    <openapi-generator.version>7.12.0</openapi-generator.version>
-    <spring-cloud-starter-openfeign.version>4.2.1</spring-cloud-starter-openfeign.version>
+    <openapi-generator.version>7.14.0</openapi-generator.version>
+    <spring-cloud-starter-openfeign.version>4.2.0</spring-cloud-starter-openfeign.version>
     <mapstruct.version>1.6.3</mapstruct.version>
     <!-- test dependencies -->
     <wiremock.version>3.12.1</wiremock.version>
