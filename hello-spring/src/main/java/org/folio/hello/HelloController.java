@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Main API controller
  */
 @RestController
-public final class HelloController implements HelloApi {
+public class HelloController implements HelloApi {
 
   public static final String GREETING = "Hello, world!\n";
 
